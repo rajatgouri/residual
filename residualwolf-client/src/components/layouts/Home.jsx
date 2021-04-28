@@ -11,10 +11,10 @@ export default () => {
   useEffect(() => {
     getPosts();
   }, []);
-  console.log(posts, "gfhj");
+  
   return (
     <Fragment>
-      <section>
+      <section className="home">
         <div className="container-fluid pb-2 mt-5 mb-3">
           <div className="row mt-3">
             <div className="col-1"></div>

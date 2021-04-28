@@ -18,10 +18,8 @@ export default (props) => {
   formData.append("title", title);
   formData.append("thumbnail", selectedFile);
   formData.append("description", description);
-  console.log(formData);
   const onChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
-    console.log(e);
   };
   const onChange1 = (e) => {
     setSelectedFile(e.target.files[0]);

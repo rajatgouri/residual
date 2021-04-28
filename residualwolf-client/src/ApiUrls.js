@@ -1,5 +1,5 @@
-// export const _BASE_URL = "http://localhost:5000/api/v1";
-export const _BASE_URL = "https://residual-api-dev.serverdatahost.com/api/v1";
+export const _BASE_URL = "http://localhost:9701/api/v1";
+// export const _BASE_URL = "https://residual-api-dev.serverdatahost.com/api/v1";
 //User Apis
 export const _LOGIN_USER = "";
 export const _REGISTER_USER = "";
