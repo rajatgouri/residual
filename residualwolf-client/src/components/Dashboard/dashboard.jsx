@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import Chart from "react-apexcharts";
 
 function dashboard() {
+  // dashboard
   const state1 = {
     options: {
       chart: {
