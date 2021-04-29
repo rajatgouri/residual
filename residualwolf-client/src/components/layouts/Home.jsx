@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Context from "../../context/ResidualWolf/Context";
 import Blog from "./CardNew";
 import Spinner from "./Spinner";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 export default () => {
   const context = useContext(Context);
@@ -14,6 +16,7 @@ export default () => {
   
   return (
     <Fragment>
+      <Navbar />
       <section className="home">
         <div className="container-fluid pb-2 mt-5 mb-3">
           <div className="row mt-3">
@@ -40,6 +43,7 @@ export default () => {
           
         </div>
       </section>
+      <Footer />
     </Fragment>
   );
 };

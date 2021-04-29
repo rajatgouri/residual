@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useContext } from "react";
 import Constext from "../../context/ResidualWolf/Context";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 export default (props) => {
   const constext = useContext(Constext);
@@ -33,6 +35,7 @@ export default (props) => {
 
   return (
     <Fragment>
+      <Navbar />
       <div className="container-fluid">
 
       
@@ -42,7 +45,7 @@ export default (props) => {
             <div className="card-body">
               <form onSubmit={onSubmit}>
                 <div className="form-group">
-                  <label htmlFor="exampleFormControlInput1">Title</label>
+                  <label  className="font-20 font-bold">Title</label>
                   <input
                     onChange={onChange}
                     name="title"
@@ -55,7 +58,7 @@ export default (props) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="exampleFormControlInput1">Thumbnail</label>
+                  <label  className="font-20 font-bold">Thumbnail</label>
                   <input
                     onChange={onChange1}
                     name="thumbnail"
@@ -68,7 +71,7 @@ export default (props) => {
                   />
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Content</label>
+                  <label for="exampleFormControlTextarea1 font-bold">Content</label>
                   <textarea
                     onChange={onChange}
                     name="description"
@@ -87,6 +90,7 @@ export default (props) => {
         </div>
         </div>
       </div>
+      <Footer />
     </Fragment>
   );
 };
