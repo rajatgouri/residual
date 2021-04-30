@@ -1,21 +1,9 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const router = require("express").Router();
+const controller = require("./userController");
 
-const blogSchema = new Schema({
-    name: {
-        type: String
-    },
-    email: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User'
-    },
-    password: {
-        type: String
-    },
-    role: {
-        type: String
-    }
-},
-    { timestamps: true });
 
-module.exports = mongoose.model('Blog', blogSchema, 'blogs');
+router.post("/signin", controller.signIn);
+router.post("/signup", controller.signUp);
+router.post("/admin/signup", controller.adminSignUp);
+
+module.exports = router;
