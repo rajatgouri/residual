@@ -21,10 +21,17 @@ export default ({ location }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token")
+    if(!token){
+      return swal("", "Please Log in to add comment", "error");
+    }
     axios
       .post(
         _BASE_URL + "/comment",
-        { text: comment },
+        { text: comment,
+          blogId: id,
+          userId: token
+        },
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
@@ -209,15 +216,20 @@ export default ({ location }) => {
               <h6 className="title mt-3">Comments: </h6>
               <form onSubmit={handleSubmit}>
                 <div className="input-group">
+                  <div className="input-group-prepend">
+                    <div class="input-group-text">
+                      <i className="fas fa-comment text-primaryColor"></i>
+                    </div>
+                  </div>
                   <input
                     type="text"
-                    className="form-control w-50"
+                    className="form-control"
                     placeholder="Add your comment"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     required
                   ></input>
-                </div>
+                </div>                
                 <button
                   className="text-white bg-secondaryColor font-demi btn-blue mt-3 mb-5"
                   type="submit"

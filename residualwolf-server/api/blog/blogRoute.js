@@ -7,6 +7,6 @@ router.get('/blog/:id', controller.getBlog);
 
 router.post('/blog', controller.createBlog);
 
-router.post('/comment', controller.createComment);
+router.post("/comment", controller.createComment);
 
 module.exports = router;
