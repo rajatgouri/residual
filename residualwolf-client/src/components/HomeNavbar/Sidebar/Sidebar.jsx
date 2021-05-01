@@ -20,9 +20,11 @@ function NavbarComponent() {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav flex-column">
-              <li class="nav-item ">
+                <li class="nav-item ">
                   <a class="nav-link active" href="#">
-                    <span className="font-bold">Categories</span>
+                    <span className="font-bold text-primaryColor">
+                      Categories
+                    </span>
                   </a>
                 </li>
                 <li class="nav-item ">

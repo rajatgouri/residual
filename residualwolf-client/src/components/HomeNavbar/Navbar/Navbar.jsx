@@ -9,29 +9,27 @@ function NavbarComponent() {
   return (
     <React.Fragment>
       <Navbar
-        expand="lg"
-        className="nav-background  py-2 px-3 shadow-sm"
-        sticky="top"
+        expand="md"
+        className="nav-background py-0"
+        fixed="top"
         collapseOnSelect={true}
         variant="light"
       >
         <Navbar.Brand href="/" className="mx-0">
           <img
             src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/logo_white.png"
-            width="30"
-            height="30"
-            alt="logo"
-            className="img-fluid py-0 my-0 logo"
+            alt="Vinayak Travels"
+            className="img-fluid py-0 my-0"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="links">
-            <NavLink exact to="/" activeClassName="activeNav">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />        
+        <Navbar.Collapse id="basic-navbar-nav">          
+          <Nav className="links">            
+            <NavLink exact to="/" activeClassName="activeNav">              
               <Nav.Link
                 href="/"
                 className="font-demi font-17 px-3 navbar-item
-                  text-primaryColor text-center"
+                  text-white text-center"
               >
                 Home
               </Nav.Link>
@@ -41,7 +39,7 @@ function NavbarComponent() {
                 as={Link}
                 to="/blog-list"
                 className="font-demi font-17
-                  px-3 navbar-item text-primaryColor text-center"
+                  px-3 navbar-item text-white text-center"
               >
                 Blog
               </Nav.Link>
@@ -49,7 +47,7 @@ function NavbarComponent() {
             <NavDropdown
               title="Categories"
               id="collasible-nav-dropdown"
-              className="font-demi font-17 px-3 navbar-item mobile-visible text-center "
+              className="font-demi font-17 px-3 navbar-item text-white mobile-visible text-center "
             >
               <div
                 style={{
@@ -88,7 +86,7 @@ function NavbarComponent() {
               <Nav.Link
                 href="/login"
                 className="font-demi font-17
-                  px-3 navbar-item text-primaryColor text-center"
+                  px-3 navbar-item text-white text-center"
               >
                 Login
               </Nav.Link>
@@ -97,23 +95,22 @@ function NavbarComponent() {
               <Nav.Link
                 href="/signup"
                 className="font-demi font-17
-                  px-3 navbar-item text-primaryColor text-center"
+                  px-3 navbar-item text-white text-center"
               >
                 SignUp
               </Nav.Link>
             </NavLink>
           </Nav>
         </Navbar.Collapse>
-        <nav className="ml-auto">
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search"
-            ></input>
-            <i className="fa fa-search mt-3 ml-2 text-primaryColor"></i>
-          </div>
-        </nav>
+        <nav className="ml-auto pr-3">
+             <div className="input-group">
+                 <input
+                     type="text"
+                     className="form-control"
+                     placeholder="Search"
+                 ></input><i className="fa fa-search mt-3 ml-2 text-white"></i>
+             </div>
+         </nav>
       </Navbar>
     </React.Fragment>
   );

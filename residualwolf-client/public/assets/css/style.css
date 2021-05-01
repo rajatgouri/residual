@@ -700,9 +700,9 @@ dt {
   padding: 0 4px;
 }
 
-.navbar-custom .navbar-right .dropdown-toggle:after {
+/* .navbar-custom .navbar-right .dropdown-toggle:after {
   content: initial;
-}
+} */
 
 .logo {
   color: #2a3142 !important;
