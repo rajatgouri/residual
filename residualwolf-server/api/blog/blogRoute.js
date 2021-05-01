@@ -8,5 +8,6 @@ router.get('/blog/:id', controller.getBlog);
 router.post('/blog', controller.createBlog);
 
 router.post("/comment", controller.createComment);
+router.get("/comment/:id", controller.getComment);
 
 module.exports = router;

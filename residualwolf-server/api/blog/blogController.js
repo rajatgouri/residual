@@ -86,12 +86,19 @@ exports.createComment = async (req, res) => {
         res.status(500).json({ msg: 'internal server error', status: false });
     }
 }
-// exports.getComment = async (req, res) => {
-//   try {
-//     const blogs = await Blog.find();
-//     res.status(200).json({ blogs, status: true });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json({ msg: "internal server error", status: false });
-//   }
-// };
+exports.getComment = async (req, res) => {
+  try {
+    const comment = await Comment.aggregate([
+      {
+        $match: {
+          blogId: mongoose.Types.ObjectId(req.params.id),
+        },
+      },
+    ]);
+    console.log(comment);
+    res.status(200).json({ comment, status: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "internal server error", status: false });
+  }
+};
