@@ -42,7 +42,7 @@ function Signup() {
       <Navbar />
       <div className="container my-5">
         <div className="row d-flex justify-content-center">
-          <div className="col-lg-8 col-md-8 col-sm-12 col-12">
+          <div className="col-lg-8 col-md-8 col-sm-12 col-12 mt-5">
             <div>
               <h1 className="text-center font-bold text-black mt-5 mb-4">
                 Welcome to Residual Wolf, Signup here...

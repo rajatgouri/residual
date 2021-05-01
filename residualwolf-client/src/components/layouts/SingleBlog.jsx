@@ -1,8 +1,11 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import Context from "../../context/ResidualWolf/Context";
 import Spinner from "../layouts/Spinner";
 import Footer from "../Footer/Footer";
 import NavbarComponent from "../HomeNavbar/Navbar/Navbar";
+import swal from "sweetalert";
+import { _BASE_URL } from "../../ApiUrls";
+import axios from "axios";
 
 export default ({ location }) => {
   const id = location.search.split("=")[1];
@@ -13,6 +16,25 @@ export default ({ location }) => {
   useEffect(() => {
     getPost(id);
   }, [id]);
+
+  const [comment, setComment] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        _BASE_URL + "/comment",
+        { text: comment },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then((res) => {
+        if (res.data.status) {
+          swal("", "Your comment is added", "success");
+          setComment("");
+        }
+      })
+      .catch((err) => swal("", err, "error"));
+  };
   return (
     <Fragment>
       <NavbarComponent />
@@ -182,11 +204,28 @@ export default ({ location }) => {
               </div>
             </div>
             <div className="col-lg-4 addsense p-2"></div>
-          </div>
-
-          <div className="col-md-12 mt-5">
-            <hr></hr>
-            <h6 className="title mt-3">Comments: </h6>
+            <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
+              <hr></hr>
+              <h6 className="title mt-3">Comments: </h6>
+              <form onSubmit={handleSubmit}>
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control w-50"
+                    placeholder="Add your comment"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    required
+                  ></input>
+                </div>
+                <button
+                  className="text-white bg-secondaryColor font-demi btn-blue mt-3 mb-5"
+                  type="submit"
+                >
+                  Add Comment
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       ) : (

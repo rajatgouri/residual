@@ -9,7 +9,7 @@ function NavbarComponent() {
   return (
     <React.Fragment>
       <Navbar
-        expand="md"
+        expand="lg"
         className="nav-background py-0"
         fixed="top"
         collapseOnSelect={true}
@@ -22,10 +22,10 @@ function NavbarComponent() {
             className="img-fluid py-0 my-0"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />        
-        <Navbar.Collapse id="basic-navbar-nav">          
-          <Nav className="links">            
-            <NavLink exact to="/" activeClassName="activeNav">              
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="links">
+            <NavLink exact to="/" activeClassName="activeNav">
               <Nav.Link
                 href="/"
                 className="font-demi font-17 px-3 navbar-item
@@ -103,14 +103,15 @@ function NavbarComponent() {
           </Nav>
         </Navbar.Collapse>
         <nav className="ml-auto pr-3">
-             <div className="input-group">
-                 <input
-                     type="text"
-                     className="form-control"
-                     placeholder="Search"
-                 ></input><i className="fa fa-search mt-3 ml-2 text-white"></i>
-             </div>
-         </nav>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search"
+            ></input>
+            <i className="fa fa-search mt-3 ml-2 text-white"></i>
+          </div>
+        </nav>
       </Navbar>
     </React.Fragment>
   );
