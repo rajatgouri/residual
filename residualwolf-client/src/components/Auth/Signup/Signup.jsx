@@ -31,7 +31,7 @@ function Signup() {
           window.location.href = "/login";
         }
       })
-      .catch((err) => swal("", err, "error"));
+      .catch((err) => swal("", err.response.data.message, "error"));
   };
 
   return (

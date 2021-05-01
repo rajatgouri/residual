@@ -33,7 +33,10 @@ function Login() {
           window.location.href = "/dashboard";
         }
       })
-      .catch((err) => swal("", err, "error"));
+      .catch((err) => {
+        console.log(err.response.data.message)
+        swal("", err.response.data.message, "error") 
+      });
   };
 
   return (
