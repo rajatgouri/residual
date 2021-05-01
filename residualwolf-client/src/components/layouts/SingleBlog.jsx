@@ -6,18 +6,19 @@ import NavbarComponent from "../HomeNavbar/Navbar/Navbar";
 import swal from "sweetalert";
 import { _BASE_URL } from "../../ApiUrls";
 import axios from "axios";
+import DisplayComment from './DisplayComment'
 
 export default ({ location }) => {
   const id = location.search.split("=")[1];
-  console.log(id, "iddddd");
   const context = useContext(Context);
-  const { getPost, post } = context;
+  const { getPost, post, getComment, comment } = context;
 
   useEffect(() => {
     getPost(id);
-  }, [id]);
+    getComment(id);
+  }, [id, comment]);  
 
-  const [comment, setComment] = useState("");
+  const [addcomment, setComment] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,10 +29,7 @@ export default ({ location }) => {
     axios
       .post(
         _BASE_URL + "/comment",
-        { text: comment,
-          blogId: id,
-          userId: token
-        },
+        { text: addcomment, blogId: id, userId: token },
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
@@ -218,7 +216,7 @@ export default ({ location }) => {
               <form onSubmit={handleSubmit}>
                 <div className="input-group">
                   <div className="input-group-prepend">
-                    <div class="input-group-text">
+                    <div className="input-group-text">
                       <i className="fas fa-comment text-primaryColor"></i>
                     </div>
                   </div>
@@ -226,18 +224,25 @@ export default ({ location }) => {
                     type="text"
                     className="form-control"
                     placeholder="Add your comment"
-                    value={comment}
+                    value={addcomment}
                     onChange={(e) => setComment(e.target.value)}
                     required
                   ></input>
-                </div>                
+                </div>
                 <button
-                  className="text-white bg-secondaryColor font-demi btn-blue mt-3 mb-5"
+                  className="text-white bg-secondaryColor font-demi btn-blue my-3"
                   type="submit"
                 >
                   Add Comment
                 </button>
               </form>
+              <div className="mb-5">
+              {comment.map((comm, i) => (
+                (
+                <DisplayComment comm={comm} key={i}  />
+              )
+              ))}
+              </div>              
             </div>
           </div>
         </div>

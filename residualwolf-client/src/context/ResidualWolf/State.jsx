@@ -9,12 +9,14 @@ import {
   _GET_POST,
   _GUEST_BYID,
   _GUEST_INVITE,
+  _GET_COMMENT,
 } from "../../ApiUrls";
 
 import {
   GET_ALL_POST,
   GET_POST,
   ADD_POST,
+  GET_COMMENT,
   GUEST_BYID,
   GET_UPCOMING_GUEST,
   ERROR,
@@ -27,6 +29,7 @@ const State = (props) => {
     guest: null,
     invite: null,
     error: null,
+    comment: [],
   };
 
   const [state, dispatch] = useReducer(Reduser, initialState);
@@ -50,7 +53,6 @@ const State = (props) => {
 
   // Add Contact
   const addPost = async (post) => {
-    console.log(post, "post");
     try {
       const res = await axios.post(_BASE_URL + _CREATE_POST, post);
       // if (res.data.status === false) alert(res.data.message);
@@ -64,18 +66,28 @@ const State = (props) => {
   // Delete Contact
   const getPost = async (id) => {
     try {
-      console.log(id, "id...");
-      console.log(_BASE_URL + _GET_POST + id);
       axios
         .get(_BASE_URL + _GET_POST + id)
-        .then((res) => {
-          console.log(res, "hefe");
+        .then((res) => {          
           dispatch({ type: GET_POST, payload: res.data.blog });
         })
         .catch((err) => console.log(err));
     } catch (err) {
       console.log(err);
       //   dispatch({ type: ERROR, payload: err.response.msg });
+    }
+  };
+
+  const getComment = async (id) => {
+    try {
+      axios
+        .get(_BASE_URL + _GET_COMMENT + id)
+        .then((res) => {
+          dispatch({ type: GET_COMMENT, payload: res.data.comment });
+        })
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -87,9 +99,11 @@ const State = (props) => {
         guest: state.guest,
         invite: state.invite,
         error: state.error,
+        comment: state.comment,
         getPosts,
         getPost,
         addPost,
+        getComment,
       }}
     >
       {props.children}

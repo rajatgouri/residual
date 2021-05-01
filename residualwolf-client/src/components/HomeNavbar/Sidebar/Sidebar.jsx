@@ -20,8 +20,8 @@ function NavbarComponent() {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav flex-column">
-                <li class="nav-item ">
-                  <a class="nav-link active" href="#">
+                <li class="nav-item-category py-2 px-3 mb-2 font-18">
+                  <a class="active">
                     <span className="font-bold text-primaryColor">
                       Categories
                     </span>

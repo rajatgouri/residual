@@ -7,7 +7,7 @@ function NavbarComponent() {
     <React.Fragment>
       <Navbar
         expand="lg"
-        className="nav-background  py-2 px-3"        
+        className="nav-background  py-2 px-3"
         collapseOnSelect={true}
         variant="light"
       >
@@ -20,7 +20,7 @@ function NavbarComponent() {
             className="img-fluid py-0 my-0 logo"
           />
         </Navbar.Brand>
-        <nav className="ml-auto text-white">
+        <nav className="ml-auto text-primaryColor">
           <span className="font-demi">
             © {new Date().getFullYear()} ResidualWolf
           </span>

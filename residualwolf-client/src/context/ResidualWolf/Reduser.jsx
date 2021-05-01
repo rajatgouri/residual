@@ -1,8 +1,6 @@
-import { GET_ALL_POST, GET_POST, ADD_POST } from "../Types";
+import { GET_ALL_POST, GET_POST, ADD_POST, GET_COMMENT } from "../Types";
 
 export default (state, action) => {
-  console.log(...state.posts, "state");
-  console.log(action.payload, "reducer");
   switch (action.type) {
     case GET_ALL_POST:
       return {
@@ -19,6 +17,11 @@ export default (state, action) => {
       return {
         ...state,
         post: action.payload,
+      };
+    case GET_COMMENT:
+      return {
+        ...state,
+        comment: action.payload,
       };
     default:
       return state;

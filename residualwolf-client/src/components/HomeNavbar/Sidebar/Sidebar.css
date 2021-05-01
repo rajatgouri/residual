@@ -40,6 +40,11 @@
   border-radius: 2px;
 }
 
+.nav-item-category{
+  background-color: #e2e2eb;  
+  border-radius: 2px;  
+}
+
 .nav-left-sidebar .navbar-nav .nav-link:focus{
   background-color: #e2e2eb;
   border-radius: 2px;

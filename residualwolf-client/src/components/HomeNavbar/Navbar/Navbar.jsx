@@ -19,7 +19,7 @@ function NavbarComponent() {
           <img
             src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/logo_white.png"
             alt="Vinayak Travels"
-            className="img-fluid py-0 my-0"
+            className="img-fluid py-0 my-0 logo"
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -29,7 +29,7 @@ function NavbarComponent() {
               <Nav.Link
                 href="/"
                 className="font-demi font-17 px-3 navbar-item
-                  text-white text-center"
+                  text-primaryColor text-center"
               >
                 Home
               </Nav.Link>
@@ -39,7 +39,7 @@ function NavbarComponent() {
                 as={Link}
                 to="/blog-list"
                 className="font-demi font-17
-                  px-3 navbar-item text-white text-center"
+                  px-3 navbar-item text-primaryColor text-center"
               >
                 Blog
               </Nav.Link>
@@ -47,7 +47,7 @@ function NavbarComponent() {
             <NavDropdown
               title="Categories"
               id="collasible-nav-dropdown"
-              className="font-demi font-17 px-3 navbar-item text-white mobile-visible text-center "
+              className="font-demi font-17 px-3 navbar-item text-primaryColor mobile-visible text-center "
             >
               <div
                 style={{
@@ -82,11 +82,20 @@ function NavbarComponent() {
                 </Link>
               </div>
             </NavDropdown>
+            <NavLink to="/about" activeClassName="activeNav">
+              <Nav.Link
+                href="/login"
+                className="font-demi font-17
+                  px-3 navbar-item text-primaryColor text-center"
+              >
+                About
+              </Nav.Link>
+            </NavLink>
             <NavLink to="/login" activeClassName="activeNav">
               <Nav.Link
                 href="/login"
                 className="font-demi font-17
-                  px-3 navbar-item text-white text-center"
+                  px-3 navbar-item text-primaryColor text-center"
               >
                 Login
               </Nav.Link>
@@ -95,7 +104,7 @@ function NavbarComponent() {
               <Nav.Link
                 href="/signup"
                 className="font-demi font-17
-                  px-3 navbar-item text-white text-center"
+                  px-3 navbar-item text-primaryColor text-center"
               >
                 SignUp
               </Nav.Link>
@@ -103,14 +112,7 @@ function NavbarComponent() {
           </Nav>
         </Navbar.Collapse>
         <nav className="ml-auto pr-3">
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search"
-            ></input>
-            <i className="fa fa-search mt-3 ml-2 text-white"></i>
-          </div>
+          
         </nav>
       </Navbar>
     </React.Fragment>

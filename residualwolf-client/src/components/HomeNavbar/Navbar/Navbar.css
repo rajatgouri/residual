@@ -1,8 +1,8 @@
 .logo {
-  background-color: var(--primaryColor);
+  background-color: var(--primaryColor) !important;
 }
 .links {
-  margin-left: 45%;
+  margin-left: 47%;
 }
 .dropdown-menu {
   padding-top: 0px !important ;
@@ -26,12 +26,12 @@
   color: #ffffff !important;
 }
 .nav-background {
-  background: var(--primaryColor) !important;
+  background: var(--tertiaryColor) !important;
   height: auto !important;
   padding: 10px !important;
 }
 .activeNav {
-  border-bottom: 3px #ffffff solid;
+  border-bottom: 3px var(--primaryColor) solid;
   font-weight: bold;
   text-decoration: none !important;
 }
@@ -64,5 +64,5 @@ button:focus {
   border: none !important;
 }
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus{
-  color: #ffffff;
+  color: var(--primaryColor) !important;
 }

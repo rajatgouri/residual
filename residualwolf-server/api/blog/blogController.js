@@ -91,11 +91,10 @@ exports.getComment = async (req, res) => {
     const comment = await Comment.aggregate([
       {
         $match: {
-          blogId: mongoose.Types.ObjectId(req.params.id),
+          blogId: req.params.id,
         },
       },
-    ]);
-    console.log(comment);
+    ]);    
     res.status(200).json({ comment, status: true });
   } catch (err) {
     console.log(err);

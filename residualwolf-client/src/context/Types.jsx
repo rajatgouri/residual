@@ -1,5 +1,6 @@
 export const GET_ALL_POST = "GET_ALL_POST";
 export const GET_POST = "GET_POST";
+export const GET_COMMENT = "GET_COMMENT";
 export const ADD_POST = "ADD_POST";
 export const INVITE_GUEST = "INVITE_GUEST";
 export const GUEST_BYID = "GUEST_BYID";
