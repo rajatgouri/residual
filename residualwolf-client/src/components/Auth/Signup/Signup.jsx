@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../../HomeNavbar/Navbar/Navbar";
 import swal from "sweetalert";
+import {
+  _BASE_URL,
+} from "../../../ApiUrls";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -15,7 +18,7 @@ function Signup() {
     }
     axios
       .post(
-        "http://localhost:9701/users/signup",
+        _BASE_URL + "/users/signup",
         { name, email, password },
         { headers: { "Content-Type": "application/json" } }
       )

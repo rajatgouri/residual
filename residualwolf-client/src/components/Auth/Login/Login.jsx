@@ -4,6 +4,9 @@ import "./Login.css";
 import Navbar from "../../HomeNavbar/Navbar/Navbar";
 import axios from "axios";
 import swal from "sweetalert";
+import {
+  _BASE_URL,
+} from "../../../ApiUrls";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -15,7 +18,7 @@ function Login() {
     }
     axios
       .post(
-        "http://localhost:9701/users/signin",
+        _BASE_URL+"/users/signin",
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       )

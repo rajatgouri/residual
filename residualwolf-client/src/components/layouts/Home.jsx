@@ -3,7 +3,7 @@ import Context from "../../context/ResidualWolf/Context";
 import Blog from "./CardNew";
 import Spinner from "./Spinner";
 import Footer from "../Footer/Footer";
-import HomeNavbar from "../HomeNavbar/HomeNavbar";
+import HomeNavbar from "../HomeNavbar/HomeNavbar"; 
 
 export default () => {
   const context = useContext(Context);
