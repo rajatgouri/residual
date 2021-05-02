@@ -22,12 +22,12 @@ function Signup() {
         { name, email, password },
         { headers: { "Content-Type": "application/json" } }
       )
-      .then((res) => {
+      .then((res) => {        
         if (res.data.message) {
           return swal("", res.data.message, "error");
         }
         window.localStorage.setItem("token", res.data.token);
-        window.localStorage.setItem("auth", res.data.auth);
+        window.localStorage.setItem("userid", res.data.result._id);
 
         if (window.localStorage.getItem("token")) {
           swal("", "You are signed up", "success");

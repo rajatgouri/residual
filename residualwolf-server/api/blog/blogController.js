@@ -1,5 +1,6 @@
 const Blog = require('../../models/Blog');
 const Comment = require('../../models/Comment');
+const User = require("../../models/User");
 const mongoose = require('mongoose');
 
 exports.getBlogs = async (req, res) => {

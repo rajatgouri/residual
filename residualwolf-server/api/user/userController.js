@@ -21,7 +21,7 @@ exports.signIn = async (req, res) => {
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
       "test",
-      { expiresIn: "1h" }
+      { expiresIn: "1month" }
     );
 
     return res.status(200).json({ result: existingUser, token });
@@ -31,7 +31,7 @@ exports.signIn = async (req, res) => {
 };
 
 exports.signUp = async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, name } = req.body;  
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {

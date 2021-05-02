@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 
-export default ({ post }) => {
+export default ({ post }) => {  
   return (
-    <Fragment>
+    <Fragment>      
       <div className="col-md-4" key={post._id}>
         <div className="card-deck-wrapper">
           <div className="card-deck">

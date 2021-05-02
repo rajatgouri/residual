@@ -8,10 +8,16 @@ import HomeNavbar from "../HomeNavbar/HomeNavbar";
 export default () => {
   const context = useContext(Context);
   const [value, setValue] = useState("");  
+  console.log(value)
   const { getPosts, posts } = context;
   useEffect(() => {
     getPosts();
   }, []);
+
+  const filteredItems = posts.filter(post => {
+    return post.createdAt.slice(5,7).includes(value);
+  });
+  
   console.log(posts, "kill");
   return (
     <Fragment>
@@ -45,73 +51,73 @@ export default () => {
                   >
                     <option
                       className="card text-white font-regular"
-                      value="January"
+                      value="01"
                     >
                       January
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="Feburary"
+                      value="02"
                     >
                       Feburary
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="March"
+                      value="03"
                     >
                       March
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="April"
+                      value="04"
                     >
                       April
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="May"
+                      value="05"
                     >
                       May
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="June"
+                      value="06"
                     >
                       June
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="July"
+                      value="07"
                     >
                       July
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="August"
+                      value="08"
                     >
                       August
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="September"
+                      value="09"
                     >
                       September
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="October"
+                      value="10"
                     >
                       October
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="November"
+                      value="11"
                     >
                       November
                     </option>
                     <option
                       className="card text-white font-regular"
-                      value="December"
+                      value="12"
                     >
                       December
                     </option>
@@ -119,12 +125,14 @@ export default () => {
                 </div>
 
                 <div className="row">
-                  {posts && posts.length > 0 ? (
-                    posts.map((post, i) => {
+                  {filteredItems && filteredItems.length > 0 ? (
+                    filteredItems.map((post, i) => {
                       return <Blog post={post} key={i} />;
                     })
                   ) : (
-                    <Spinner />
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div className="text-center font-demi font-20 text-white">No Blogs matched your search</div>
+                    </div>                    
                   )}
                 </div>
                 <div className="col-1"></div>

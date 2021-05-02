@@ -6,7 +6,7 @@ import NavbarComponent from "../HomeNavbar/Navbar/Navbar";
 import swal from "sweetalert";
 import { _BASE_URL } from "../../ApiUrls";
 import axios from "axios";
-import DisplayComment from './DisplayComment'
+import DisplayComment from "./DisplayComment";
 
 export default ({ location }) => {
   const id = location.search.split("=")[1];
@@ -16,20 +16,21 @@ export default ({ location }) => {
   useEffect(() => {
     getPost(id);
     getComment(id);
-  }, [id, comment]);  
+  }, [id, comment]);
 
   const [addcomment, setComment] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token")
-    if(!token){
+    const userid = localStorage.getItem("userid");
+    const token = localStorage.getItem("token");
+    if (!token) {
       return swal("", "Please Log in to add comment", "error");
     }
     axios
       .post(
         _BASE_URL + "/comment",
-        { text: addcomment, blogId: id, userId: token },
+        { text: addcomment, blogId: id, userId: userid },
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
@@ -76,7 +77,7 @@ export default ({ location }) => {
                     <div className="card mb-4">
                       <div className="card-body">
                         <h5 className="text-white mt-0 font-demi text-white mb-3">
-                           5 Ways to curate content on blog post
+                          5 Ways to curate content on blog post
                         </h5>
                         <img
                           className="blog-img card-img-top img-fluid"
@@ -213,11 +214,61 @@ export default ({ location }) => {
             <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
               <hr></hr>
               <h5 className="title my-3 text-white font-demi">Comments: </h5>
-              <div className="mb-3">
-                {comment.slice(0).reverse().map((comm, i) => (
-                  <DisplayComment comm={comm} key={i} index={i} />
-                ))}
-              </div>
+              {/* <div className="mb-3">
+                {comment
+                  .slice(0)
+                  .reverse()
+                  .map((comm, i) => (
+                    <DisplayComment comm={comm} key={i} index={i} />
+                  ))}
+              </div> */}
+              {comment
+                .slice(0)
+                .reverse()
+                .map((comm, i) => {
+                  if (i < 3) {
+                    return (
+                      <div className="card">
+                        <div className="d-flex justify-content-between text-white w-100 px-3 py-2">
+                          <div className="font-regular">{comm.text}</div>
+                          <div className="font-demi">
+                            {comm.createdAt.slice(-comm.createdAt.length, 10)}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+              {comment.length >= 3 && (
+                <button
+                  className="text-white bg-secondaryColor font-demi btn-blue mb-5"
+                  data-toggle="collapse"
+                  aria-expanded={false}
+                  data-target="#comments"
+                  aria-controls="comments"
+                >
+                  View More
+                </button>
+              )}
+              {comment
+                .slice(0)
+                .reverse()
+                .map((comm, i) => {
+                  if (i >= 3) {
+                    return (
+                      <div id="comments" class="collapse">
+                        <div className="card">
+                          <div className="d-flex justify-content-between text-white w-100 px-3 py-2">
+                            <div className="font-regular">{comm.text}</div>
+                            <div className="font-demi">
+                              {comm.createdAt.slice(-comm.createdAt.length, 10)}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
               <form onSubmit={handleSubmit}>
                 <div className="input-group">
                   <div className="input-group-prepend">
@@ -241,7 +292,6 @@ export default ({ location }) => {
                   Add Comment
                 </button>
               </form>
-             
             </div>
           </div>
         </div>

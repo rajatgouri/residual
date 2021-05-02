@@ -19,35 +19,33 @@ export default () => {
       <div className="home-page-wrapper">
         <section className="home">
           <div className="container-fluid pb-2 mt-5 mb-3">
-            <div className="row mt-3">
+            <div className="row mt-5">
               <div className="col-1"></div>
-              <div className="col-10">
-                <div className="col-md-12 text-center">
-                  <h2 className="text-white mt-5">Blogs</h2>
-                  <h6 className="sub-title text-white">Blogs Posts</h6>
-                  <hr className="mb-5"></hr>
-                </div>
-                <h4 className="text-white font-demi text-center">
+              <div className="col-10 mt-3">
+                <h4 className="text-white font-demi text-center mt-5">
                   Our Latest Blogs
                 </h4>
-                <hr className="mb-4"/>
-                <div className="row">                  
+                <hr className="mb-4" />
+                <div className="row">
                   {posts && posts.length > 0 ? (
-                    posts.slice(0).reverse().map((post, i) => {
-                      return <Blog post={post} key={i} />;
-                    })
+                    posts
+                      .slice(0)
+                      .reverse()
+                      .map((post, i) => {
+                        return (i<3 && <Blog post={post} key={i} />)
+                      })
                   ) : (
                     <Spinner />
                   )}
-                </div>                
+                </div>
                 <h4 className="text-white font-demi text-center mt-5">
                   Popular Blogs
                 </h4>
-                <hr className="mb-4"/>
+                <hr className="mb-4" />
                 <div className="row">
                   {posts && posts.length > 0 ? (
                     posts.map((post, i) => {
-                      return <Blog post={post} key={i} />;
+                      return (i<3 && <Blog post={post} key={i} />)
                     })
                   ) : (
                     <Spinner />

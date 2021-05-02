@@ -58,12 +58,13 @@ function NavbarComponent() {
         </Navbar.Collapse>
         <nav className="ml-auto pr-3 mt-0">
           {localStorage.getItem("token") ? (
-            <div
-              className="text-white font-demi"
-              onClick={(e) => localStorage.clear()}
+            <button
+              className="text-white font-demi bg-secondaryColor btn-blue"
+              onClick={(e) => {localStorage.clear()
+              console.log('clicked')}}
             >
               <i class="fas fa-power-off mr-2"></i>Logout
-            </div>
+            </button>
           ) : (
             <div class="dropdown pt-0 mt-0">
               <a

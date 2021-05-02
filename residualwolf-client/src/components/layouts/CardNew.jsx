@@ -9,7 +9,7 @@ export default (props) => {
   return (
     <Fragment>
       <div className="col-md-4 mt-2" key={post._id}>
-        <div className="card-deck-wrapper">
+        <div className="card-deck-wrapper h-100">
           <div className="card-deck">
             <div className="card mb-4 font-regular">
               <div className="card-body">
