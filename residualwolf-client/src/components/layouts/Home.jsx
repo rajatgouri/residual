@@ -27,7 +27,7 @@ export default () => {
                 <div className="col-md-12 text-center">
                   <h2 className="text-white mt-5">Blogs</h2>
                   <h6 className="sub-title text-white">Blogs Posts</h6>
-                  <hr></hr>
+                  <hr className="mb-5"></hr>
                 </div>
 
                 <div className="row">
