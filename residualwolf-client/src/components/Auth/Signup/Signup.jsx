@@ -44,9 +44,9 @@ function Signup() {
         <div className="row d-flex justify-content-center">
           <div className="col-lg-8 col-md-8 col-sm-12 col-12 mt-5">
             <div>
-              <h1 className="text-center font-bold text-black mt-5 mb-4">
+              <h2 className="text-center font-bold text-white mt-5 mb-4">
                 Welcome to Residual Wolf, Signup here...
-              </h1>
+              </h2>
               <form onSubmit={handleSubmit}>
                 <div className="input-group mt-4">
                   <input

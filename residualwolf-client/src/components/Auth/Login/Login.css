@@ -101,10 +101,17 @@
     cursor: pointer;
     height: 48px;
     min-width: 48px;
-    transition: all 0.5s ease-in;
+    transition: all 1s ease-in;
+    background: #14171a;
+    border: none;
+    outline: none;
+    box-shadow: 5px 5px 10px rgba(5,5,5,.7), -5px -5px 10px rgba(60,66,71,.7);
+    box-shadow: inset 3px 3px 4px #050505, inset -3px -3px 4px rgba(60,66,71,.4);
 }
 .btn-blue:hover{
-    background: #138FC1;
+    background: #1e2126 !important;
+    box-shadow: 2px 2px 5px rgba(5, 5, 5, 0.7),
+    -2px -2px 5px rgba(60, 66, 71, 0.7) !important;
 }
 input[type=checkbox]{
     border-radius: 50% !important ;

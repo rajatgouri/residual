@@ -9,7 +9,7 @@ export default ({ post }) => {
             <a href={"blog-details?id=" + post._id}>
               <div className="card mb-4 font-regular">
                 <div className="card-body">
-                  <h5 className="blog-title card-title mt-0 font-demi">
+                  <h5 className="text-white mb-3 mt-0 font-demi">
                     {post.title.length > 30
                       ? post.title.substring(0, 30) + "..."
                       : post.title}
@@ -19,7 +19,7 @@ export default ({ post }) => {
                     src={post.imageUrl}
                     alt="Card image cap"
                   />
-                  <p className="mt-2 mb-2 font-medium text-primaryColor">
+                  <p className="mt-2 mb-2 font-medium text-white">
                     {post.description.substring(0, 60) + "..."}
                   </p>
                 </div>

@@ -49,9 +49,9 @@ function Login() {
         <div className="row d-flex justify-content-center">
           <div className="col-lg-8 col-md-8 col-sm-12 col-12 mt-5">
             <div className="">
-              <h1 className="text-center font-bold mt-5 mb-4">
+              <h2 className="text-center text-white font-bold mt-5 mb-4">
                 Sign in to your account
-              </h1>
+              </h2>
               <form onSubmit={handleSubmit}>
                 <div className="input-group mt-4">
                   <input
@@ -76,7 +76,7 @@ function Login() {
                 <div className="d-flex justify-content-between">
                   <Link to="/signup">
                     {" "}
-                    <div className="font-demi grey-hover text-black mt-4 py-3 px-3">
+                    <div className="font-demi grey-hover text-secondaryColor mt-4 py-3 px-2">
                       Become a member ?{" "}
                       <span className="ml-2 text-secondaryColor">Signup</span>
                     </div>

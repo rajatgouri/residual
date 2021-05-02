@@ -14,6 +14,7 @@ import dashboard from "./components/Dashboard/dashboard";
 import Blogs from "./components/Dashboard/Blogs/Blogs";
 import Category from "./components/Dashboard/Category/Category";
 import User from "./components/Dashboard/User/User";
+import About from "./components/layouts/About";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Route exact path="/dashboard/blogs" component={Blogs} />
             <Route exact path="/dashboard/category" component={Category} />
             <Route exact path="/dashboard/user" component={User} />
+            <Route exact path="/about" component={About} />
           </Switch>
         </Fragment>
       </Router>

@@ -13,7 +13,7 @@ export default (props) => {
           <div className="card-deck">
             <div className="card mb-4 font-regular">
               <div className="card-body">
-                <h5 className="blog-title card-title mt-0 font-demi">
+                <h5 className="text-white mt-0 font-demi mb-3">
                   {post.title.length > 30
                     ? post.title.substring(0, 30) + "..."
                     : post.title}
@@ -24,11 +24,11 @@ export default (props) => {
                   alt="Card image cap"
                 />
               </div>
-              <div className="row text-center mt-2 mb-2">
+              <div className="row text-center mt-2 mb-4">
                 <div className="col-md-12">
                   <a
                     href={`/blog-details?id=${post._id}`}
-                    className="btn btn-sm text-center bg-primaryColor text-white ml-1"
+                    className="text-center btn-blue text-white py-3"
                   >
                     View More
                   </a>

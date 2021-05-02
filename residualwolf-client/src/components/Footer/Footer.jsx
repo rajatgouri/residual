@@ -20,7 +20,7 @@ function NavbarComponent() {
             className="img-fluid py-0 my-0 logo"
           />
         </Navbar.Brand>
-        <nav className="ml-auto text-primaryColor">
+        <nav className="ml-auto text-white">
           <span className="font-demi">
             © {new Date().getFullYear()} ResidualWolf
           </span>

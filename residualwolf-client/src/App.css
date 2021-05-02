@@ -5,6 +5,7 @@ body {
   scroll-behavior: smooth;
   margin: 0 !important;
   box-sizing: border-box;
+  background: #14171a;
 }
 
 .home {
@@ -15,17 +16,14 @@ body {
   width: 100%;
   min-height: 100vh;
 }
-::-webkit-scrollbar {
-  width: 10px;
+
+.card {
+  background: #1e2126 !important;
+  box-shadow: 5px 5px 10px rgba(5, 5, 5, 0.7),
+    -5px -5px 10px rgba(60, 66, 71, 0.7) !important;
+  border-radius: 20px;
 }
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--primaryColor);
-  border-radius: 10px;
-}
+
 /* Root variables */
 :root {
   --primaryColor: #733fd4;
@@ -143,10 +141,10 @@ a:hover {
 
 /* Background color */
 .bg-primaryColor {
-  background: var(--primaryColor) !important;
+  background: #14171a !important;
 }
 .bg-secondaryColor {
-  background: var(--secondaryColor) !important;
+  background: #14171a !important;
 }
 .bg-tertiaryColor {
   background: var(--tertiaryColor) !important;

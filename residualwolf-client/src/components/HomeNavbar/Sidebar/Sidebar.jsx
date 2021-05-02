@@ -20,33 +20,33 @@ function NavbarComponent() {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav flex-column">
-                <li class="nav-item-category py-2 px-3 mb-2 font-18">
-                  <a class="active">
-                    <span className="font-bold text-primaryColor">
+                <li class="nav-item ">
+                  <a class="nav-link " href="#">
+                    <span className="font-bold text-white">
                       Categories
                     </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="#">
-                    <i class="fa fa-fw fa-user-circle ml-3"></i>Personal Blog
+                <li class="nav-item active">
+                  <a class="nav-link custom-nav-link" href="#">
+                    <i class="fa fa-angle-right ml-3"></i>Personal Blog
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fa fa-fw fa-rocket ml-3"></i>Business Blog
+                  <a class="nav-link custom-nav-link" href="#">
+                    <i class="fa fa-angle-right ml-3"></i>Business Blog
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-chart-pie ml-3"></i>Affiliate Blogs
+                  <a class="nav-link custom-nav-link" href="#">
+                    <i class="fas fa-angle-right ml-3"></i>Affiliate Blogs
                   </a>
-                </li>
+                </li> 
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table ml-3"></i>Niche Blog
+                  <a class="nav-link custom-nav-link" href="#">
+                    <i class="fas fa-angle-right ml-3"></i>Affiliate Blogs
                   </a>
-                </li>
+                </li> 
               </ul>
             </div>
           </nav>

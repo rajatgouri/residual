@@ -22,9 +22,9 @@ export default () => {
               <div className="col-1"></div>
               <div className="col-10">
                 <div className="col-md-12 text-center">
-                  <h2 className="title mt-5">Blogs</h2>
-                  <h6 className="sub-title">Blogs Pages</h6>
-                  <hr></hr>
+                  <h2 className="title mt-5 text-white">Blogs</h2>
+                  <h6 className="sub-title text-white">Blogs Pages</h6>
+                  <hr className="mb-5"></hr>
                 </div>
 
                 <div className="row">

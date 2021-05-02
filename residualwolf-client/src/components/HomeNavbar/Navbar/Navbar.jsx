@@ -9,8 +9,8 @@ function NavbarComponent() {
   return (
     <React.Fragment>
       <Navbar
-        expand="lg"
-        className="nav-background py-0"
+        expand="md"
+        className="nav-background py-0 shadow"
         fixed="top"
         collapseOnSelect={true}
         variant="light"
@@ -18,18 +18,18 @@ function NavbarComponent() {
         <Navbar.Brand href="/" className="mx-0">
           <img
             src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/logo_white.png"
-            alt="Vinayak Travels"
-            className="img-fluid py-0 my-0 logo"
+            alt=""
+            className="img-fluid logo py-0 my-0"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="links">
-            <NavLink exact to="/" activeClassName="activeNav">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />        
+        <Navbar.Collapse id="basic-navbar-nav">          
+          <Nav className="links">            
+            <NavLink exact to="/" activeClassName="activeNav">              
               <Nav.Link
                 href="/"
                 className="font-demi font-17 px-3 navbar-item
-                  text-primaryColor text-center"
+                  text-white text-center"
               >
                 Home
               </Nav.Link>
@@ -39,80 +39,25 @@ function NavbarComponent() {
                 as={Link}
                 to="/blog-list"
                 className="font-demi font-17
-                  px-3 navbar-item text-primaryColor text-center"
+                  px-3 navbar-item text-white text-center"
               >
                 Blog
               </Nav.Link>
             </NavLink>
-            <NavDropdown
-              title="Categories"
-              id="collasible-nav-dropdown"
-              className="font-demi font-17 px-3 navbar-item text-primaryColor mobile-visible text-center "
-            >
-              <div
-                style={{
-                  background: "#faf4fc",
-                  border: "none",
-                  borderRadius: "5px",
-                }}
-              >
-                <Link
-                  to="/"
-                  className="font-medium text-primaryColor dropdown-item"
-                >
-                  Personal Blogs
-                </Link>
-                <Link
-                  to="/"
-                  className="font-medium text-primaryColor dropdown-item"
-                >
-                  Bussiness Blogs
-                </Link>
-                <Link
-                  to="/"
-                  className="font-medium text-primaryColor dropdown-item"
-                >
-                  Affiliate Blogs
-                </Link>
-                <Link
-                  to="/"
-                  className="font-medium text-primaryColor dropdown-item"
-                >
-                  Niche Blogs
-                </Link>
-              </div>
-            </NavDropdown>
+           
             <NavLink to="/about" activeClassName="activeNav">
               <Nav.Link
-                href="/login"
+                href="/about"
                 className="font-demi font-17
-                  px-3 navbar-item text-primaryColor text-center"
+                  px-3 navbar-item text-white text-center"
               >
                 About
-              </Nav.Link>
-            </NavLink>
-            <NavLink to="/login" activeClassName="activeNav">
-              <Nav.Link
-                href="/login"
-                className="font-demi font-17
-                  px-3 navbar-item text-primaryColor text-center"
-              >
-                Login
-              </Nav.Link>
-            </NavLink>
-            <NavLink to="/signup" activeClassName="activeNav">
-              <Nav.Link
-                href="/signup"
-                className="font-demi font-17
-                  px-3 navbar-item text-primaryColor text-center"
-              >
-                SignUp
               </Nav.Link>
             </NavLink>
           </Nav>
         </Navbar.Collapse>
         <nav className="ml-auto pr-3">
-          
+               <a href="/login" class="auth-button">  Login</a> 
         </nav>
       </Navbar>
     </React.Fragment>
