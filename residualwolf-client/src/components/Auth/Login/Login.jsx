@@ -13,6 +13,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("blablaaaaaa");
     if (password.length < 6) {
       return swal("", "Enter the valid Details", "error");
     }
@@ -22,8 +23,8 @@ function Login() {
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       )
-      .then((res) => {
-        if (res.data.message) {
+      .then((res) => {        
+        if (res.data.message) {          
           return swal("", res.data.message, "error");
         }        
         window.localStorage.setItem("token", res.data.token);        

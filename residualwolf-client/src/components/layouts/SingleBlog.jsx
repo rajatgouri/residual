@@ -75,8 +75,8 @@ export default ({ location }) => {
                   <a href={"blog-details?id=6085d5af36f676415ccb7620"}>
                     <div className="card mb-4">
                       <div className="card-body">
-                        <h5 className="text-white mt-0 font-demi">
-         text-white mb-3                  5 Ways to curate content on blog post
+                        <h5 className="text-white mt-0 font-demi text-white mb-3">
+                           5 Ways to curate content on blog post
                         </h5>
                         <img
                           className="blog-img card-img-top img-fluid"
@@ -212,7 +212,12 @@ export default ({ location }) => {
             <div className="col-lg-4 addsense p-2"></div>
             <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
               <hr></hr>
-              <h6 className="title mt-3">Comments: </h6>
+              <h5 className="title my-3 text-white font-demi">Comments: </h5>
+              <div className="mb-3">
+                {comment.slice(0).reverse().map((comm, i) => (
+                  <DisplayComment comm={comm} key={i} index={i} />
+                ))}
+              </div>
               <form onSubmit={handleSubmit}>
                 <div className="input-group">
                   <div className="input-group-prepend">
@@ -230,17 +235,13 @@ export default ({ location }) => {
                   ></input>
                 </div>
                 <button
-                  className="text-white bg-secondaryColor font-demi btn-blue my-3"
+                  className="text-white bg-secondaryColor font-demi btn-blue mt-3 mb-5"
                   type="submit"
                 >
                   Add Comment
                 </button>
               </form>
-              <div className="mb-5">
-                {comment.map((comm, i) => (
-                  <DisplayComment comm={comm} key={i} />
-                ))}
-              </div>
+             
             </div>
           </div>
         </div>

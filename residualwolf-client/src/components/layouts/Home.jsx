@@ -3,7 +3,7 @@ import Context from "../../context/ResidualWolf/Context";
 import Blog from "./CardNew";
 import Spinner from "./Spinner";
 import Footer from "../Footer/Footer";
-import HomeNavbar from "../HomeNavbar/HomeNavbar"; 
+import HomeNavbar from "../HomeNavbar/HomeNavbar";
 
 export default () => {
   const context = useContext(Context);
@@ -12,8 +12,6 @@ export default () => {
   useEffect(() => {
     getPosts();
   }, []);
-
-  //home
 
   return (
     <Fragment>
@@ -29,7 +27,23 @@ export default () => {
                   <h6 className="sub-title text-white">Blogs Posts</h6>
                   <hr className="mb-5"></hr>
                 </div>
-
+                <h4 className="text-white font-demi text-center">
+                  Our Latest Blogs
+                </h4>
+                <hr className="mb-4"/>
+                <div className="row">                  
+                  {posts && posts.length > 0 ? (
+                    posts.slice(0).reverse().map((post, i) => {
+                      return <Blog post={post} key={i} />;
+                    })
+                  ) : (
+                    <Spinner />
+                  )}
+                </div>                
+                <h4 className="text-white font-demi text-center mt-5">
+                  Popular Blogs
+                </h4>
+                <hr className="mb-4"/>
                 <div className="row">
                   {posts && posts.length > 0 ? (
                     posts.map((post, i) => {
