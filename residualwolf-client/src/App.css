@@ -261,6 +261,7 @@ hr {
   left: 0;
   margin-left: 264px;
   min-height: 870px !important;
+  transition: all 0.5s ease-in-out;
 }
 
 @media only screen and (max-width: 992px) {

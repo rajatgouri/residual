@@ -3,7 +3,7 @@
   position: fixed;
   width: 264px;
   height: 100%;
-  top: 80px;
+  top: 100px;
   overflow: auto;  
   -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
   box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
@@ -12,9 +12,11 @@
 
 .side-toggler {
   position: fixed;
+  top: 80px;
   width: 264px;
   background: #1e2126 !important;
   color: white;
+  transition: all 0.4s ease-in-out;
 }
 
 

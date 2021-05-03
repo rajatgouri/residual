@@ -6,7 +6,6 @@ import NavbarComponent from "../HomeNavbar/Navbar/Navbar";
 import swal from "sweetalert";
 import { _BASE_URL } from "../../ApiUrls";
 import axios from "axios";
-import DisplayComment from "./DisplayComment";
 import moment from "moment";
 
 export default ({ location }) => {
@@ -50,8 +49,18 @@ export default ({ location }) => {
       {post !== null ? (
         <div className="container-fluid">
           <div className="row mt-5 mx-3">
-            <div className="col-lg-8 col-md-12 col-sm-12 blog-side  col-12">
-              <h3 className="my-5 font-demi text-primaryColor">{post.title}</h3>
+            <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3">
+              <div className="card">
+                <img
+                  src="https://source.unsplash.com/random"
+                  alt=""
+                  className="img-fluid d-lg-block d-none"
+                  style={{ borderRadius: "20px" }}
+                />
+              </div>
+            </div>
+            <div className="col-lg-8 col-md-12 col-sm-12 blog-side col-12">
+              <h3 className="mb-3 font-demi text-primaryColor">{post.title}</h3>
               <div class="media ">
                 <img
                   src="https://www.w3schools.com/bootstrap4/img_avatar3.png"
@@ -212,18 +221,20 @@ export default ({ location }) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 addsense p-2"></div>
+            <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3">
+              <div className="card">
+                <img
+                  src="https://source.unsplash.com/random"
+                  alt=""
+                  className="img-fluid d-lg-block d-none"
+                  style={{ borderRadius: "20px" }}
+                />
+              </div>
+            </div>
+            <div className="col-lg-2 addsense p-2"></div>
             <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
               <hr></hr>
-              <h5 className="title my-3 text-white font-demi">Comments: </h5>
-              {/* <div className="mb-3">
-                {comment
-                  .slice(0)
-                  .reverse()
-                  .map((comm, i) => (
-                    <DisplayComment comm={comm} key={i} index={i} />
-                  ))}
-              </div> */}
+              <h5 className="title my-3 text-white font-demi">Comments: </h5>             
               {comment
                 .slice(0)
                 .reverse()
@@ -232,19 +243,20 @@ export default ({ location }) => {
                     return (
                       <div className="card py-4">
                         <div className="font-medium text-white px-3">
-                          {comm.userName ?
-                          <div>
-                            <span className="avatar text-secondaryColor font-demi font-14 mr-2">
-                              {comm.userName.slice(-comm.length, 1)}
-                            </span>
-                            {comm.userName}
-                          </div>
-                          : ''}
+                          {comm.userName ? (
+                            <div>
+                              <span className="avatar text-secondaryColor font-demi font-14 mr-2">
+                                {comm.userName.slice(-comm.length, 1)}
+                              </span>
+                              {comm.userName}
+                            </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
                         <div className="d-flex justify-content-between text-white w-100 pl-5 pr-3 py-2 ml-1">
                           <div className="font-regular">{comm.text}</div>
-                          <div className="font-demi">
-                            {/* {comm.createdAt.slice(-comm.createdAt.length, 10)} */}
+                          <div className="font-demi">                            
                             {moment(comm.createdAt).fromNow()}
                           </div>
                         </div>
@@ -270,14 +282,26 @@ export default ({ location }) => {
                   if (i >= 3) {
                     return (
                       <div id="comments" class="collapse">
-                        <div className="card">
-                          <div className="d-flex justify-content-between text-white w-100 px-3 py-2">
-                            <div className="font-regular">{comm.text}</div>
-                            <div className="font-demi">
-                              {comm.createdAt.slice(-comm.createdAt.length, 10)}
+                        <div className="card py-4">
+                        <div className="font-medium text-white px-3">
+                          {comm.userName ? (
+                            <div>
+                              <span className="avatar text-secondaryColor font-demi font-14 mr-2">
+                                {comm.userName.slice(-comm.length, 1)}
+                              </span>
+                              {comm.userName}
                             </div>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        <div className="d-flex justify-content-between text-white w-100 pl-5 pr-3 py-2 ml-1">
+                          <div className="font-regular">{comm.text}</div>
+                          <div className="font-demi">                            
+                            {moment(comm.createdAt).fromNow()}
                           </div>
                         </div>
+                      </div>
                       </div>
                     );
                   }

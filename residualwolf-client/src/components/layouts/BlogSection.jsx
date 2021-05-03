@@ -37,7 +37,7 @@ export default () => {
                 <div className="input-group mb-5">
                   <div className="input-group-prepend">
                     <div className="input-group-text">
-                      <i className="fas fa-search text-primaryColor"></i>
+                      <i className="fas fa-filter text-primaryColor"></i>
                     </div>
                   </div>
                   <select
