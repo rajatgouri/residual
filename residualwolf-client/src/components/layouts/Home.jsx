@@ -27,36 +27,16 @@ export default () => {
                 </h3>
                 <hr className="mb-4" />
                 <div className="row d-flex justify-content-center">
-                  {/* <div className="col-lg-3 col-md-12 col-sm-12 col-12 advertisement">
-                    <div className="card">
-                      <img
-                        src="https://source.unsplash.com/random/200x285"
-                        alt=""
-                        className="img-fluid d-lg-block d-none"
-                        style={{ borderRadius: "20px" }}
-                      />
-                    </div>
-                  </div> */}
                   {posts && posts.length > 0 ? (
                     posts
                       .slice(0)
                       .reverse()
                       .map((post, i) => {
-                        return i < 3 && <Blog post={post} key={i} />;
+                        return i < 3 && <Blog post={post} key={i} index={i} />;
                       })
                   ) : (
                     <Spinner />
-                  )}
-                  {/* <div className="col-lg-3 col-md-12 col-sm-12 col-12 advertisement">
-                    <div className="card">
-                      <img
-                        src="https://source.unsplash.com/random/200x285"
-                        alt=""
-                        className="img-fluid d-lg-block d-none"
-                        style={{ borderRadius: "20px" }}
-                      />
-                    </div>
-                  </div> */}
+                  )}                  
                 </div>
                 <h3 className="text-white font-demi text-center mt-5">
                   Popular Blogs

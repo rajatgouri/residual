@@ -1,13 +1,24 @@
 import React, { Fragment } from "react";
 
 export default (props) => {
-  // console.log("card", post);
-  const { post, index } = props;
+  const { index, post } = props;
   const onClick = () => {
     props.history.push(`/blog-details?id=${post._id}`);
-  };
+  };  
   return (
     <Fragment>
+      {index == 0  && (
+        <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement">
+          <div className="card">
+            <img
+              src="https://source.unsplash.com/random/200x285"
+              alt=""
+              className="img-fluid d-lg-block d-none"
+              style={{ borderRadius: "20px" }}
+            />
+          </div>
+        </div>
+      )}
       <div className="col-lg-7 col-md-12 col-sm-12 col-12 mb-4" key={post._id}>
         <div className="card font-regular text-white h-100 py-0">
           <div className="row">
@@ -20,7 +31,7 @@ export default (props) => {
               />
             </div>
             <div className="col-lg-7 col-md-6 col-sm-6 col-6 pt-4 pb-2">
-              <i class="far fa-clock"></i>&nbsp;&nbsp;
+              <i className="far fa-clock"></i>&nbsp;&nbsp;
               <span className="font-medium">
                 {post.createdAt.slice(-post.createdAt.length, 10)}
               </span>
@@ -43,7 +54,19 @@ export default (props) => {
             </div>
           </div>
         </div>
-      </div>      
+      </div>
+      {index == 0  && (
+        <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement">
+          <div className="card">
+            <img
+              src="https://source.unsplash.com/random/200x285"
+              alt=""
+              className="img-fluid d-lg-block d-none"
+              style={{ borderRadius: "20px" }}
+            />
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };

@@ -1,8 +1,21 @@
 import React, { Fragment } from "react";
 
-export default ({ post }) => {
+export default ({ post, index }) => {
+  console.log(index);
   return (
     <Fragment>
+      {index == 0 && (
+        <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement">
+          <div className="card">
+            <img
+              src="https://source.unsplash.com/random/200x285"
+              alt=""
+              className="img-fluid d-lg-block d-none"
+              style={{ borderRadius: "20px" }}
+            />
+          </div>
+        </div>
+      )}
       <div className="col-12 col-md-6 col-lg-6 col-xl-4" key={post._id}>
         <div className="card-deck-wrapper">
           <div className="card-deck">
@@ -28,6 +41,18 @@ export default ({ post }) => {
           </div>
         </div>
       </div>
+      {index == 0  && (
+        <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement">
+          <div className="card">
+            <img
+              src="https://source.unsplash.com/random/200x285"
+              alt=""
+              className="img-fluid d-lg-block d-none"
+              style={{ borderRadius: "20px" }}
+            />
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 };
