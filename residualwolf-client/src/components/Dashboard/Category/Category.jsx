@@ -2,6 +2,7 @@ import React , { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Modal } from "react-bootstrap";
+import Constext from "../../../context/ResidualWolf/Context";
 
 function Category() {
   const [showModal, setShowModal] = useState(false);

@@ -2,6 +2,7 @@ export const GET_ALL_POST = "GET_ALL_POST";
 export const GET_POST = "GET_POST";
 export const GET_COMMENT = "GET_COMMENT";
 export const ADD_POST = "ADD_POST";
+export const ADD_CATEGORY = "ADD_CATEGORY";
 export const INVITE_GUEST = "INVITE_GUEST";
 export const GUEST_BYID = "GUEST_BYID";
 export const SET_ALERT = "SET_ALERT";

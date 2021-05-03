@@ -1,4 +1,5 @@
 .nav-left-sidebar {
+  transition: 0.5s; 
   position: fixed;
   width: 264px;
   height: 100%;
@@ -8,6 +9,14 @@
   box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
   font-family: Avenir-demi;
 }
+
+.side-toggler {
+  position: fixed;
+  width: 264px;
+  background: #1e2126 !important;
+  color: white;
+}
+
 
 .nav-left-sidebar .navbar-nav {
   width: 100%;
@@ -62,6 +71,7 @@
   padding: 0.25rem 0.5rem;
   font-size: 1.25rem;
   line-height: 1;
+  height: 100px;
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 0.25rem;
@@ -94,6 +104,9 @@
 }
 
 @media(max-width: 992px){
+  .side-toggler{
+    display: none;
+  }
   .nav-left-sidebar{
     display: none;
   }

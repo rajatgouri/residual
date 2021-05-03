@@ -63,6 +63,18 @@ const State = (props) => {
     }
   };
 
+    // Add Contact
+  const addCategory = async (post) => {
+    try {
+      const res = await axios.post(_BASE_URL + _CREATE_POST, post);
+      // if (res.data.status === false) alert(res.data.message);
+      dispatch({ type: ADD_POST, payload: res.data.blog });
+    } catch (err) {
+      console.log(err);
+      //   dispatch({ type: ERROR, payload: err.response.msg });
+    }
+  };
+
   // Delete Contact
   const getPost = async (id) => {
     try {
