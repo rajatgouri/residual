@@ -3,6 +3,11 @@ import React, { Fragment } from "react";
 export default ({ post }) => {  
   return (
     <Fragment>
+      <div className="col-lg-3 col-md-12 col-sm-12 col-12 advertisement">
+        <div className="card">
+          <img src="https://source.unsplash.com/random/200x285" alt="" className="img-fluid d-lg-block d-none" style={{borderRadius: '20px'}}/>
+        </div>        
+      </div>
       <div className="col-lg-6 col-md-12 col-sm-12 col-12 mb-4" key={post._id}>
         <div className="card font-regular text-white h-100 mb-0 py-0">
           <div className="row">
@@ -35,17 +40,12 @@ export default ({ post }) => {
             </div>
           </div>
         </div>
-      </div>
-      {/* <div className="col-lg-3 col-md-12 col-sm-12 col-12 advertisement">
-        <div className="card">
-          <img src="https://source.unsplash.com/random/200x285" alt="" className="img-fluid d-lg-block d-none" style={{borderRadius: '20px'}}/>
-        </div>        
-      </div>
+      </div>      
       <div className="col-lg-3 col-md-12 col-sm-12 col-12 advertisement">
         <div className="card">
           <img src="https://source.unsplash.com/random/200x285" alt="" className="img-fluid d-lg-block d-none" style={{borderRadius: '20px'}}/>
         </div>        
-      </div>       */}
+      </div>      
       {/* <div className="col-md-4" key={post._id}>
         <div className="card-deck-wrapper">
           <div className="card-deck">
