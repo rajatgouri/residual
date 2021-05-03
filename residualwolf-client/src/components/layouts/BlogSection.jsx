@@ -29,7 +29,7 @@ export default () => {
               <div className="col-1"></div>
               <div className="col-10">
                 <div className="col-md-12 text-center">
-                  <h2 className="title mt-5 text-white">Blogs</h2>
+                  <h2 className="title text-white">Blogs</h2>
                   <h6 className="sub-title text-white">Blogs Pages</h6>
                   <hr className="mb-5"></hr>
                 </div>
@@ -49,90 +49,56 @@ export default () => {
                       setValue(e.target.value);
                     }}
                   >
-                    <option
-                      className="card text-white font-regular"
-                      value="01"
-                    >
+                    <option className="card text-white font-regular" value="01">
                       January
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="02"
-                    >
+                    <option className="card text-white font-regular" value="02">
                       Feburary
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="03"
-                    >
+                    <option className="card text-white font-regular" value="03">
                       March
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="04"
-                    >
+                    <option className="card text-white font-regular" value="04">
                       April
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="05"
-                    >
+                    <option className="card text-white font-regular" value="05">
                       May
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="06"
-                    >
+                    <option className="card text-white font-regular" value="06">
                       June
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="07"
-                    >
+                    <option className="card text-white font-regular" value="07">
                       July
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="08"
-                    >
+                    <option className="card text-white font-regular" value="08">
                       August
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="09"
-                    >
+                    <option className="card text-white font-regular" value="09">
                       September
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="10"
-                    >
+                    <option className="card text-white font-regular" value="10">
                       October
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="11"
-                    >
+                    <option className="card text-white font-regular" value="11">
                       November
                     </option>
-                    <option
-                      className="card text-white font-regular"
-                      value="12"
-                    >
+                    <option className="card text-white font-regular" value="12">
                       December
                     </option>
                   </select>
                 </div>
 
-                <div className="row">
+                <div className="row d-flex justify-content-center">
                   {filteredItems && filteredItems.length > 0 ? (
                     filteredItems.map((post, i) => {
                       return <Blog post={post} key={i} />;
                     })
                   ) : (
                     <div className="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="text-center font-demi font-20 text-white">No Blogs matched your search</div>
-                    </div>                    
+                      <div className="text-center font-demi font-20 text-white">
+                        No Blogs matched your search
+                      </div>
+                    </div>
                   )}
                 </div>
                 <div className="col-1"></div>

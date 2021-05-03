@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import { _BASE_URL } from "../../ApiUrls";
 import axios from "axios";
 import DisplayComment from "./DisplayComment";
+import moment from "moment";
 
 export default ({ location }) => {
   const id = location.search.split("=")[1];
@@ -24,13 +25,14 @@ export default ({ location }) => {
     e.preventDefault();
     const userid = localStorage.getItem("userid");
     const token = localStorage.getItem("token");
+    const name = localStorage.getItem("name");
     if (!token) {
       return swal("", "Please Log in to add comment", "error");
     }
     axios
       .post(
         _BASE_URL + "/comment",
-        { text: addcomment, blogId: id, userId: userid },
+        { text: addcomment, blogId: id, userId: userid, userName: name },
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
@@ -228,18 +230,29 @@ export default ({ location }) => {
                 .map((comm, i) => {
                   if (i < 3) {
                     return (
-                      <div className="card">
-                        <div className="d-flex justify-content-between text-white w-100 px-3 py-2">
+                      <div className="card py-4">
+                        <div className="font-medium text-white px-3">
+                          {comm.userName ?
+                          <div>
+                            <span className="avatar text-secondaryColor font-demi font-14 mr-2">
+                              {comm.userName.slice(-comm.length, 1)}
+                            </span>
+                            {comm.userName}
+                          </div>
+                          : ''}
+                        </div>
+                        <div className="d-flex justify-content-between text-white w-100 pl-5 pr-3 py-2 ml-1">
                           <div className="font-regular">{comm.text}</div>
                           <div className="font-demi">
-                            {comm.createdAt.slice(-comm.createdAt.length, 10)}
+                            {/* {comm.createdAt.slice(-comm.createdAt.length, 10)} */}
+                            {moment(comm.createdAt).fromNow()}
                           </div>
                         </div>
                       </div>
                     );
                   }
                 })}
-              {comment.length >= 3 && (
+              {comment.length > 3 && (
                 <button
                   className="text-white bg-secondaryColor font-demi btn-blue mb-5"
                   data-toggle="collapse"

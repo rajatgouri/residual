@@ -21,7 +21,7 @@ exports.signIn = async (req, res) => {
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
       "test",
-      { expiresIn: "1month" }
+      { expiresIn: "30d" }
     );
 
     return res.status(200).json({ result: existingUser, token });
@@ -74,7 +74,7 @@ exports.adminSignUp = async (req, res) => {
     });
     console.log(result);
     const token = jwt.sign({ email: result.email, id: result._id }, "test", {
-      expiresIn: "1h",
+      expiresIn: "30d",
     });
     return res.status(200).json({ result, token });
   } catch (err) {

@@ -28,6 +28,7 @@ function Signup() {
         }
         window.localStorage.setItem("token", res.data.token);
         window.localStorage.setItem("userid", res.data.result._id);
+        window.localStorage.setItem("name", res.data.result.name);
 
         if (window.localStorage.getItem("token")) {
           swal("", "You are signed up", "success");

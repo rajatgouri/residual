@@ -5,10 +5,12 @@ function NavbarComponent() {
   const [shouldtoggle , setShouldToggle] = useState(true)
   const sideToggle = () => {
     if (shouldtoggle) {
-      document.getElementById("navSide").style.width = '0px';
+      document.getElementById("navSide").style.width = "0px";
+      document.querySelector(".home-page-wrapper").style.marginLeft = "0px";
       setShouldToggle(false);
     } else {
-      document.getElementById("navSide").style.width = '264px';
+      document.getElementById("navSide").style.width = "264px";
+      document.querySelector(".home-page-wrapper").style.marginLeft = "264px";
       setShouldToggle(true);
     }
   }

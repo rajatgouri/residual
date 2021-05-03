@@ -1,7 +1,6 @@
 html,
 body {
-  font-size: 100%;
-  overflow-x: hidden !important;
+  font-size: 100%;  
   scroll-behavior: smooth;
   margin: 0 !important;
   box-sizing: border-box;
@@ -219,6 +218,23 @@ hr {
 
 .blog-side {
   padding: 10px 110px;
+}
+
+.avatar {
+  background: white;
+  border-radius: 50%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 11px;
+  padding-left: 11px;
+}
+.blog-image{
+  height: 290px;
+}
+@media(max-width: 1670px){
+  .blog-image{
+    height: 311px;
+  }  
 }
 
 @media screen and (max-width: 990px) {
