@@ -271,6 +271,14 @@ hr {
 }
 
 .form-control-filter {
+  display: block;
+  width: 80%;
+  padding: 15px 20px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  border: none;
+  border-radius: 10px;
   background: #1e2126;
   font-family: Avenir-regular;
   color: #ffffff;

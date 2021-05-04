@@ -58,25 +58,27 @@ exports.createBlog = async (req, res) => {
     }
 }
 
-// exports.updateBlog = async (req, res) => {
-//     try {
-//         const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, { new: true });
-//         res.status(200).json({ blog, status: true });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({ msg: 'internal server error', status: false });
-//     }
-// }
+exports.updateBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json({ blog, status: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "internal server error", status: false });
+  }
+};
 
-// exports.deleteBlog = async (req, res) => {
-//     try {
-//         await Blog.findByIdAndDelete(req.params.id);
-//         res.status(200).json({ msg: 'Deleted!', status: true });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({ msg: 'internal server error', status: false });
-//     }
-// }
+exports.deleteBlog = async (req, res) => {
+  try {
+    await Blog.findByIdAndDelete(req.params.id);
+    res.status(200).json({ msg: "Deleted!", status: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "internal server error", status: false });
+  }
+};
 
 exports.createComment = async (req, res) => {
     try {

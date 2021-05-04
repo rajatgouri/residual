@@ -14,11 +14,11 @@ export default ({ post, index }) => {
             />
           </div>
         </div>
-      )}      
+      )}
       <div className="col-lg-7 col-md-12 col-sm-12 col-12 mb-4" key={post._id}>
         <div className="card font-regular text-white h-100 mb-0 py-0">
           <div className="row">
-            <div className="col-lg-5 col-md-5 col-sm-5 col-5">
+            <div className="col-lg-5 col-md-5 col-sm-6 col-6">
               <img
                 className="img-fluid blog-image"
                 src={post.imageUrl}

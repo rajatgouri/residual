@@ -81,3 +81,13 @@ exports.adminSignUp = async (req, res) => {
     res.status(409).json({ message: err.message });
   }
 };
+
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ users, status: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "internal server error", status: false });
+  }
+};

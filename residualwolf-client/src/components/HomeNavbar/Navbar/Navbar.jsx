@@ -5,7 +5,7 @@ import "./Navbar.css";
 import { NavLink, Link } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../../images/logo.jpeg";
-import avatar from '../../../images/profile_avatar.png'
+import avatar from "../../../images/profile_avatar.png";
 
 function NavbarComponent() {
   return (
@@ -22,7 +22,7 @@ function NavbarComponent() {
           </div>
         </div>
         <Navbar
-          expand="md"
+          expand="lg"
           className="py-0"
           collapseOnSelect={true}
           variant="light"
@@ -71,22 +71,13 @@ function NavbarComponent() {
                     borderRadius: "5px",
                   }}
                 >
-                  <Link
-                    to="/"
-                    className="font-medium text-white dropdown-item"
-                  >
+                  <Link to="/" className="font-medium text-white dropdown-item">
                     Equities
                   </Link>
-                  <Link
-                    to="/"
-                    className="font-medium text-white dropdown-item"
-                  >
+                  <Link to="/" className="font-medium text-white dropdown-item">
                     Fixed Income
                   </Link>
-                  <Link
-                    to="/"
-                    className="font-medium text-white dropdown-item"
-                  >
+                  <Link to="/" className="font-medium text-white dropdown-item">
                     Alternatives
                   </Link>
                 </div>
@@ -165,7 +156,7 @@ function NavbarComponent() {
                     src={avatar}
                     width="30"
                     height="30"
-                    alt="Residual Wolf"                    
+                    alt="Residual Wolf"
                   />
                 </a>
                 <div
@@ -173,7 +164,7 @@ function NavbarComponent() {
                   aria-labelledby="navbarDropdownMenuLink2"
                 >
                   <button
-                    className="text-white font-demi bg-secondaryColor my-2 btn"
+                    className="text-white font-demi bg-secondaryColor my-2 btn dropdown-item"
                     onClick={(e) => {
                       localStorage.clear();
                       window.location.reload();
@@ -186,7 +177,7 @@ function NavbarComponent() {
             ) : (
               <div className="dropdown pt-0 mt-0">
                 <a
-                  className="img-fluid logo"
+                  className="img-fluid"
                   href="#"
                   id="navbarDropdownMenuLink2"
                   data-toggle="dropdown"
@@ -197,7 +188,7 @@ function NavbarComponent() {
                     src={avatar}
                     width="30"
                     height="30"
-                    alt="Residual Wolf"                    
+                    alt="Residual Wolf"
                   />
                 </a>
                 <div
@@ -205,13 +196,15 @@ function NavbarComponent() {
                   aria-labelledby="navbarDropdownMenuLink2"
                 >
                   <Link to="/login">
-                    <div className="dropdown-item font-demi">
-                      <i className="fas fa-sign-in-alt mr-2"></i>Login
+                    <div className="dropdown-item font-demi text-white">
+                      <i className="fas fa-sign-in-alt mr-2 text-white"></i>
+                      Login
                     </div>
                   </Link>
                   <Link to="/signup">
-                    <div className="dropdown-item font-demi">
-                      <i className="fas fa-user-circle mr-2"></i>Signup
+                    <div className="dropdown-item font-demi text-white">
+                      <i className="fas fa-user-circle mr-2 text-white"></i>
+                      Signup
                     </div>
                   </Link>
                 </div>

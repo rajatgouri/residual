@@ -10,6 +10,7 @@ import {
   _GUEST_BYID,
   _GUEST_INVITE,
   _GET_COMMENT,
+  _GET_USER,
 } from "../../ApiUrls";
 
 import {
@@ -17,6 +18,7 @@ import {
   GET_POST,
   ADD_POST,
   GET_COMMENT,
+  GET_USER,
   GUEST_BYID,
   GET_UPCOMING_GUEST,
   ERROR,
@@ -30,12 +32,12 @@ const State = (props) => {
     invite: null,
     error: null,
     comment: [],
+    users: [],
   };
 
   const [state, dispatch] = useReducer(Reduser, initialState);
 
-  // Get Contact,4114
-  const getPosts = async () => {
+    const getPosts = async () => {
     try {
       const config = {
         headers: {
@@ -43,15 +45,26 @@ const State = (props) => {
         },
       };
       const res = await axios.get(_BASE_URL + _GET_POSTS, config);
-      console.log(77777, res.data.blogs);
       dispatch({ type: GET_ALL_POST, payload: res.data.blogs });
     } catch (err) {
       console.log(err);
-      //   dispatch({ type: ERROR, payload: err.response.msg });
     }
   };
 
-  // Add Contact
+  const getUsers = async () => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const res = await axios.get(_BASE_URL + _GET_USER, config);
+      dispatch({ type: GET_USER, payload: res.data.users });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const addPost = async (post) => {
     try {
       const res = await axios.post(_BASE_URL + _CREATE_POST, post);
@@ -59,11 +72,9 @@ const State = (props) => {
       dispatch({ type: ADD_POST, payload: res.data.blog });
     } catch (err) {
       console.log(err);
-      //   dispatch({ type: ERROR, payload: err.response.msg });
     }
   };
 
-    // Add Contact
   const addCategory = async (post) => {
     try {
       const res = await axios.post(_BASE_URL + _CREATE_POST, post);
@@ -71,22 +82,19 @@ const State = (props) => {
       dispatch({ type: ADD_POST, payload: res.data.blog });
     } catch (err) {
       console.log(err);
-      //   dispatch({ type: ERROR, payload: err.response.msg });
     }
   };
 
-  // Delete Contact
   const getPost = async (id) => {
     try {
       axios
         .get(_BASE_URL + _GET_POST + id)
-        .then((res) => {          
+        .then((res) => {
           dispatch({ type: GET_POST, payload: res.data.blog });
         })
         .catch((err) => console.log(err));
     } catch (err) {
       console.log(err);
-      //   dispatch({ type: ERROR, payload: err.response.msg });
     }
   };
 
@@ -112,10 +120,12 @@ const State = (props) => {
         invite: state.invite,
         error: state.error,
         comment: state.comment,
+        users: state.users,
         getPosts,
         getPost,
         addPost,
         getComment,
+        getUsers,
       }}
     >
       {props.children}

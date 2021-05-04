@@ -4,6 +4,31 @@
 .links {
   margin-left: 32%;
 }
+@media(max-width: 1607px){
+  .links {
+    margin-left: 27%;
+  }
+}
+@media(max-width: 1500px){
+  .links {
+    margin-left: 25%;
+  }
+}
+@media(max-width: 1450px){
+  .links {
+    margin-left: 23%;
+  }
+}
+@media(max-width: 1300px){
+  .links {
+    margin-left: 20%;
+  }
+}
+@media(max-width: 1150px){
+  .links {
+    margin-left: 18%;
+  }
+}
 .dropdown-menu {
   padding-top: 0px !important ;
   padding-bottom: 0px !important;

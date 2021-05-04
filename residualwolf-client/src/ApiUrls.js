@@ -8,6 +8,7 @@ export const _REGISTER_USER = "";
 
 export const _GET_POSTS = "/blogs"
 export const _GET_POST = "/blog/"
+export const _GET_USER = "/users/getUsers/";
 export const _GET_COMMENT = "/comment/";
 export const _CREATE_POST = "/blog"
 export const _GUEST_INVITE = "guest/invite"
