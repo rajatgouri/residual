@@ -32,7 +32,7 @@ export default ({ post, index }) => {
                     src={post.imageUrl}
                     alt="Card image cap"
                   />
-                  <p className="mt-2 mb-2 font-medium text-white">
+                  <p className="mt-2 mb-2 font-medium text-white" >
                     {post.description.substring(0, 60) + "..."}
                   </p>
                 </div>

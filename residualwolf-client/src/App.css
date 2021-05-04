@@ -33,6 +33,7 @@ body {
   --orange: orange;
   --blue: blue;
   --violet: violet;
+  --adminPrimary: rgb(240, 245, 247);
 }
 
 /* Font family */
@@ -147,6 +148,12 @@ a:hover {
 }
 .bg-tertiaryColor {
   background: var(--tertiaryColor) !important;
+}
+.bg-adminPrimary {
+  background: var(--adminPrimary) !important;
+}
+.bg-white {
+  background: white !important;
 }
 
 .nav-link {

@@ -16,6 +16,10 @@ const blogSchema = new Schema(
     videoUrl: {
       type: String,
     },
+    shortDescription: {
+      type:String
+    },
+    tags : [String],
     description: {
       type: String,
     },

@@ -1,6 +1,7 @@
 export const GET_ALL_POST = "GET_ALL_POST";
 export const GET_POST = "GET_POST";
 export const GET_COMMENT = "GET_COMMENT";
+export const GET_CATEGORIES = "GET_CATEGORIES";
 export const GET_USER = "GET_USER";
 export const ADD_POST = "ADD_POST";
 export const ADD_CATEGORY = "ADD_CATEGORY";

@@ -1,23 +1,28 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState , useEffect ,useRef , useContext} from "react";
 import swal from "sweetalert";
 import { _BASE_URL } from "../../../ApiUrls";
 import { Modal } from "react-bootstrap";
+import SunEditor from "suneditor-react";
+import "suneditor/dist/css/suneditor.min.css";
+import Context from "../../../context/ResidualWolf/Context";
 
 function SingleBlog({ post }) {
   const initialState = {
     title: "",
     desc: "",
     url: "",
+    category: ""
   };
   const [formData, setFormData] = useState(initialState);
   const [showModal, setShowModal] = useState(false);
-  const handleShow = (title, url, desc) => {
+  const handleShow = (title, url, desc,category) => {
     setShowModal(true);
     setFormData({
       title,
       desc,
       url,
+      category
     });
   };
   const handleClose = () => setShowModal(false);
@@ -34,6 +39,22 @@ function SingleBlog({ post }) {
         swal("", err.message, "error");
       });
   };
+  const editorRef = useRef();
+  
+  useEffect(() => {
+     console.log(editorRef.current?.editor.core);
+  }, []);
+  const handleChange = (content)=>{
+    setFormData({
+      ...formData,
+      desc: content,
+    })
+  }
+  const context = useContext(Context);
+  const { getCategories, categories } = context;
+  useEffect(() => {
+    getCategories();
+  }, [categories]);
   const updateBlog = (e) => {
     e.preventDefault();
     axios
@@ -43,6 +64,7 @@ function SingleBlog({ post }) {
           title: formData.title,
           description: formData.desc,
           imageUrl: formData.url,
+          category : formData.category
         },
         { headers: { "Content-Type": "application/json" } }
       )
@@ -85,14 +107,37 @@ function SingleBlog({ post }) {
                   />
                 </div>
                 <div className="form-group">
-                  <input
-                    name="url"
-                    value={formData.url}
-                    onChange={(e) =>
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={(e) => {
+                      console.log(e);
                       setFormData({
                         ...formData,
                         [e.target.name]: e.target.value,
-                      })
+                      })}
+                    }
+                    className="form-control mt-3"
+                    id="exampleFormControlInput1"
+                    placeholder="Blog Title"
+                    required
+                  >
+                    {categories && categories.length>0 ? 
+                    categories.map(c=>{
+                       return <option value={c._id}>{c.name}</option>
+                    }): ''}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <input
+                    name="url"
+                    value={formData.url}
+                    onChange={(e) => {
+                      console.log(e);
+                      setFormData({
+                        ...formData,
+                        [e.target.name]: e.target.value,
+                      })}
                     }
                     type="text"
                     className="form-control mt-3"
@@ -102,7 +147,8 @@ function SingleBlog({ post }) {
                   />
                 </div>
                 <div className="form-group">
-                  <textarea
+                  <SunEditor ref={editorRef} height="100" placeholder="Please add yor blog here..." onChange={handleChange} setContents={formData.desc}/>
+                  {/* <textarea
                     value={formData.desc}
                     onChange={(e) =>
                       setFormData({
@@ -115,7 +161,7 @@ function SingleBlog({ post }) {
                     id="exampleFormControlInput1"
                     placeholder="Category Description"
                     required
-                  />
+                  /> */}
                 </div>
                 <button
                   type="submit"
@@ -132,7 +178,7 @@ function SingleBlog({ post }) {
         ""
       )}
       <div className="col-lg-6 col-md-12 col-sm-12 col-12 mb-4" key={post._id}>
-        <div className="card font-regular text-white h-100 mb-0 py-0">
+        <div className="card bg-adminPrimary font-regular h-100 mb-0 py-0">
           <div className="row">
             <div className="col-lg-5 col-md-5 col-sm-6 col-6">
               <img
@@ -147,12 +193,12 @@ function SingleBlog({ post }) {
               <span className="font-medium">
                 {post.createdAt.slice(-post.createdAt.length, 10)}
               </span>
-              <h5 className="text-white mt-3 font-demi mb-2  pr-3">
+              <h5 className=" mt-3 font-demi mb-2  pr-3">
                 {post.title.length > 30
                   ? post.title.substring(0, 30) + "..."
                   : post.title}
               </h5>
-              <p className="mt-2 mb-2 font-medium text-white  pr-3">
+              <p className="mt-2 mb-2 font-medium  pr-3">
                 {post.description.substring(0, 150) + "..."}
               </p>
               <div className="mt-3">

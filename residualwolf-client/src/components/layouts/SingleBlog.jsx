@@ -79,7 +79,7 @@ export default ({ location }) => {
                 <img src={post.imageUrl} alt="" className="blog-img" />
               </div>
               <div className="description">
-                <p className="font-regular text-white">{post.description}</p>
+                <div className="font-regular text-white" dangerouslySetInnerHTML={{__html: post.description}}></div>
               </div>
 
               <div className="row mt-5">

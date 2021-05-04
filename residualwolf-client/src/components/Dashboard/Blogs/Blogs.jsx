@@ -21,6 +21,10 @@ function Blogs() {
   useEffect(() => {
     getPosts();
   }, [posts]);
+  
+  useEffect(() => {
+    console.log(editorRef.current?.editor.core);
+  }, []);
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,6 +36,9 @@ function Blogs() {
     },
   }));
   const classes = useStyles();
+  const handleChange = (content) => {
+    console.log(content); //Get Content Inside Editor
+  }
   return (
     <div>
       <Sidebar />      
@@ -67,13 +74,7 @@ function Blogs() {
                   />
                 </div>
                 <div className="form-group">
-                  <textarea
-                    name="title"
-                    className="form-control mt-3 mb-4"
-                    id="exampleFormControlInput1"
-                    placeholder="Category Description"
-                    required
-                  />
+                <SunEditor ref={editorRef} height="100" placeholder="Please add yor blog here..." onChange={handleChange}/>
                 </div>
                 <button type="submit" class="btn btn-primary">
                   Add
@@ -87,7 +88,6 @@ function Blogs() {
       )}
       <main className={classes.content}>
         <div class="container">
-        <SunEditor ref={editorRef} height="100" placeholder="Please add yor blog here..."/>
           <div className="row">
             <div className="col-lg-12 col-sm-12 col-12 col-md-12 d-flex justify-content-end">
               <button class="btn btn-primary" onClick={handleShow}>

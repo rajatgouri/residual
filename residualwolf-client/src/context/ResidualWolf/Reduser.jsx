@@ -4,6 +4,7 @@ import {
   ADD_POST,
   GET_COMMENT,
   GET_USER,
+  GET_CATEGORIES,
 } from "../Types";
 
 export default (state, action) => {
@@ -32,6 +33,11 @@ export default (state, action) => {
       return {
         ...state,
         comment: action.payload,
+      };
+    case GET_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
       };
     default:
       return state;

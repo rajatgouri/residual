@@ -10,6 +10,7 @@ export const _GET_POSTS = "/blogs"
 export const _GET_POST = "/blog/"
 export const _GET_USER = "/users/getUsers/";
 export const _GET_COMMENT = "/comment/";
+export const _GET_CATEGORIES = "/categories";
 export const _CREATE_POST = "/blog"
 export const _GUEST_INVITE = "guest/invite"
 export const _GUEST_BYID = "guest/byid/"

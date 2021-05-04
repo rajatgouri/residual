@@ -11,6 +11,7 @@ import {
   _GUEST_INVITE,
   _GET_COMMENT,
   _GET_USER,
+  _GET_CATEGORIES
 } from "../../ApiUrls";
 
 import {
@@ -19,6 +20,7 @@ import {
   ADD_POST,
   GET_COMMENT,
   GET_USER,
+  GET_CATEGORIES,
   GUEST_BYID,
   GET_UPCOMING_GUEST,
   ERROR,
@@ -33,6 +35,7 @@ const State = (props) => {
     error: null,
     comment: [],
     users: [],
+    categories: []
   };
 
   const [state, dispatch] = useReducer(Reduser, initialState);
@@ -75,11 +78,16 @@ const State = (props) => {
     }
   };
 
-  const addCategory = async (post) => {
+  const getCategories = async () => {
     try {
-      const res = await axios.post(_BASE_URL + _CREATE_POST, post);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const res = await axios.get(_BASE_URL + _GET_CATEGORIES, config);
       // if (res.data.status === false) alert(res.data.message);
-      dispatch({ type: ADD_POST, payload: res.data.blog });
+      dispatch({ type: GET_CATEGORIES, payload: res.data.categories });
     } catch (err) {
       console.log(err);
     }
@@ -121,11 +129,13 @@ const State = (props) => {
         error: state.error,
         comment: state.comment,
         users: state.users,
+        categories : state.categories,
         getPosts,
         getPost,
         addPost,
         getComment,
         getUsers,
+        getCategories
       }}
     >
       {props.children}

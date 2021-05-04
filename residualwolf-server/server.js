@@ -44,5 +44,6 @@ app.use(
 
 app.use('/api/v1/', require('./api/blog/blogRoute'));
 app.use("/api/v1/users", require("./api/user/userRoute"));
+app.use("/api/v1/", require("./api/category/categoryRoute"));
 
 app.listen(process.env.PORT, () => console.log(`server running on port: ${process.env.PORT}`));
