@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState , useEffect ,useRef , useContext} from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import swal from "sweetalert";
 import { _BASE_URL } from "../../../ApiUrls";
 import { Modal } from "react-bootstrap";
@@ -14,13 +14,13 @@ function SingleBlog({ post }) {
     url: "",
     category: "",
     tags: [],
-    shortDescription : ""
+    shortDescription: "",
   };
   const [formData, setFormData] = useState(initialState);
   const [showModal, setShowModal] = useState(false);
-  const [fileOneValue, setFileOneValue] = useState('');
+  const [fileOneValue, setFileOneValue] = useState("");
   const [fileOne, setFileOne] = useState("");
-  const handleShow = (title, url, desc,category ,tags ,shortDescription) => {
+  const handleShow = (title, url, desc, category, tags, shortDescription) => {
     setShowModal(true);
     setFileOne(url);
     setFormData({
@@ -29,7 +29,7 @@ function SingleBlog({ post }) {
       url,
       category,
       tags,
-      shortDescription
+      shortDescription,
     });
   };
   const handleClose = () => setShowModal(false);
@@ -46,16 +46,16 @@ function SingleBlog({ post }) {
       });
   };
   const editorRef = useRef();
-  
+
   useEffect(() => {
-     console.log(editorRef.current?.editor.core);
+    console.log(editorRef.current?.editor.core);
   }, []);
-  const handleChange = (content)=>{
+  const handleChange = (content) => {
     setFormData({
       ...formData,
       desc: content,
-    })
-  }
+    });
+  };
   const context = useContext(Context);
   const { getCategories, categories } = context;
   useEffect(() => {
@@ -68,21 +68,20 @@ function SingleBlog({ post }) {
         _BASE_URL + `/blog/${post._id}`,
         {
           blog: {
-              title: formData.title,
-              description: formData.desc,
-              imageUrl: formData.url,
-              category : formData.category,
-              tags : formData.tags,
-              shortDescription: formData.shortDescription
-            },
-            base64image : {
-              fileOneValue
-            }
+            title: formData.title,
+            description: formData.desc,
+            imageUrl: formData.url,
+            category: formData.category,
+            tags: formData.tags,
+            shortDescription: formData.shortDescription,
+          },
+          base64image: {
+            fileOneValue,
+          },
         },
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
-        console.log(res);
         swal("", "This blog is updated", "success");
         setShowModal(false);
         setFormData(initialState);
@@ -92,12 +91,13 @@ function SingleBlog({ post }) {
       });
   };
 
-  const toBase64 = file => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-});
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
   return (
     <>
       {showModal ? (
@@ -129,36 +129,42 @@ function SingleBlog({ post }) {
                   />
                 </div>
                 <div className="form-group">
-                <label className="font-20 font-bold">Category</label>
+                  <label className="font-20 font-bold">Category</label>
                   <select
                     name="category"
                     value={formData.category}
                     onChange={(e) => {
-                      console.log(e.target.name,e.target.value);
+                      console.log(e.target.name, e.target.value);
                       setFormData({
                         ...formData,
                         [e.target.name]: e.target.value,
-                      })}
-                    }
+                      });
+                    }}
                     className="form-control mt-3"
                     required
                   >
-                    {categories && categories.length>0 ? 
-                    categories.map(c=>{
-                       return <option value={c._id}>{c.name}</option>
-                    }): ''}
+                    {categories && categories.length > 0
+                      ? categories.map((c) => {
+                          return <option value={c._id}>{c.name}</option>;
+                        })
+                      : ""}
                   </select>
                 </div>
                 <div className="form-group">
                   <label className="font-20 font-bold">Image</label>
-                  <img src={fileOne} className="img-fluid"/>
-                  <button className="font-20 font-bold bg-tertiaryColor w-100 mt-2" onClick={()=>document.getElementById('upload')?.click()}>Upload</button>
+                  <img src={fileOne} className="img-fluid blog-image" />
+                  <button
+                    className="font-20 font-bold bg-tertiaryColor w-100 mt-2"
+                    onClick={() => document.getElementById("upload")?.click()}
+                  >
+                    Upload
+                  </button>
                   <input
-                    onChange={(e) =>{
+                    onChange={(e) => {
                       setFileOne(URL.createObjectURL(e.target.files[0]));
-                      toBase64(e.target.files[0]).then(r=>{
+                      toBase64(e.target.files[0]).then((r) => {
                         setFileOneValue(r);
-                      })
+                      });
                     }}
                     type="file"
                     className="hidden"
@@ -176,9 +182,9 @@ function SingleBlog({ post }) {
                       console.log(e);
                       setFormData({
                         ...formData,
-                        [e.target.name]: e.target.value.split(','),
-                      })}
-                    }
+                        [e.target.name]: e.target.value.split(","),
+                      });
+                    }}
                     type="text"
                     className="form-control mt-3"
                     id="exampleFormControlInput1"
@@ -187,7 +193,7 @@ function SingleBlog({ post }) {
                   />
                 </div>
                 <div className="form-group">
-                <label className="font-20 font-bold">Short Description</label>
+                  <label className="font-20 font-bold">Short Description</label>
                   <textarea
                     name="shortDescription"
                     value={formData.shortDescription}
@@ -196,8 +202,8 @@ function SingleBlog({ post }) {
                       setFormData({
                         ...formData,
                         [e.target.name]: e.target.value,
-                      })}
-                    }
+                      });
+                    }}
                     className="form-control mt-3"
                     id="exampleFormControlInput1"
                     placeholder="Short Description for cards"
@@ -205,8 +211,14 @@ function SingleBlog({ post }) {
                   />
                 </div>
                 <div className="form-group">
-                <label className="font-20 font-bold mb-1">Description</label>
-                  <SunEditor ref={editorRef} height="100" placeholder="Please add yor blog here..." onChange={handleChange} setContents={formData.desc}/>
+                  <label className="font-20 font-bold mb-1">Description</label>
+                  <SunEditor
+                    ref={editorRef}
+                    height="100"
+                    placeholder="Please add yor blog here..."
+                    onChange={handleChange}
+                    setContents={formData.desc}
+                  />
                   {/* <textarea
                     value={formData.desc}
                     onChange={(e) =>
@@ -239,44 +251,47 @@ function SingleBlog({ post }) {
       <div className="col-lg-6 col-md-12 col-sm-12 col-12 mb-4" key={post._id}>
         <div className="card bg-adminPrimary font-regular h-100 mb-0 py-0">
           <div className="row">
-            <div className="col-lg-5 col-md-5 col-sm-6 col-6">
+            <div className="col-lg-5 col-md-5 col-sm-12 col-12">
               <img
                 className="img-fluid blog-image"
                 src={post.imageUrl}
-                alt="Card image cap"
-                style={{ borderRadius: "20px 0px 0px 20px" }}
+                alt="Card image cap"                
               />
             </div>
-            <div className="col-lg-7 col-md-6 col-sm-6 col-6 pt-4 pb-2">
-              <i class="far fa-clock"></i>&nbsp;&nbsp;
-              <span className="font-medium">
-                {post.createdAt.slice(-post.createdAt.length, 10)}
-              </span>
-              <h5 className=" mt-3 font-demi mb-2  pr-3">
-                {post.title.length > 30
-                  ? post.title.substring(0, 30) + "..."
-                  : post.title}
-              </h5>
-              <p className="mt-2 mb-2 font-medium  pr-3">
-                {post.shortDescription?.substring(0, 150) + "..."}
-              </p>
-              <div className="mt-3">
-                <button
-                  className="btn btn-primary mr-2"
-                  //   onClick={handleShow(
-                  //     post.title,
-                  //     post.description,
-                  //     post.imageUrl
-                  //   )}
-                  onClick={(e) =>
-                    handleShow(post.title, post.imageUrl, post.description ,post.category , post.tags , post.shortDescription)
-                  }
-                >
-                  Edit
-                </button>
-                <button className="btn btn-danger mr-2" onClick={deleteBlog}>
-                  Delete
-                </button>
+            <div className="col-lg-7 col-md-6 col-sm-12 col-12 pt-4 pb-2">
+              <div className="blog-paragraph">
+                <i class="far fa-clock"></i>&nbsp;&nbsp;
+                <span className="font-medium">
+                  {post.createdAt.slice(-post.createdAt.length, 10)}
+                </span>
+                <h5 className=" mt-3 font-demi mb-2  pr-3">
+                  {post.title.length > 30
+                    ? post.title.substring(0, 30) + "..."
+                    : post.title}
+                </h5>
+                <p className="mt-2 mb-2 font-medium  pr-3">
+                  {post.shortDescription?.substring(0, 150) + "..."}
+                </p>
+                <div className="mt-3">
+                  <button
+                    className="btn btn-primary mr-2"
+                    onClick={(e) =>
+                      handleShow(
+                        post.title,
+                        post.imageUrl,
+                        post.description,
+                        post.category,
+                        post.tags,
+                        post.shortDescription
+                      )
+                    }
+                  >
+                    Edit
+                  </button>
+                  <button className="btn btn-danger mr-2" onClick={deleteBlog}>
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>

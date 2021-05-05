@@ -239,7 +239,9 @@ hr {
 .blog-side {
   padding: 10px 110px;
 }
-
+.modal {
+  z-index: 1500;
+}
 .avatar {
   background: white;
   border-radius: 50%;
@@ -247,6 +249,15 @@ hr {
   padding-bottom: 8px;
   padding-right: 11px;
   padding-left: 11px;
+}
+.MuiDrawer-paper {
+  z-index: 100;
+}
+.MuiToolbar-root {
+  display: flex;
+  position: relative;
+  align-items: center;
+  z-index: 10;
 }
 .blog-image {
   height: 290px;

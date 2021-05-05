@@ -121,9 +121,6 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Blogs
-          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -152,29 +149,29 @@ export default function MiniDrawer() {
         <List>
           <ListItem button>
             <ListItemIcon>
-            <Link to="/dashboard">
-              <DashboardIcon />
-            </Link>
+              <Link to="/dashboard">
+                <DashboardIcon />
+              </Link>
             </ListItemIcon>
             <Link to="/dashboard">
-            <ListItemText primary="Dashboard" />
+              <ListItemText primary="Dashboard" />
             </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-            <Link to="/dashboard/blogs">
-              <ViewListIcon />
-            </Link>
+              <Link to="/dashboard/blogs">
+                <ViewListIcon />
+              </Link>
             </ListItemIcon>
             <Link to="/dashboard/blogs">
-            <ListItemText primary="Blogs" />
+              <ListItemText primary="Blogs" />
             </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-            <Link to="/dashboard/user">
-              <AccountCircleIcon />
-            </Link>
+              <Link to="/dashboard/user">
+                <AccountCircleIcon />
+              </Link>
             </ListItemIcon>
             <Link to="/dashboard/user">
               <ListItemText primary="User" />
@@ -182,24 +179,26 @@ export default function MiniDrawer() {
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-            <Link to="/dashboard/category">
-              <CategoryIcon />
-            </Link>
+              <Link to="/dashboard/category">
+                <CategoryIcon />
+              </Link>
             </ListItemIcon>
             <Link to="/dashboard/category">
-            <ListItemText primary="Categories" />
+              <ListItemText primary="Categories" />
             </Link>
-          </ListItem> 
+          </ListItem>
           <ListItem button>
             <ListItemIcon>
-            <Link to="/logout">
-            <strong><i class="fas fa-sign-out-alt text-20"></i></strong>
-            </Link>
+              <Link to="/logout">
+                <strong>
+                  <i class="fas fa-sign-out-alt text-20"></i>
+                </strong>
+              </Link>
             </ListItemIcon>
             <Link to="/logout">
-            <ListItemText primary="Logout" />
+              <ListItemText primary="Logout" />
             </Link>
-          </ListItem>          
+          </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>
