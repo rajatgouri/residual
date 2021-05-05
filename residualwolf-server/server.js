@@ -35,8 +35,9 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     );
 app.use(cors());
 app.use(express.static('client/build'));
+app.use(express.urlencoded({limit: '50mb'}));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 
 app.use(
     multer({ storage: fileStorage, fileFilter: fileFilter }).single("thumbnail")
@@ -45,5 +46,6 @@ app.use(
 app.use('/api/v1/', require('./api/blog/blogRoute'));
 app.use("/api/v1/users", require("./api/user/userRoute"));
 app.use("/api/v1/", require("./api/category/categoryRoute"));
+app.use('/uploads', express.static(path.join('uploads/')));
 
 app.listen(process.env.PORT, () => console.log(`server running on port: ${process.env.PORT}`));

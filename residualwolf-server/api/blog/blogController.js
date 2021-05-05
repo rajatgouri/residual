@@ -2,6 +2,8 @@ const Blog = require('../../models/Blog');
 const Comment = require('../../models/Comment');
 const User = require("../../models/User");
 const mongoose = require('mongoose');
+const mime = require('mime');
+const fs = require('fs');
 
 exports.getBlogs = async (req, res) => {
     try {
@@ -53,26 +55,28 @@ exports.createBlog = async (req, res) => {
 }
 
 exports.updateBlog = async (req, res) => {
-  var matches = req.body.base64image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
-  response = {}; 
-  if (matches.length !== 3 && req.body.base64image) {
-      return new Error('Invalid input string');
-  }  else {
-    response.type = matches[1];
-    response.data = new Buffer(matches[2], 'base64');
-    let decodedImg = response;
-    let imageBuffer = decodedImg.data;
-    let type = decodedImg.type;
-    let extension = mime.extension(type);
-    let fileName = req.params.id+ '.' + extension;
-  }
-  const blog = {
-    ...req.body.blog,
-    imageUrl : fileName? fileName : req.body.blog.imageUrl
-  }
+  console.log(req.body);
+  let fileName,imageBuffer;
   try {
-    fs.writeFileSync("../../uploads/" + fileName, imageBuffer, 'utf8');
-    const blog = await Blog.findByIdAndUpdate(req.params.id, blog, {
+    var matches = req.body.base64image.fileOneValue.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
+    response = {}; 
+    if (matches.length !== 3 && req.body.base64image.fileOneValue) {
+        return new Error('Invalid input string');
+    }  else {
+      response.type = matches[1];
+      response.data = new Buffer(matches[2], 'base64');
+      let decodedImg = response;
+      imageBuffer = decodedImg.data;
+      let type = decodedImg.type;
+      let extension = mime.extension(type);
+      fileName = req.params.id+ '.' + extension;
+    }
+    const updatedBlog = {
+      ...req.body.blog,
+      imageUrl : fileName? fileName : req.body.blog.imageUrl
+    }
+    fs.writeFileSync("./uploads/" + fileName, imageBuffer, 'utf8');
+    const blog = await Blog.findByIdAndUpdate(req.params.id, updatedBlog, {
       new: true,
     });
     res.status(200).json({ blog, status: true });

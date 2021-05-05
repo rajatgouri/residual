@@ -4,6 +4,7 @@ import Context from "./Context";
 import Reduser from "./Reduser";
 import {
   _BASE_URL,
+  _BASE_IMAGE_URL,
   _CREATE_POST,
   _GET_POSTS,
   _GET_POST,
@@ -48,6 +49,16 @@ const State = (props) => {
         },
       };
       const res = await axios.get(_BASE_URL + _GET_POSTS, config);
+      res.data.blogs = res.data.blogs.map(blog=>{
+        if (blog.imageUrl.includes('http')) {
+          return blog;
+        } else {
+          return {
+            ...blog,
+            imageUrl: _BASE_IMAGE_URL + blog.imageUrl
+          }
+        }
+      })
       dispatch({ type: GET_ALL_POST, payload: res.data.blogs });
     } catch (err) {
       console.log(err);

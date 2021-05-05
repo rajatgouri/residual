@@ -18,12 +18,8 @@ function SingleBlog({ post }) {
   };
   const [formData, setFormData] = useState(initialState);
   const [showModal, setShowModal] = useState(false);
-  const [fileOneValue, setFileOneValue] = useState(false);
+  const [fileOneValue, setFileOneValue] = useState('');
   const [fileOne, setFileOne] = useState("");
-  function handleImage(dataUri) {
-    dataUri && setFileOneValue(false);
-    setFileOne(dataUri);
-  }
   const handleShow = (title, url, desc,category ,tags ,shortDescription) => {
     setShowModal(true);
     setFileOne(url);
@@ -78,6 +74,9 @@ function SingleBlog({ post }) {
               category : formData.category,
               tags : formData.tags,
               shortDescription: formData.shortDescription
+            },
+            base64image : {
+              fileOneValue
             }
         },
         { headers: { "Content-Type": "application/json" } }
@@ -91,6 +90,13 @@ function SingleBlog({ post }) {
         swal("", err.message, "error");
       });
   };
+
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
   return (
     <>
       {showModal ? (
@@ -147,9 +153,12 @@ function SingleBlog({ post }) {
                   <img src={fileOne} className="img-fluid blog-image"/>
                   <button className="font-20 font-bold bg-tertiaryColor w-100 mt-2" onClick={()=>document.getElementById('upload')?.click()}>Upload</button>
                   <input
-                    onChange={(e) =>
-                      setFileOne(URL.createObjectURL(e.target.files[0]))
-                    }
+                    onChange={(e) =>{
+                      setFileOne(URL.createObjectURL(e.target.files[0]));
+                      toBase64(e.target.files[0]).then(r=>{
+                        setFileOneValue(r);
+                      })
+                    }}
                     type="file"
                     className="hidden"
                     id="upload"
