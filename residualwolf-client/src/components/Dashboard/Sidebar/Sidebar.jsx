@@ -20,8 +20,9 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import CategoryIcon from "@material-ui/icons/Category";
 import LogoutIcon from "@material-ui/icons/Category";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import './Sidebar.css';
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const drawerWidth = 240;
 
@@ -149,53 +150,59 @@ export default function MiniDrawer() {
         <List>
           <ListItem button>
             <ListItemIcon>
-              <Link to="/dashboard">
+              <Link to="/admin/dashboard">
                 <DashboardIcon />
               </Link>
             </ListItemIcon>
-            <Link to="/dashboard">
+            <Link to="/admin/dashboard">
               <ListItemText primary="Dashboard" />
             </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <Link to="/dashboard/blogs">
+              <Link to="/admin/dashboard/blogs">
                 <ViewListIcon />
               </Link>
             </ListItemIcon>
-            <Link to="/dashboard/blogs">
+            <Link to="/admin/dashboard/blogs">
               <ListItemText primary="Blogs" />
             </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <Link to="/dashboard/user">
+              <Link to="/admin/dashboard/user">
                 <AccountCircleIcon />
               </Link>
             </ListItemIcon>
-            <Link to="/dashboard/user">
+            <Link to="/admin/dashboard/user">
               <ListItemText primary="User" />
             </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <Link to="/dashboard/category">
+              <Link to="/admin/dashboard/category">
                 <CategoryIcon />
               </Link>
             </ListItemIcon>
-            <Link to="/dashboard/category">
+            <Link to="/admin/dashboard/category">
               <ListItemText primary="Categories" />
             </Link>
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <Link to="/logout">
+              <Link onClick={()=>{
+                localStorage.clear();
+                window.location.href = "/login"
+              }}>
                 <strong>
                   <i class="fas fa-sign-out-alt text-20"></i>
                 </strong>
               </Link>
             </ListItemIcon>
-            <Link to="/logout">
+            <Link onClick={()=>{
+                localStorage.clear();
+                window.location.href("/login")
+              }}>
               <ListItemText primary="Logout" />
             </Link>
           </ListItem>

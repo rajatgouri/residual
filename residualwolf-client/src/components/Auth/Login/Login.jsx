@@ -34,7 +34,7 @@ function Login() {
           window.location.href = "/";
         } else if (res.data.result.role == "admin") {
           swal("", "You are Logged in", "success");
-          window.location.href = "/dashboard";
+          window.location.href = "/admin/dashboard";
         }
       })
       .catch((err) => {

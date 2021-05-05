@@ -302,7 +302,7 @@ function SingleBlog({ post }) {
                   class="btn btn-primary"
                   onClick={updateBlog}
                 >
-                  Edit
+                  Upload
                 </button>
               </form>
             </div>

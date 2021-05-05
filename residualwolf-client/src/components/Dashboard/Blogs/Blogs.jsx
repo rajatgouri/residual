@@ -144,7 +144,7 @@ const setOptions = {
       <Sidebar />
 
       {showModal ? (
-        <Modal className="mt-5" show={showModal} onHide={handleClose}>
+        <Modal className="mt-5 modal-card" show={showModal} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>
               <div className="font-bold ml-1">Add a Blog</div>
@@ -276,7 +276,7 @@ const setOptions = {
                   class="btn btn-primary"
                   onClick={updateBlog}
                 >
-                  Edit
+                  Upload
                 </button>
               </form>
             </div>
