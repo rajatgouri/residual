@@ -37,9 +37,12 @@ function Category() {
   }));
   const context = useContext(Context);
   const { getCategories, categories } = context;
+  
   useEffect(() => {
     getCategories();
-  }, [categories]);
+    console.log(categories);
+  },[]);
+  
   const classes = useStyles();
   const createCategory = (e) => {
     e.preventDefault();
@@ -146,7 +149,7 @@ function Category() {
           {categories && categories.length > 0
               ? categories.map((category, i) => {
                 return (
-                  <div class="row mb-5 mt-3">
+                  <div class="row mb-5 mt-3" key={i} index={i}>
                   <div class="col-lg-4 col-md-4 col-sm-12 col-12 mb-3 padding-left-mobile">
                       <div class="card font-regular bg-adminPrimary">
                         <div class="card-body">

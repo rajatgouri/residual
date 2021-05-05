@@ -12,24 +12,34 @@ function SingleBlog({ post }) {
     title: "",
     desc: "",
     url: "",
-    category: ""
+    category: "",
+    tags: [],
+    shortDescription : ""
   };
   const [formData, setFormData] = useState(initialState);
   const [showModal, setShowModal] = useState(false);
-  const handleShow = (title, url, desc,category) => {
+  const [fileOneValue, setFileOneValue] = useState(false);
+  const [fileOne, setFileOne] = useState("");
+  function handleImage(dataUri) {
+    dataUri && setFileOneValue(false);
+    setFileOne(dataUri);
+  }
+  const handleShow = (title, url, desc,category ,tags ,shortDescription) => {
     setShowModal(true);
+    setFileOne(url);
     setFormData({
       title,
       desc,
       url,
-      category
+      category,
+      tags,
+      shortDescription
     });
   };
   const handleClose = () => setShowModal(false);
 
   const deleteBlog = (e) => {
     e.preventDefault();
-    setShowModal(true);
     axios
       .delete(_BASE_URL + `/blog/${post._id}`)
       .then((res) => {
@@ -54,17 +64,21 @@ function SingleBlog({ post }) {
   const { getCategories, categories } = context;
   useEffect(() => {
     getCategories();
-  }, [categories]);
+  }, []);
   const updateBlog = (e) => {
     e.preventDefault();
     axios
       .patch(
         _BASE_URL + `/blog/${post._id}`,
         {
-          title: formData.title,
-          description: formData.desc,
-          imageUrl: formData.url,
-          category : formData.category
+          blog: {
+              title: formData.title,
+              description: formData.desc,
+              imageUrl: formData.url,
+              category : formData.category,
+              tags : formData.tags,
+              shortDescription: formData.shortDescription
+            }
         },
         { headers: { "Content-Type": "application/json" } }
       )
@@ -90,6 +104,7 @@ function SingleBlog({ post }) {
             <div className="w-100 h-100">
               <form>
                 <div className="form-group">
+                  <label className="font-20 font-bold">Title</label>
                   <input
                     name="title"
                     value={formData.title}
@@ -107,19 +122,18 @@ function SingleBlog({ post }) {
                   />
                 </div>
                 <div className="form-group">
+                <label className="font-20 font-bold">Category</label>
                   <select
                     name="category"
                     value={formData.category}
                     onChange={(e) => {
-                      console.log(e);
+                      console.log(e.target.name,e.target.value);
                       setFormData({
                         ...formData,
                         [e.target.name]: e.target.value,
                       })}
                     }
                     className="form-control mt-3"
-                    id="exampleFormControlInput1"
-                    placeholder="Blog Title"
                     required
                   >
                     {categories && categories.length>0 ? 
@@ -129,9 +143,44 @@ function SingleBlog({ post }) {
                   </select>
                 </div>
                 <div className="form-group">
+                  <label className="font-20 font-bold">Image</label>
+                  <img src={fileOne} className="img-fluid blog-image"/>
+                  <button className="font-20 font-bold bg-tertiaryColor w-100 mt-2" onClick={()=>document.getElementById('upload')?.click()}>Upload</button>
                   <input
-                    name="url"
-                    value={formData.url}
+                    onChange={(e) =>
+                      setFileOne(URL.createObjectURL(e.target.files[0]))
+                    }
+                    type="file"
+                    className="hidden"
+                    id="upload"
+                    placeholder="Blog Title"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="font-20 font-bold">Tags</label>
+                  <input
+                    name="tags"
+                    value={formData.tags?.join()}
+                    onChange={(e) => {
+                      console.log(e);
+                      setFormData({
+                        ...formData,
+                        [e.target.name]: e.target.value.split(','),
+                      })}
+                    }
+                    type="text"
+                    className="form-control mt-3"
+                    id="exampleFormControlInput1"
+                    placeholder="Blog Tags (comma seperated)"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                <label className="font-20 font-bold">Short Description</label>
+                  <textarea
+                    name="shortDescription"
+                    value={formData.shortDescription}
                     onChange={(e) => {
                       console.log(e);
                       setFormData({
@@ -139,14 +188,14 @@ function SingleBlog({ post }) {
                         [e.target.name]: e.target.value,
                       })}
                     }
-                    type="text"
                     className="form-control mt-3"
                     id="exampleFormControlInput1"
-                    placeholder="Blog Image"
+                    placeholder="Short Description for cards"
                     required
                   />
                 </div>
                 <div className="form-group">
+                <label className="font-20 font-bold mb-1">Description</label>
                   <SunEditor ref={editorRef} height="100" placeholder="Please add yor blog here..." onChange={handleChange} setContents={formData.desc}/>
                   {/* <textarea
                     value={formData.desc}
@@ -199,7 +248,7 @@ function SingleBlog({ post }) {
                   : post.title}
               </h5>
               <p className="mt-2 mb-2 font-medium  pr-3">
-                {post.description.substring(0, 150) + "..."}
+                {post.shortDescription?.substring(0, 150) + "..."}
               </p>
               <div className="mt-3">
                 <button
@@ -210,7 +259,7 @@ function SingleBlog({ post }) {
                   //     post.imageUrl
                   //   )}
                   onClick={(e) =>
-                    handleShow(post.title, post.imageUrl, post.description)
+                    handleShow(post.title, post.imageUrl, post.description ,post.category , post.tags , post.shortDescription)
                   }
                 >
                   Edit

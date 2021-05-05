@@ -80,14 +80,15 @@ const State = (props) => {
 
   const getCategories = async () => {
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const res = await axios.get(_BASE_URL + _GET_CATEGORIES, config);
-      // if (res.data.status === false) alert(res.data.message);
-      dispatch({ type: GET_CATEGORIES, payload: res.data.categories });
+      axios
+      .get(_BASE_URL +_GET_CATEGORIES )
+      .then((res) => {
+        dispatch({ type: GET_CATEGORIES, payload: res.data.categories });
+      })
+      // .catch((err) => console.log(err));
+      // const res = await axios.get(_BASE_URL + _GET_CATEGORIES, config);
+      // // if (res.data.status === false) alert(res.data.message);
+      // dispatch({ type: GET_CATEGORIES, payload: res.data.categories });
     } catch (err) {
       console.log(err);
     }

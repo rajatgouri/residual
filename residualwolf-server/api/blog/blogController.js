@@ -37,18 +37,12 @@ exports.createBlog = async (req, res) => {
     try {
         console.log(req.body)
         let path;
-        const host = req.headers.host;
-        if (host === 'localhost:5000') {
-            path = 'http://' + host;
-        } else {
-            path = 'https://' + host;
-        }
         const { title, description } = req.body;
         const file = req.file;
         // if (!file) return res.status(400).json({ msg: 'no file selected', status: false });
         let blogObj = {};
         if (title) blogObj.title = title;
-        if (file) blogObj.imageUrl = path + '/uploads/' + file.filename;
+        if (file) blogObj.imageUrl = '/uploads/' + file.filename;
         if (description) blogObj.description = description;
         const blog = await Blog.create(blogObj);
         res.status(200).json({ blog, status: true });
@@ -59,8 +53,26 @@ exports.createBlog = async (req, res) => {
 }
 
 exports.updateBlog = async (req, res) => {
+  var matches = req.body.base64image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
+  response = {}; 
+  if (matches.length !== 3 && req.body.base64image) {
+      return new Error('Invalid input string');
+  }  else {
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+    let decodedImg = response;
+    let imageBuffer = decodedImg.data;
+    let type = decodedImg.type;
+    let extension = mime.extension(type);
+    let fileName = req.params.id+ '.' + extension;
+  }
+  const blog = {
+    ...req.body.blog,
+    imageUrl : fileName? fileName : req.body.blog.imageUrl
+  }
   try {
-    const blog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+    fs.writeFileSync("../../uploads/" + fileName, imageBuffer, 'utf8');
+    const blog = await Blog.findByIdAndUpdate(req.params.id, blog, {
       new: true,
     });
     res.status(200).json({ blog, status: true });

@@ -11,7 +11,7 @@ export default () => {
   const { getPosts, posts } = context;
   useEffect(() => {
     getPosts();
-  }, []);
+  },[]);
 
   const filteredItems = posts.filter((post) => {
     return post.createdAt.slice(5, 7).includes(value);

@@ -37,7 +37,7 @@ export default ({ post, index }) => {
                   : post.title}
               </h5>
               <p className="mt-2 mb-2 font-medium text-white  pr-3">
-                {post.description.substring(0, 150) + "..."}
+                {post.shortDescription.substring(0, 150) + "..."}
               </p>
               <div className="mb-4 mt-lg-5 mt-4">
                 <a

@@ -1,5 +1,8 @@
-import React , {useReact, useState} from "react";
+import React , {useReact, useState,useContext, useEffect} from "react";
 import "./Sidebar.css";
+import { _BASE_URL } from "../../../ApiUrls";
+import Context from "../../../context/ResidualWolf/Context";
+
 
 function NavbarComponent() {
   const [shouldtoggle , setShouldToggle] = useState(true)
@@ -16,6 +19,13 @@ function NavbarComponent() {
       setShouldToggle(true);
     }
   }
+  const context = useContext(Context);
+  const { getCategories, categories } = context;
+  
+  useEffect(() => {
+    getCategories();
+    console.log(categories);
+  },[]);
   return (
     <>
       <button class="side-toggler mt-4" id="toggler" onClick={sideToggle}>
@@ -43,26 +53,16 @@ function NavbarComponent() {
                     <span className="font-bold text-white">Categories</span>
                   </a>
                 </li>
-                <li class="nav-item active">
+                {categories && categories.length > 0
+              ? categories.map((category, i) => { 
+                return (
+                  <li class="nav-item active">
                   <a class="nav-link custom-nav-link" href="#">
-                    <i class="fa fa-angle-right ml-3"></i>Personal Blog
+                    <i class="fa fa-angle-right ml-3"></i>{category.name}
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link custom-nav-link" href="#">
-                    <i class="fa fa-angle-right ml-3"></i>Business Blog
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link custom-nav-link" href="#">
-                    <i class="fas fa-angle-right ml-3"></i>Affiliate Blogs
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link custom-nav-link" href="#">
-                    <i class="fas fa-angle-right ml-3"></i>Affiliate Blogs
-                  </a>
-                </li>
+                )
+              }) : '' }
               </ul>
             </div>
           </nav>

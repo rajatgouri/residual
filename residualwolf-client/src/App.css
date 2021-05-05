@@ -15,7 +15,9 @@ body {
   width: 100%;
   min-height: 100vh;
 }
-
+.hidden {
+  display: none !important;
+}
 .card {
   background: #1e2126 !important;
   box-shadow: 5px 5px 10px rgba(5, 5, 5, 0.7),

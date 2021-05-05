@@ -20,7 +20,7 @@ function Blogs() {
   const { getPosts, posts } = context;
   useEffect(() => {
     getPosts();
-  }, [posts]);
+  }, []);
   
   useEffect(() => {
     console.log(editorRef.current?.editor.core);
