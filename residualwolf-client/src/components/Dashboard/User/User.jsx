@@ -29,7 +29,7 @@ function User() {
       <main className={classes.content}>
         <div class="container padding-left-mobile">
           <h3>Users</h3>
-          <div class="row mb-5 mt-3">
+          <div class="row mb-5 mt-3 user-table">
             <table class="table table-striped font-bold table-responsive-sm">
               <thead>
                 <tr className="font-16">

@@ -267,15 +267,9 @@ hr {
   height: 290px;
   border-radius: 20px 0px 0px 20px;
 }
-.modal-card {
-  height: 600px;
+.user-table{
+  height: 800px;
   overflow-y: scroll;
-}
-@media only screen and (max-height: 750px){
-  .modal-card {
-    height: 590px;
-    overflow-y: scroll;
-  }
 }
 @media only screen and (max-height: 590px){
   .modal-card {
