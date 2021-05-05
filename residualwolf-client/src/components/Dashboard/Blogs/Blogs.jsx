@@ -99,6 +99,46 @@ function Blogs() {
     reader.onload = () => resolve(reader.result);
     reader.onerror = error => reject(error);
 });
+const setOptions = {
+  buttonList:      [ ['undo', 'redo', 'font', 'fontSize', 'formatBlock'],
+  ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript', 'removeFormat'],
+  ['fontColor', 'hiliteColor', 'outdent', 'indent', 'align', 'horizontalRule', 'list', 'table'],
+  ['link', 'image', 'video', 'fullScreen', 'showBlocks', 'codeView', 'preview', 'print', 'save']],
+  dialogBox: {
+
+    linkBox: {
+
+        title: 'Insert Link',
+
+        url: 'URL to link',
+
+        text: 'Text to display',
+
+        newWindowCheck: 'Open in new window'
+
+    },
+
+    imageBox: {
+
+        title: 'Insert image',
+
+        file: 'Select from files',
+
+        url: 'Image URL',
+
+        altText: 'Alternative text'
+
+    },
+
+    videoBox: {
+
+        title: 'Insert Video',
+
+        url: 'Media embed URL, YouTube'
+
+    },
+  }
+}
   return (
     <div>
       <Sidebar />
@@ -209,7 +249,13 @@ function Blogs() {
                 </div>
                 <div className="form-group">
                 <label className="font-20 font-bold mb-1">Description</label>
-                  <SunEditor ref={editorRef} height="100" placeholder="Please add yor blog here..." onChange={handleChange} setContents={formData.desc}/>
+                  <SunEditor 
+                  ref={editorRef} 
+                  height="100" 
+                  placeholder="Please add yor blog here..." 
+                  onChange={handleChange} 
+                  setContents={formData.desc}
+                  setOptions={setOptions}/>
                   {/* <textarea
                     value={formData.desc}
                     onChange={(e) =>

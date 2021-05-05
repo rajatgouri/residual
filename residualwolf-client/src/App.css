@@ -236,6 +236,10 @@ hr {
   height: 450px;
 }
 
+.blog-details-add{
+  height: 500px
+}
+
 .blog-side {
   padding: 10px 110px;
 }
@@ -262,6 +266,28 @@ hr {
 .blog-image {
   height: 290px;
   border-radius: 20px 0px 0px 20px;
+}
+.modal-card {
+  height: 600px;
+  overflow-y: scroll;
+}
+@media only screen and (max-height: 750px){
+  .modal-card {
+    height: 590px;
+    overflow-y: scroll;
+  }
+}
+@media only screen and (max-height: 590px){
+  .modal-card {
+    height: 450px;
+    overflow-y: scroll;
+  }
+}
+@media only screen and (max-height: 490px){
+  .modal-card {
+    height: 350px;
+    overflow-y: scroll;
+  }
 }
 @media (max-width: 1670px) {
   .blog-image {

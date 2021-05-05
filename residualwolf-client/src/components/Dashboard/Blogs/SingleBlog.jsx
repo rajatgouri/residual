@@ -98,10 +98,61 @@ function SingleBlog({ post }) {
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
+    const [didMount, setDidMount] = useState(false); 
+
+    useEffect(() => {
+       setDidMount(true);
+       return () => setDidMount(false);
+    }, [])
+    
+    if(!didMount) {
+      return null;
+    }
+
+  const setOptions = {
+    buttonList:      [ ['undo', 'redo', 'font', 'fontSize', 'formatBlock'],
+    ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript', 'removeFormat'],
+    ['fontColor', 'hiliteColor', 'outdent', 'indent', 'align', 'horizontalRule', 'list', 'table'],
+    ['link', 'image', 'video', 'fullScreen', 'showBlocks', 'codeView', 'preview', 'print', 'save']],
+    dialogBox: {
+
+      linkBox: {
+
+          title: 'Insert Link',
+
+          url: 'URL to link',
+
+          text: 'Text to display',
+
+          newWindowCheck: 'Open in new window'
+
+      },
+
+      imageBox: {
+
+          title: 'Insert image',
+
+          file: 'Select from files',
+
+          url: 'Image URL',
+
+          altText: 'Alternative text'
+
+      },
+
+      videoBox: {
+
+          title: 'Insert Video',
+
+          url: 'Media embed URL, YouTube'
+
+      },
+    }
+  }
   return (
     <>
       {showModal ? (
-        <Modal className="mt-5" show={showModal} onHide={handleClose}>
+        <Modal className="mt-5 modal-card" show={showModal} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>
               <div className="font-bold ml-1">Edit a blog</div>
@@ -218,6 +269,7 @@ function SingleBlog({ post }) {
                     placeholder="Please add yor blog here..."
                     onChange={handleChange}
                     setContents={formData.desc}
+                    setOptions={setOptions}
                     imageBox= {{
 
                       title: 'Insert image',

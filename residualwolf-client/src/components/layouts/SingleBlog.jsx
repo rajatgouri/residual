@@ -49,13 +49,13 @@ export default ({ location }) => {
       {post !== null ? (
         <div className="container-fluid">
           <div className="row mt-5 mx-3">
-            <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3">
+            <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3 blog-details-add">
               <div className="card">
                 <img
                   src="https://source.unsplash.com/random"
                   alt=""
                   className="img-fluid d-lg-block d-none"
-                  style={{ borderRadius: "20px" }}
+                  style={{ borderRadius: "20px" , height: "500px"}}
                 />
               </div>
             </div>
@@ -221,13 +221,13 @@ export default ({ location }) => {
                 </div>
               </div>
             </div>
-            <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3">
+            <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3 blog-details-add">
               <div className="card">
                 <img
                   src="https://source.unsplash.com/random"
                   alt=""
                   className="img-fluid d-lg-block d-none"
-                  style={{ borderRadius: "20px" }}
+                  style={{ borderRadius: "20px" ,height: "500px"}}
                 />
               </div>
             </div>
