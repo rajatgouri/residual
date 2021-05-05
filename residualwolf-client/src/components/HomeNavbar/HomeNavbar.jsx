@@ -2,11 +2,11 @@ import React from "react";
 import Navbar from "./Navbar/Navbar";
 import Sidebar from "./Sidebar/Sidebar";
 
-function HomeNavbar() {
+function HomeNavbar({ handleCategoryClick }) {
   return (
     <>
       <Navbar />
-      <Sidebar />
+      <Sidebar handleCategoryClick={handleCategoryClick} />
     </>
   );
 }

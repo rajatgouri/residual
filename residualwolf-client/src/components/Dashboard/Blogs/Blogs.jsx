@@ -41,7 +41,7 @@ function Blogs() {
   }
   return (
     <div>
-      <Sidebar />      
+      <Sidebar />
 
       {showModal ? (
         <Modal className="mt-5" show={showModal} onHide={handleClose}>
@@ -74,7 +74,12 @@ function Blogs() {
                   />
                 </div>
                 <div className="form-group">
-                <SunEditor ref={editorRef} height="100" placeholder="Please add yor blog here..." onChange={handleChange}/>
+                  <SunEditor
+                    ref={editorRef}
+                    height="100"
+                    placeholder="Please add yor blog here..."
+                    onChange={handleChange}
+                  />
                 </div>
                 <button type="submit" class="btn btn-primary">
                   Add
@@ -87,7 +92,7 @@ function Blogs() {
         ""
       )}
       <main className={classes.content}>
-        <div class="container">
+        <div class="container padding-left-mobile">
           <div className="row">
             <div className="col-lg-12 col-sm-12 col-12 col-md-12 d-flex justify-content-end">
               <button class="btn btn-primary" onClick={handleShow}>

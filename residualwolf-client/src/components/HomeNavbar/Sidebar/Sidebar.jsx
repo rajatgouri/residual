@@ -4,8 +4,8 @@ import { _BASE_URL } from "../../../ApiUrls";
 import Context from "../../../context/ResidualWolf/Context";
 
 
-function NavbarComponent() {
-  const [shouldtoggle , setShouldToggle] = useState(true)
+function NavbarComponent(props) {
+  const [shouldtoggle , setShouldToggle] = useState(true)  
   const sideToggle = () => {
     if (shouldtoggle) {
       document.getElementById("navSide").style.width = "0px";
@@ -52,12 +52,12 @@ function NavbarComponent() {
                   <a class="nav-link " href="#">
                     <span className="font-bold text-white">Categories</span>
                   </a>
-                </li>
-                {categories && categories.length > 0
+                </li>                
+                {categories && categories.length 
               ? categories.map((category, i) => { 
                 return (
-                  <li class="nav-item active">
-                  <a class="nav-link custom-nav-link" href="#">
+                  <li class="nav-item active" onClick={()=> props.handleCategoryClick(category._id)}>
+                  <a class="nav-link custom-nav-link">
                     <i class="fa fa-angle-right ml-3"></i>{category.name}
                   </a>
                 </li>

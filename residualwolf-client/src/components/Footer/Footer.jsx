@@ -15,7 +15,7 @@ function NavbarComponent() {
         <Navbar.Brand className="mx-0">
           <img
             src={logo}
-            style={{ height: "50px" }}
+            style={{ height: "35px" }}
             alt="logo"
             className="img-fluid py-0 my-0 logo"
           />

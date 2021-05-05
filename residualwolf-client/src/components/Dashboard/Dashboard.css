@@ -1,3 +1,10 @@
+@media(max-width: 1900px){
+    .padding-left-mobile{
+        padding-left: 80px !important;
+    }
+}
+
+
 @media(max-width: 1000px){
     .padding-left-mobile{
         padding-left: 75px !important;
@@ -9,4 +16,3 @@
         padding-left: 60px !important;
     }
 }
-

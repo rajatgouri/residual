@@ -25,7 +25,7 @@ function NavbarComponent() {
           expand="lg"
           className="py-0"
           collapseOnSelect={true}
-          variant="light"
+          variant="dark"
         >
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -49,10 +49,10 @@ function NavbarComponent() {
                   Blog
                 </Nav.Link>
               </NavLink>
-              <NavLink to="/blog-list" activeClassName="activeNav">
+              <NavLink to="/market" activeClassName="activeNav">
                 <Nav.Link
                   as={Link}
-                  to="/blog-list"
+                  to="/market"
                   className="font-demi font-17
                   px-3 navbar-item text-white text-center"
                 >
@@ -62,7 +62,7 @@ function NavbarComponent() {
               <NavDropdown
                 title="Investing Education"
                 id="collasible-nav-dropdown"
-                className="font-demi font-17 px-3 navbar-item text-primaryColor text-center "
+                className="font-demi font-17 px-3 navbar-item text-white text-center "
               >
                 <div
                   style={{
@@ -120,10 +120,10 @@ function NavbarComponent() {
                   </Link>
                 </div>
               </NavDropdown>
-              <NavLink to="/blog-list" activeClassName="activeNav">
+              <NavLink to="/videos" activeClassName="activeNav">
                 <Nav.Link
                   as={Link}
-                  to="/blog-list"
+                  to="/videos"
                   className="font-demi font-17
                   px-3 navbar-item text-white text-center"
                 >
@@ -156,6 +156,7 @@ function NavbarComponent() {
                     src={avatar}
                     width="30"
                     height="30"
+                    className="mb-2"
                     alt="Residual Wolf"
                   />
                 </a>
@@ -188,6 +189,7 @@ function NavbarComponent() {
                     src={avatar}
                     width="30"
                     height="30"
+                    className="mb-2"
                     alt="Residual Wolf"
                   />
                 </a>

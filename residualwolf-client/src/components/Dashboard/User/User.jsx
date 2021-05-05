@@ -16,7 +16,7 @@ function User() {
   const useStyles = makeStyles((theme) => ({
     root: {
       display: "flex",
-    },    
+    },
     content: {
       flexGrow: 1,
       padding: theme.spacing(2),
@@ -27,13 +27,24 @@ function User() {
     <div>
       <Sidebar />
       <main className={classes.content}>
-        <div class="container">
+        <div class="container padding-left-mobile">
           <div class="row mb-5 mt-3">
-            {users && users.length > 0
-              ? users.map((user, i) => {
-                  return <SingleUser user={user} key={i} index={i} />;
-                })
-              : ""}
+            <table class="table table-striped table-dark font-bold table-responsive-sm">
+              <thead>
+                <tr className="font-16">
+                  <th scope="col">S.No</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>                  
+                </tr>
+              </thead>
+              <tbody>
+                {users && users.length > 0
+                  ? users.map((user, i) => {
+                      return <SingleUser user={user} key={i} index={i} />;
+                    })
+                  : ""}
+              </tbody>
+            </table>
           </div>
         </div>
       </main>

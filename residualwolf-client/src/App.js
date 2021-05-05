@@ -18,26 +18,28 @@ import About from "./components/layouts/About";
 
 const App = () => {
   return (
-    <State>
-      <Router>
-        <Fragment>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/blog-list" component={Blog} />
-            <Route exact path="/blog-details" component={BlogDetails} />
-            <Route exact path="/create-blog" component={BlogForm} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/admin/signup" component={AdminSignup} />
-            <Route exact path="/dashboard" component={dashboard} />
-            <Route exact path="/dashboard/blogs" component={Blogs} />
-            <Route exact path="/dashboard/category" component={Category} />
-            <Route exact path="/dashboard/user" component={User} />
-            <Route exact path="/about" component={About} />
-          </Switch>
-        </Fragment>
-      </Router>
-    </State>
+    <div>
+        <State>
+          <Router>
+            <Fragment>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/blog-list" component={Blog} />
+                <Route exact path="/blog-details" component={BlogDetails} />
+                <Route exact path="/create-blog" component={BlogForm} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/admin/signup" component={AdminSignup} />
+                <Route exact path="/dashboard" component={dashboard} />
+                <Route exact path="/dashboard/blogs" component={Blogs} />
+                <Route exact path="/dashboard/category" component={Category} />
+                <Route exact path="/dashboard/user" component={User} />
+                <Route exact path="/about" component={About} />
+              </Switch>
+            </Fragment>
+          </Router>
+        </State>
+    </div>
   );
 };
 

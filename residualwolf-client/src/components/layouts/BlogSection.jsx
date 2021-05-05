@@ -7,20 +7,30 @@ import HomeNavbar from "../HomeNavbar/HomeNavbar";
 export default () => {
   const context = useContext(Context);
   const [value, setValue] = useState("");
-  console.log(value);
+
   const { getPosts, posts } = context;
   useEffect(() => {
     getPosts();
-  },[]);
+  }, []);
 
-  const filteredItems = posts.filter((post) => {
+  const [items, setItems] = useState(posts);
+ 
+  let filteredItems = posts.filter((post) => {
     return post.createdAt.slice(5, 7).includes(value);
   });
+  
+  console.log(items);
+  const handleCategoryClick = (id) => {
+    filteredItems = posts.filter((post) => {
+      return post.category.includes(id);
+    });
+    console.log(id);
+    setItems(filteredItems)
+  };
 
-  console.log(posts, "kill");
   return (
     <Fragment>
-      <HomeNavbar />
+      <HomeNavbar handleCategoryClick={handleCategoryClick} />
       <div className="home-page-wrapper">
         <section className="home">
           <div className="container-fluid pb-2 mt-5 mb-3">
@@ -32,12 +42,12 @@ export default () => {
                   <h6 className="sub-title text-white">Blogs Pages</h6>
                   <hr className="mb-5"></hr>
                 </div>
-                <div className="row">                  
+                <div className="row">
                   <div className="col-lg-4 col-md-5 col-sm-12 col-12 ml-lg-5 ml-0">
                     <div className="input-group mb-5 w-100">
                       <div className="input-group-prepend">
                         <div className="input-group-text">
-                        <i className="fas fa-filter text-primaryColor"></i>
+                          <i className="fas fa-filter text-primaryColor"></i>
                         </div>
                       </div>
                       <select
@@ -47,6 +57,7 @@ export default () => {
                         value={value}
                         onChange={(e) => {
                           setValue(e.target.value);
+                          setItems(filteredItems);
                         }}
                       >
                         <option
@@ -127,17 +138,42 @@ export default () => {
                 </div>
 
                 <div className="row d-flex justify-content-center">
-                  {filteredItems && filteredItems.length > 0 ? (
-                    filteredItems.map((post, i) => {
-                      return <Blog post={post} index={i} key={i} />;
-                    })
-                  ) : (
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div className="text-center font-demi font-20 text-white">
-                        No Blogs matched your search
-                      </div>
+                  <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
+                    <div className="card h-100">
+                      <img
+                        src="https://source.unsplash.com/random/200x285"
+                        alt=""
+                        className="img-fluid h-100"
+                        style={{ borderRadius: "20px" }}
+                      />
                     </div>
-                  )}
+                  </div>
+                  <div
+                    className="col-lg-7 col-md-12 col-sm-12 col-12"
+                    style={{ height: "500px", overflowY: "scroll" }}
+                  >
+                    {items && items.length > 0 ? (
+                      items.map((post, i) => {
+                        return <Blog post={post} index={i} key={i} />;
+                      })
+                    ) : (
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div className="text-center font-demi font-20 text-white">
+                          No Blogs matched your search
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
+                    <div className="card h-100">
+                      <img
+                        src="https://source.unsplash.com/random/200x285"
+                        alt=""
+                        className="img-fluid  h-100"
+                        style={{ borderRadius: "20px" }}
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="col-1"></div>
               </div>
