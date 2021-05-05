@@ -28,8 +28,9 @@ function User() {
       <Sidebar />
       <main className={classes.content}>
         <div class="container padding-left-mobile">
+          <h3>Users</h3>
           <div class="row mb-5 mt-3">
-            <table class="table table-striped table-dark font-bold table-responsive-sm">
+            <table class="table table-striped font-bold table-responsive-sm">
               <thead>
                 <tr className="font-16">
                   <th scope="col">S.No</th>

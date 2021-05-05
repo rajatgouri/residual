@@ -82,6 +82,7 @@ function SingleBlog({ post }) {
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
+        console.log(res);
         swal("", "This blog is updated", "success");
         setShowModal(false);
         setFormData(initialState);
@@ -150,7 +151,7 @@ function SingleBlog({ post }) {
                 </div>
                 <div className="form-group">
                   <label className="font-20 font-bold">Image</label>
-                  <img src={fileOne} className="img-fluid blog-image"/>
+                  <img src={fileOne} className="img-fluid"/>
                   <button className="font-20 font-bold bg-tertiaryColor w-100 mt-2" onClick={()=>document.getElementById('upload')?.click()}>Upload</button>
                   <input
                     onChange={(e) =>{

@@ -36,28 +36,18 @@ exports.getBlog = async (req, res) => {
 }
 
 exports.createBlog = async (req, res) => {
-  console.log(req.body);
+  console.log(req.body.blog);
   let fileName,imageBuffer;
   try {
     var matches = req.body.base64image.fileOneValue.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
     response = {}; 
-    if (!matches) {
-      const updatedBlog = {
-        ...req.body.blog
-      }
-      const blog = await Blog.create(updatedBlog, {
-        new: true,
-      });
-      res.status(200).json({ blog, status: true });
-    }  else {
-      response.type = matches[1];
-      response.data = new Buffer(matches[2], 'base64');
-      let decodedImg = response;
-      imageBuffer = decodedImg.data;
-      let type = decodedImg.type;
-      let extension = mime.extension(type);
-      fileName = req.params.id+ '.' + extension;
-    }
+    response.type = matches[1];
+    response.data = new Buffer(matches[2], 'base64');
+    let decodedImg = response;
+    imageBuffer = decodedImg.data;
+    let type = decodedImg.type;
+    let extension = mime.extension(type);
+    fileName = req.params.id+ '.' + extension;
     const updatedBlog = {
       ...req.body.blog,
       imageUrl : fileName? fileName : req.body.blog.imageUrl
@@ -74,7 +64,6 @@ exports.createBlog = async (req, res) => {
 }
 
 exports.updateBlog = async (req, res) => {
-  console.log(req.body);
   let fileName,imageBuffer;
   try {
     var matches = req.body.base64image.fileOneValue.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
