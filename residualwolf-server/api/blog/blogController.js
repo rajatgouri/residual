@@ -36,22 +36,41 @@ exports.getBlog = async (req, res) => {
 }
 
 exports.createBlog = async (req, res) => {
-    try {
-        console.log(req.body)
-        let path;
-        const { title, description } = req.body;
-        const file = req.file;
-        // if (!file) return res.status(400).json({ msg: 'no file selected', status: false });
-        let blogObj = {};
-        if (title) blogObj.title = title;
-        if (file) blogObj.imageUrl = '/uploads/' + file.filename;
-        if (description) blogObj.description = description;
-        const blog = await Blog.create(blogObj);
-        res.status(200).json({ blog, status: true });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ msg: 'internal server error', status: false });
+  console.log(req.body);
+  let fileName,imageBuffer;
+  try {
+    var matches = req.body.base64image.fileOneValue.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
+    response = {}; 
+    if (!matches) {
+      const updatedBlog = {
+        ...req.body.blog
+      }
+      const blog = await Blog.create(updatedBlog, {
+        new: true,
+      });
+      res.status(200).json({ blog, status: true });
+    }  else {
+      response.type = matches[1];
+      response.data = new Buffer(matches[2], 'base64');
+      let decodedImg = response;
+      imageBuffer = decodedImg.data;
+      let type = decodedImg.type;
+      let extension = mime.extension(type);
+      fileName = req.params.id+ '.' + extension;
     }
+    const updatedBlog = {
+      ...req.body.blog,
+      imageUrl : fileName? fileName : req.body.blog.imageUrl
+    }
+    fs.writeFileSync("./uploads/" + fileName, imageBuffer, 'utf8');
+    const blog = await Blog.create(updatedBlog, {
+      new: true,
+    });
+    res.status(200).json({ blog, status: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "internal server error", status: false });
+  }
 }
 
 exports.updateBlog = async (req, res) => {
@@ -60,8 +79,14 @@ exports.updateBlog = async (req, res) => {
   try {
     var matches = req.body.base64image.fileOneValue.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
     response = {}; 
-    if (matches.length !== 3 && req.body.base64image.fileOneValue) {
-        return new Error('Invalid input string');
+    if (req.body.base64image.fileOneValue==='') {
+      const updatedBlog = {
+        ...req.body.blog
+      }
+      const blog = await Blog.findByIdAndUpdate(req.params.id, updatedBlog, {
+        new: true,
+      });
+      res.status(200).json({ blog, status: true });
     }  else {
       response.type = matches[1];
       response.data = new Buffer(matches[2], 'base64');

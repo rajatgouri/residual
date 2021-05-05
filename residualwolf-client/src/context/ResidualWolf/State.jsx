@@ -50,7 +50,7 @@ const State = (props) => {
       };
       const res = await axios.get(_BASE_URL + _GET_POSTS, config);
       res.data.blogs = res.data.blogs.map(blog=>{
-        if (blog.imageUrl.includes('http')) {
+        if (blog.imageUrl?.includes('http')) {
           return blog;
         } else {
           return {
