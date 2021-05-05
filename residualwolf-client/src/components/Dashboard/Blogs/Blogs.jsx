@@ -33,7 +33,7 @@ function Blogs() {
   const { getPosts, posts ,getCategories, categories } = context;
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [posts]);
   
   useEffect(() => {
     console.log(editorRef.current?.editor.core);

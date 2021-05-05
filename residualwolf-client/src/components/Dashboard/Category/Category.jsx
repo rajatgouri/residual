@@ -15,7 +15,7 @@ function Category() {
   const [showModal, setShowModal] = useState(false);
   const [showSubmit, setShowSubmit] = useState(false);
   const handleClose = () => setShowModal(false);
-  const handleShow = (name) => {
+  const handleShow = (name,id) => {
     setShowModal(true);
     if (name.length === 0 ) {
       setShowSubmit(false);
@@ -23,7 +23,8 @@ function Category() {
       setShowSubmit(true);
     }
     setFormData({
-      name
+      name,
+      id
     });
   };
   const useStyles = makeStyles((theme) => ({
@@ -40,10 +41,22 @@ function Category() {
   
   useEffect(() => {
     getCategories();
-    console.log(categories);
-  },[]);
+  },[categories]);
   
   const classes = useStyles();
+  
+  const deleteBlog = (e,id) => {
+    e.preventDefault();
+    axios
+      .delete(_BASE_URL + `/categories/${id}`)
+      .then((res) => {
+        swal("", "This category is deleted", "success");
+      })
+      .catch((err) => {
+        swal("", err.message, "error");
+      });
+  
+    };
   const createCategory = (e) => {
     e.preventDefault();
     axios
@@ -64,27 +77,25 @@ function Category() {
       });
   };
 
-  // const updateCategory = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .patch(
-  //       _BASE_URL + `/blog/${post._id}`,
-  //       {
-  //         title: formData.title,
-  //         description: formData.desc,
-  //         imageUrl: formData.url,
-  //       },
-  //       { headers: { "Content-Type": "application/json" } }
-  //     )
-  //     .then((res) => {
-  //       swal("", "This blog is updated", "success");
-  //       setShowModal(false);
-  //       setFormData(initialState);
-  //     })
-  //     .catch((err) => {
-  //       swal("", err.message, "error");
-  //     });
-  // };
+  const updateCategory = (e) => {
+    e.preventDefault();
+    axios
+      .patch(
+        _BASE_URL + `/categories/${formData.id}`,
+        {
+          name: formData.name,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then((res) => {
+        swal("", "This category is updated", "success");
+        setShowModal(false);
+        setFormData(initialState);
+      })
+      .catch((err) => {
+        swal("", err.message, "error");
+      });
+  };
   return (
     <div>
       <Sidebar />
@@ -93,7 +104,7 @@ function Category() {
           <Modal.Header closeButton>
             <Modal.Title>
               <div className="font-bold ml-1">
-                Add a Category
+                Category
               </div>
             </Modal.Title>
           </Modal.Header>
@@ -121,7 +132,7 @@ function Category() {
                 <button 
                 type="submit" 
                 className="btn btn-primary"
-                onClick={createCategory}>
+                onClick={updateCategory}>
                   Change
                 </button>
                 ) : (
@@ -159,9 +170,13 @@ function Category() {
                           <button 
                           class="btn btn-primary"
                           onClick={(e) =>
-                            handleShow(category.name)
+                            handleShow(category.name,category._id)
                           }>Edit</button>
-                          <button class="btn btn-danger ml-3">Delete</button>
+                          <button 
+                          class="btn btn-danger ml-3"
+                          onClick={(e) =>
+                            deleteBlog(e,category._id)
+                          }>Delete</button>
                         </div>
                       </div>
                     </div>

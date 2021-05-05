@@ -35,7 +35,8 @@ function User() {
                 <tr className="font-16">
                   <th scope="col">S.No</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Email</th>                  
+                  <th scope="col">Email</th>  
+                  <th scope="col">Role</th>                   
                 </tr>
               </thead>
               <tbody>

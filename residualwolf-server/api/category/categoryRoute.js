@@ -13,5 +13,7 @@ const controller = require('./categoryController');
 // router.get("/comment/:id", controller.getComment);
 router.post("/add-category", controller.createCategory);
 router.get('/categories', controller.getCategories);
+router.patch("/categories/:id", controller.updateCategory);
+router.delete("/categories/:id", controller.deleteCategory);
 
 module.exports = router;

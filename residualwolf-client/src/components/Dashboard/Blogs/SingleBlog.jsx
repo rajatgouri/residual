@@ -218,6 +218,17 @@ function SingleBlog({ post }) {
                     placeholder="Please add yor blog here..."
                     onChange={handleChange}
                     setContents={formData.desc}
+                    imageBox= {{
+
+                      title: 'Insert image',
+          
+                      file: 'Select from files',
+          
+                      url: 'Image URL',
+          
+                      altText: 'Alternative text'
+          
+                  }}
                   />
                   {/* <textarea
                     value={formData.desc}

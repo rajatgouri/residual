@@ -4,7 +4,7 @@ import Spinner from "../layouts/Spinner";
 import Footer from "../Footer/Footer";
 import NavbarComponent from "../HomeNavbar/Navbar/Navbar";
 import swal from "sweetalert";
-import { _BASE_URL } from "../../ApiUrls";
+import { _BASE_URL ,_BASE_IMAGE_URL,} from "../../ApiUrls";
 import axios from "axios";
 import moment from "moment";
 
@@ -76,7 +76,7 @@ export default ({ location }) => {
                 </div>
               </div>
               <div className="blog-img-1">
-                <img src={post.imageUrl} alt="" className="blog-img" />
+                <img src={post.imageUrl.includes('http')?post.imageUrl:_BASE_IMAGE_URL+post.imageUrl} alt="" className="blog-img" />
               </div>
               <div className="description">
                 <div className="font-regular text-white" dangerouslySetInnerHTML={{__html: post.description}}></div>

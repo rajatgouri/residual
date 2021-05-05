@@ -20,3 +20,23 @@ exports.createCategory = async (req, res) => {
         res.status(500).json({ msg: 'internal server error', status: false });
     }
 }
+
+exports.updateCategory = async (req, res) => {
+    try {
+        const category = await Category.findByIdAndUpdate(req.params.id,req.body);
+        res.status(200).json({ category, status: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ msg: 'internal server error', status: false });
+    }
+}
+
+exports.deleteCategory = async (req, res) => {
+    try {
+        const category = await Category.findByIdAndDelete(req.params.id);
+        res.status(200).json({ category, status: true });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ msg: 'internal server error', status: false });
+    }
+}

@@ -7,6 +7,7 @@ function SingleUser({ user, index }) {
       <td>{index}</td>
       <td>{user.name}</td>
       <td>{user.email}</td>
+      <td>{user.role}</td>
     </tr>      
     </>
   );
