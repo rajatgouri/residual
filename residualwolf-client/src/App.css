@@ -264,8 +264,12 @@ hr {
   z-index: 10;
 }
 .blog-image {
-  height: 290px;
-  border-radius: 20px 0px 0px 20px;
+  border-radius: 20px;
+  width: 100%;
+  object-fit: cover;
+}
+.blog-paragraph{
+  padding: 15px;
 }
 .user-table{
   height: 800px;
@@ -288,6 +292,7 @@ hr {
     height: 311px;
   }
 }
+
 @media (max-width: 767px) {
   .blog-image {
     border-radius: 20px;

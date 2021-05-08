@@ -41,18 +41,20 @@ export default () => {
                     className="col-lg-7 col-md-12 col-sm-12 col-12"
                     style={{ height: "500px", overflowY: "scroll" }}
                   >
-                    {posts && posts.length > 0 ? (
-                      posts
-                        .slice(0)
-                        .reverse()
-                        .map((post, i) => {
-                          return (
-                            i < 3 && <Blog post={post} key={i} index={i} />
-                          );
-                        })
-                    ) : (
-                      <Spinner />
-                    )}
+                    <div className="row">
+                      {posts && posts.length > 0 ? (
+                        posts
+                          .slice(0)
+                          .reverse()
+                          .map((post, i) => {
+                            return (
+                              i < 3 && <Blog post={post} key={i} index={i} />
+                            );
+                          })
+                      ) : (
+                        <Spinner />
+                      )}
+                    </div>
                   </div>
                   <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
@@ -65,7 +67,7 @@ export default () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <h3 className="text-white font-demi text-center mt-5 pt-5">
                   Popular Blogs
                 </h3>
@@ -85,16 +87,17 @@ export default () => {
                     className="col-lg-7 col-md-12 col-sm-12 col-12"
                     style={{ height: "500px", overflowY: "scroll" }}
                   >
-                    {posts && posts.length > 0 ? (
-                      posts                        
-                        .map((post, i) => {
+                    <div className="row">
+                      {posts && posts.length > 0 ? (
+                        posts.map((post, i) => {
                           return (
                             i < 3 && <Blog post={post} key={i} index={i} />
                           );
                         })
-                    ) : (
-                      <Spinner />
-                    )}
+                      ) : (
+                        <Spinner />
+                      )}
+                    </div>
                   </div>
                   <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
@@ -107,7 +110,7 @@ export default () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="col-1"></div>
               </div>
             </div>

@@ -7,28 +7,28 @@ export default (props) => {
   };
   return (
     <Fragment>
-      <div key={post._id}>
+      <div className="col-lg-6 col-md-12 col-sm-12 col-12 h-100">
         <div className="card font-regular text-white h-100 mb-4 py-0">
           <div className="row">
-            <div className="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12">
               <img
                 className="img-fluid blog-image"
                 src={post.imageUrl}
                 alt="Card image cap"
               />
             </div>
-            <div className="col-lg-7 col-md-6 col-sm-12 col-12 pt-4 pb-2">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12 pt-4 pb-2">
               <div className="blog-paragraph">
                 <i className="far fa-clock"></i>&nbsp;&nbsp;
                 <span className="font-medium">
                   {post.createdAt.slice(-post.createdAt.length, 10)}
                 </span>
-                <h5 className="text-white mt-3 font-demi mb-2  pr-lg-3">
+                <h5 className="text-white mt-3 font-demi mb-2">
                   {post.title.length > 30
                     ? post.title.substring(0, 30) + "..."
                     : post.title}
                 </h5>
-                <p className="mt-2 mb-2 font-medium text-white  pr-lg-3">
+                <p className="mt-2 mb-2 font-medium text-white">
                   {post.shortDescription.substring(0, 150) + "..."}
                 </p>
                 <div className="mb-4 mt-lg-5 mt-4">

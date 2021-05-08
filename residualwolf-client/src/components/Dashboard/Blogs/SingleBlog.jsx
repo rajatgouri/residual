@@ -152,7 +152,11 @@ function SingleBlog({ post }) {
   return (
     <>
       {showModal ? (
-        <Modal className="mt-5 modal-card" show={showModal} onHide={handleClose}>
+        <Modal
+          className="mt-5 modal-card"
+          show={showModal}
+          onHide={handleClose}
+        >
           <Modal.Header closeButton>
             <Modal.Title>
               <div className="font-bold ml-1">Edit a blog</div>
@@ -270,17 +274,15 @@ function SingleBlog({ post }) {
                     onChange={handleChange}
                     setContents={formData.desc}
                     setOptions={setOptions}
-                    imageBox= {{
+                    imageBox={{
+                      title: "Insert image",
 
-                      title: 'Insert image',
-          
-                      file: 'Select from files',
-          
-                      url: 'Image URL',
-          
-                      altText: 'Alternative text'
-          
-                  }}
+                      file: "Select from files",
+
+                      url: "Image URL",
+
+                      altText: "Alternative text",
+                    }}
                   />
                   {/* <textarea
                     value={formData.desc}
@@ -316,9 +318,9 @@ function SingleBlog({ post }) {
           <div className="row">
             <div className="col-lg-5 col-md-5 col-sm-12 col-12">
               <img
-                className="img-fluid blog-image"
+                className="img-fluid blog-image h-100"
                 src={post.imageUrl}
-                alt="Card image cap"                
+                alt="Card image cap"
               />
             </div>
             <div className="col-lg-7 col-md-6 col-sm-12 col-12 pt-4 pb-2">

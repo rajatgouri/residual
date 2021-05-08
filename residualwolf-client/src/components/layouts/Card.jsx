@@ -3,17 +3,17 @@ import React, { Fragment } from "react";
 export default ({ post }) => {
   return (
     <Fragment>
-      <div key={post._id}>
+      <div className="col-lg-6 col-md-12 col-sm-12 col-12 h-100">
         <div className="card font-regular text-white h-100 mb-4 py-0">
           <div className="row">
-            <div className="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12">
               <img
                 className="img-fluid blog-image"
                 src={post.imageUrl}
                 alt="Card image cap"
               />
             </div>
-            <div className="col-lg-7 col-md-6 col-sm-12 col-12 pt-4 pb-2">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12 pt-4 pb-2">
               <div className="blog-paragraph">
                 <i class="far fa-clock"></i>&nbsp;&nbsp;
                 <span className="font-medium">

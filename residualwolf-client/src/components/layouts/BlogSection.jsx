@@ -14,18 +14,18 @@ export default () => {
   }, []);
 
   const [items, setItems] = useState(posts);
- 
+
   let filteredItems = posts.filter((post) => {
     return post.createdAt.slice(5, 7).includes(value);
   });
-  
+
   console.log(items);
   const handleCategoryClick = (id) => {
     filteredItems = posts.filter((post) => {
       return post.category.includes(id);
     });
     console.log(id);
-    setItems(filteredItems)
+    setItems(filteredItems);
   };
 
   return (
@@ -152,17 +152,19 @@ export default () => {
                     className="col-lg-7 col-md-12 col-sm-12 col-12"
                     style={{ height: "500px", overflowY: "scroll" }}
                   >
-                    {items && items.length > 0 ? (
-                      items.map((post, i) => {
-                        return <Blog post={post} index={i} key={i} />;
-                      })
-                    ) : (
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="text-center font-demi font-20 text-white">
-                          No Blogs matched your search
+                    <div className="row">
+                      {items && items.length > 0 ? (
+                        items.map((post, i) => {
+                          return <Blog post={post} index={i} key={i} />;
+                        })
+                      ) : (
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-12">
+                          <div className="text-center font-demi font-20 text-white">
+                            No Blogs matched your search
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                   <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
