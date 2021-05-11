@@ -46,7 +46,7 @@ function NavbarComponent(props) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav flex-column">
-                <li class="nav-item ">
+                <li class="nav-item mb-4">
                   <a class="nav-link " href="#">
                     <span className="font-bold text-white main-heading-hover">
                       Categories
