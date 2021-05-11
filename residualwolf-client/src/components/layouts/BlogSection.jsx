@@ -7,7 +7,7 @@ import MobileSidebar from "../HomeNavbar/MobileSidebar/MobileSidebar";
 
 export default () => {
   const context = useContext(Context);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("04");
 
   const { getPosts, posts } = context;
   useEffect(() => {
@@ -61,6 +61,13 @@ export default () => {
                           setItems(filteredItems);
                         }}
                       >
+                        <option
+                          className="card text-white font-regular"
+                          value="04"
+                          disabled
+                        >
+                          Filter By Month
+                        </option>
                         <option
                           className="card text-white font-regular"
                           value="01"
@@ -146,8 +153,8 @@ export default () => {
                       <input
                         type="text"
                         className="form-control-filter"
-                        placeholder="Search your blogs"                        
-                      />                        
+                        placeholder="Search your blogs"
+                      />
                     </div>
                   </div>
                 </div>
