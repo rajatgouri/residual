@@ -46,18 +46,30 @@ function NavbarComponent(props) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav flex-column">
-                <li class="nav-item mb-4">
+                <li class="nav-item mb-4 heading-hover-main">
                   <a class="nav-link " href="#">
                     <span className="font-bold text-white main-heading-hover">
                       Categories
                     </span>
+                    <hr className="white-hr"></hr>
+                  </a>
+                </li>
+                <li
+                  class="nav-item active item-bottom"
+                  onClick={() =>
+                    props.handleCategoryClick('all')
+                  }
+                >
+                  <a class="nav-link custom-nav-link">
+                    <i class="fa fa-angle-right ml-3"></i>
+                    All Posts
                   </a>
                 </li>
                 {categories && categories.length
                   ? categories.map((category, i) => {
                       return (
                         <li
-                          class="nav-item active"
+                          class="nav-item active item-bottom"
                           onClick={() =>
                             props.handleCategoryClick(category._id)
                           }
@@ -71,11 +83,12 @@ function NavbarComponent(props) {
                     })
                   : ""}
 
-                <li class="nav-item mt-5 pt-3 mb-3">
-                  <a class="nav-link " href="#">
+                <li class="nav-item mt-5 pt-3 heading-hover-main">
+                  <a class="nav-link" href="#">
                     <span className="font-bold text-white main-heading-hover">
                       TOP 5
                     </span>
+                    <hr className="white-hr"></hr>
                   </a>
                 </li>
                 {posts && posts.length

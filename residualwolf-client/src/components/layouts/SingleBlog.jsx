@@ -1,17 +1,18 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import Context from "../../context/ResidualWolf/Context";
-import Spinner from "../layouts/Spinner";
 import Footer from "../Footer/Footer";
 import swal from "sweetalert";
 import { _BASE_URL, _BASE_IMAGE_URL } from "../../ApiUrls";
 import axios from "axios";
 import moment from "moment";
 import HomeNavbar from "../HomeNavbar/HomeNavbar";
+import { useHistory } from "react-router-dom";
 
 export default ({ location }) => {
   const id = location.search.split("=")[1];
   const context = useContext(Context);
   const { getPost, post, getComment, comment } = context;
+  let history = useHistory();
 
   useEffect(() => {
     getPost(id);
@@ -43,15 +44,19 @@ export default ({ location }) => {
       })
       .catch((err) => swal("", err, "error"));
   };
+
+  const handleCategoryClick = (id) => {
+    history.push("/blog-list");
+  };
+
   return (
     <Fragment>
-      <HomeNavbar />
+      <HomeNavbar handleCategoryClick={handleCategoryClick} />
       <div className="home-page-wrapper">
         {post !== null ? (
           <div className="container-fluid">
             <div className="row mt-5 d-flex justify-content-center">
-              <div className="col-lg-2"></div>
-              <div className="col-lg-8 col-md-12 col-sm-12 blog-side col-12">
+              <div className="col-lg-12 col-md-12 col-sm-12 blog-side col-12">
                 <h3 className="mb-3 font-demi text-primaryColor">
                   {post.title}
                 </h3>
@@ -237,8 +242,7 @@ export default ({ location }) => {
                 />
               </div>
             </div> */}
-              <div className="col-lg-2 addsense p-2"></div>
-              <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
+              <div className="col-lg-10 col-md-12 col-sm-12 col-12">
                 <hr></hr>
                 <h5 className="title my-3 text-white font-demi">Comments: </h5>
                 {comment
@@ -339,7 +343,7 @@ export default ({ location }) => {
             </div>
           </div>
         ) : (
-          <Spinner />
+            ''
         )}
       </div>
 

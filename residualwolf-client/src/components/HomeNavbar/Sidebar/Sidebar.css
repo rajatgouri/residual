@@ -37,6 +37,20 @@
   border-bottom: 2px solid #fff;
 }
 
+.white-hr {
+  width: 90px;
+  height: 2px;
+  background-color: #fff !important;
+  text-align: left;
+  margin-left:0;
+  margin-bottom: 30px;
+  transition: 0.5s;
+}
+
+.white-hr:hover {
+  width: 130px;
+}
+
 .nav-left-sidebar .navbar-nav .custom-nav-link{
   transition: all 0.3s ease-in;
 }
@@ -44,8 +58,8 @@
   padding-left: 25px;
 }
 
-.nav-item {
-  border-bottom: 1px solid lightgrey;
+.item-bottom {
+  border-bottom: 1px solid rgb(236, 226, 226);
 }
 
 .nav-left-sidebar .navbar-toggler {
@@ -73,6 +87,10 @@
   letter-spacing: 1px;
   font-weight: 600;
   line-height: 1;
+}
+
+.heading-hover-main:hover hr {
+  width: 130px;
 }
 /* .main-heading-hover:before {
   content: "";

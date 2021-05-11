@@ -188,7 +188,7 @@ a:hover {
 .blog-img {
   height: 200px;
 }
-hr {
+.hr {
   width: 50px;
   height: 2px;
   background: linear-gradient(to right, #da71ec 25%, #ba38d2 65%) !important;

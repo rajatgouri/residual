@@ -20,14 +20,30 @@ export default () => {
     return post.createdAt.slice(5, 7).includes(value);
   });
 
-  console.log(items);
   const handleCategoryClick = (id) => {
+    if (id=='all') {
+      setItems(posts);
+      return ;
+    }
     filteredItems = posts.filter((post) => {
       return post.category.includes(id);
     });
     console.log(id);
     setItems(filteredItems);
   };
+
+  const search = (e) => {
+    filteredItems = posts.filter(p=>{
+      console.log(p);
+      for (let i=0;i<p.tags.length;i++) {
+        if (p.tags[i].includes(e.target.value)) {
+          return p;
+        }
+      }
+    })
+    setItems(filteredItems);
+    console.log(e.target.value)
+  }
 
   return (
     <Fragment>
@@ -41,7 +57,7 @@ export default () => {
                 <div className="col-md-12 text-center">
                   <h2 className="title text-white">Blogs</h2>
                   <h6 className="sub-title text-white">Blogs Pages</h6>
-                  <hr className="mb-5"></hr>
+                  <hr className="mb-5 hr"></hr>
                 </div>
                 <div className="row d-flex justify-content-center">
                   <div className="col-lg-4 col-md-5 col-sm-12 col-12">
@@ -154,6 +170,9 @@ export default () => {
                         type="text"
                         className="form-control-filter"
                         placeholder="Search your blogs"
+                        onChange={(e) => {
+                          search(e)
+                        }}
                       />
                     </div>
                   </div>
@@ -170,7 +189,7 @@ export default () => {
                       />
                     </div>
                   </div> */}
-                  <div className="col-lg-10 col-md-12 col-sm-12 col-12">
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-12">
                     {items && items.length > 0 ? (
                       items.map((post, i) => {
                         return <Blog post={post} index={i} key={i} />;
