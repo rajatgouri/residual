@@ -74,7 +74,7 @@ function NavbarComponent(props) {
                 <li class="nav-item mt-5">
                   <a class="nav-link " href="#">
                     <span className="font-bold text-white main-heading-hover">
-                      Popular Blogs
+                      TOP 5
                     </span>
                   </a>
                 </li>
