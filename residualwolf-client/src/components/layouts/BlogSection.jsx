@@ -3,6 +3,7 @@ import Context from "../../context/ResidualWolf/Context";
 import Blog from "./Card";
 import Footer from "../Footer/Footer";
 import HomeNavbar from "../HomeNavbar/HomeNavbar";
+import MobileSidebar from "../HomeNavbar/MobileSidebar/MobileSidebar";
 
 export default () => {
   const context = useContext(Context);
@@ -138,7 +139,7 @@ export default () => {
                 </div>
 
                 <div className="row d-flex justify-content-center">
-                  <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
+                  {/* <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
                       <img
                         src="https://source.unsplash.com/random/200x285"
@@ -147,26 +148,21 @@ export default () => {
                         style={{ borderRadius: "20px" }}
                       />
                     </div>
-                  </div>
-                  <div
-                    className="col-lg-7 col-md-12 col-sm-12 col-12"
-                    style={{ height: "500px", overflowY: "scroll" }}
-                  >
-                    <div className="row">
-                      {items && items.length > 0 ? (
-                        items.map((post, i) => {
-                          return <Blog post={post} index={i} key={i} />;
-                        })
-                      ) : (
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-12">
-                          <div className="text-center font-demi font-20 text-white">
-                            No Blogs matched your search
-                          </div>
+                  </div> */}
+                  <div className="col-lg-7 col-md-12 col-sm-12 col-12">
+                    {items && items.length > 0 ? (
+                      items.map((post, i) => {
+                        return <Blog post={post} index={i} key={i} />;
+                      })
+                    ) : (
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div className="text-center font-demi font-20 text-white">
+                          No Blogs matched your search
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
+                  {/* <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
                       <img
                         src="https://source.unsplash.com/random/200x285"
@@ -175,7 +171,7 @@ export default () => {
                         style={{ borderRadius: "20px" }}
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="col-1"></div>
               </div>
@@ -183,7 +179,7 @@ export default () => {
           </div>
         </section>
       </div>
-
+      <MobileSidebar />
       <Footer />
     </Fragment>
   );

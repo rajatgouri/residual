@@ -2,11 +2,11 @@ import React, { Fragment, useContext, useEffect, useState } from "react";
 import Context from "../../context/ResidualWolf/Context";
 import Spinner from "../layouts/Spinner";
 import Footer from "../Footer/Footer";
-import NavbarComponent from "../HomeNavbar/Navbar/Navbar";
 import swal from "sweetalert";
-import { _BASE_URL ,_BASE_IMAGE_URL,} from "../../ApiUrls";
+import { _BASE_URL, _BASE_IMAGE_URL } from "../../ApiUrls";
 import axios from "axios";
 import moment from "moment";
+import HomeNavbar from "../HomeNavbar/HomeNavbar";
 
 export default ({ location }) => {
   const id = location.search.split("=")[1];
@@ -45,44 +45,49 @@ export default ({ location }) => {
   };
   return (
     <Fragment>
-      <NavbarComponent />
-      {post !== null ? (
-        <div className="container-fluid">
-          <div className="row mt-5 mx-3">
-            <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3 blog-details-add">
-              <div className="card">
-                <img
-                  src="https://source.unsplash.com/random"
-                  alt=""
-                  className="img-fluid d-lg-block d-none"
-                  style={{ borderRadius: "20px" , height: "500px"}}
-                />
-              </div>
-            </div>
-            <div className="col-lg-8 col-md-12 col-sm-12 blog-side col-12">
-              <h3 className="mb-3 font-demi text-primaryColor">{post.title}</h3>
-              <div class="media ">
-                <img
-                  src="https://www.w3schools.com/bootstrap4/img_avatar3.png"
-                  alt="John Doe"
-                  class="mr-3 mt-3 rounded-circle"
-                  style={{ width: 40 }}
-                ></img>
-                <div class="media-body font-regular text-white">
-                  <h6 className="mt-3 font-medium">by Residual Wolf</h6>
-                  <small>
-                    <i>Posted on {post.createdAt.split("T")[0]}</i>
-                  </small>
+      <HomeNavbar />
+      <div className="home-page-wrapper">
+        {post !== null ? (
+          <div className="container-fluid">
+            <div className="row mt-5 d-flex justify-content-center">
+              <div className="col-lg-2"></div>
+              <div className="col-lg-8 col-md-12 col-sm-12 blog-side col-12">
+                <h3 className="mb-3 font-demi text-primaryColor">
+                  {post.title}
+                </h3>
+                <div class="media ">
+                  <img
+                    src="https://www.w3schools.com/bootstrap4/img_avatar3.png"
+                    alt="John Doe"
+                    class="mr-3 mt-3 rounded-circle"
+                    style={{ width: 40 }}
+                  ></img>
+                  <div class="media-body font-regular text-white">
+                    <h6 className="mt-3 font-medium">by Residual Wolf</h6>
+                    <small>
+                      <i>Posted on {post.createdAt.split("T")[0]}</i>
+                    </small>
+                  </div>
                 </div>
-              </div>
-              <div className="blog-img-1">
-                <img src={post.imageUrl.includes('http')?post.imageUrl:_BASE_IMAGE_URL+post.imageUrl} alt="" className="blog-img" />
-              </div>
-              <div className="description">
-                <div className="font-regular text-white" dangerouslySetInnerHTML={{__html: post.description}}></div>
-              </div>
+                <div className="blog-img-1">
+                  <img
+                    src={
+                      post.imageUrl.includes("http")
+                        ? post.imageUrl
+                        : _BASE_IMAGE_URL + post.imageUrl
+                    }
+                    alt=""
+                    className="blog-img"
+                  />
+                </div>
+                <div className="description">
+                  <div
+                    className="font-regular text-white"
+                    dangerouslySetInnerHTML={{ __html: post.description }}
+                  ></div>
+                </div>
 
-              <div className="row mt-5">
+                {/* <div className="row mt-5">
                 <div className="col-sm-6">
                   <a href={"blog-details?id=6085d5af36f676415ccb7620"}>
                     <div className="card mb-4">
@@ -220,8 +225,9 @@ export default ({ location }) => {
                   </a>
                 </div>
               </div>
-            </div>
-            <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3 blog-details-add">
+             */}
+              </div>
+              {/* <div className="col-md-12 col-lg-2 col-12 col-sm-12 mb-3 blog-details-add">
               <div className="card">
                 <img
                   src="https://source.unsplash.com/random"
@@ -230,111 +236,113 @@ export default ({ location }) => {
                   style={{ borderRadius: "20px" ,height: "500px"}}
                 />
               </div>
-            </div>
-            <div className="col-lg-2 addsense p-2"></div>
-            <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
-              <hr></hr>
-              <h5 className="title my-3 text-white font-demi">Comments: </h5>             
-              {comment
-                .slice(0)
-                .reverse()
-                .map((comm, i) => {
-                  if (i < 3) {
-                    return (
-                      <div className="card py-4">
-                        <div className="font-medium text-white px-3">
-                          {comm.userName ? (
-                            <div>
-                              <span className="avatar text-secondaryColor font-demi font-14 mr-2">
-                                {comm.userName.slice(-comm.length, 1)}
-                              </span>
-                              {comm.userName}
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="d-flex justify-content-between text-white w-100 pl-5 pr-3 py-2 ml-1">
-                          <div className="font-regular">{comm.text}</div>
-                          <div className="font-demi">                            
-                            {moment(comm.createdAt).fromNow()}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                })}
-              {comment.length > 3 && (
-                <button
-                  className="text-white bg-secondaryColor font-demi btn-blue mb-5"
-                  data-toggle="collapse"
-                  aria-expanded={false}
-                  data-target="#comments"
-                  aria-controls="comments"
-                >
-                  View More
-                </button>
-              )}
-              {comment
-                .slice(0)
-                .reverse()
-                .map((comm, i) => {
-                  if (i >= 3) {
-                    return (
-                      <div id="comments" class="collapse">
+            </div> */}
+              <div className="col-lg-2 addsense p-2"></div>
+              <div className="col-lg-8 col-md-12 col-sm-12 col-12 mt-5">
+                <hr></hr>
+                <h5 className="title my-3 text-white font-demi">Comments: </h5>
+                {comment
+                  .slice(0)
+                  .reverse()
+                  .map((comm, i) => {
+                    if (i < 3) {
+                      return (
                         <div className="card py-4">
-                        <div className="font-medium text-white px-3">
-                          {comm.userName ? (
-                            <div>
-                              <span className="avatar text-secondaryColor font-demi font-14 mr-2">
-                                {comm.userName.slice(-comm.length, 1)}
-                              </span>
-                              {comm.userName}
+                          <div className="font-medium text-white px-3">
+                            {comm.userName ? (
+                              <div>
+                                <span className="avatar text-secondaryColor font-demi font-14 mr-2">
+                                  {comm.userName.slice(-comm.length, 1)}
+                                </span>
+                                {comm.userName}
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                          <div className="d-flex justify-content-between text-white w-100 pl-5 pr-3 py-2 ml-1">
+                            <div className="font-regular">{comm.text}</div>
+                            <div className="font-demi">
+                              {moment(comm.createdAt).fromNow()}
                             </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="d-flex justify-content-between text-white w-100 pl-5 pr-3 py-2 ml-1">
-                          <div className="font-regular">{comm.text}</div>
-                          <div className="font-demi">                            
-                            {moment(comm.createdAt).fromNow()}
                           </div>
                         </div>
+                      );
+                    }
+                  })}
+                {comment.length > 3 && (
+                  <button
+                    className="text-white bg-secondaryColor font-demi btn-blue mb-5"
+                    data-toggle="collapse"
+                    aria-expanded={false}
+                    data-target="#comments"
+                    aria-controls="comments"
+                  >
+                    View More
+                  </button>
+                )}
+                {comment
+                  .slice(0)
+                  .reverse()
+                  .map((comm, i) => {
+                    if (i >= 3) {
+                      return (
+                        <div id="comments" class="collapse">
+                          <div className="card py-4">
+                            <div className="font-medium text-white px-3">
+                              {comm.userName ? (
+                                <div>
+                                  <span className="avatar text-secondaryColor font-demi font-14 mr-2">
+                                    {comm.userName.slice(-comm.length, 1)}
+                                  </span>
+                                  {comm.userName}
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                            <div className="d-flex justify-content-between text-white w-100 pl-5 pr-3 py-2 ml-1">
+                              <div className="font-regular">{comm.text}</div>
+                              <div className="font-demi">
+                                {moment(comm.createdAt).fromNow()}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    }
+                  })}
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <div className="input-group-text">
+                        <i className="fas fa-comment text-primaryColor"></i>
                       </div>
-                      </div>
-                    );
-                  }
-                })}
-              <form onSubmit={handleSubmit}>
-                <div className="input-group">
-                  <div className="input-group-prepend">
-                    <div className="input-group-text">
-                      <i className="fas fa-comment text-primaryColor"></i>
                     </div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Add your comment"
+                      value={addcomment}
+                      onChange={(e) => setComment(e.target.value)}
+                      required
+                    ></input>
                   </div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Add your comment"
-                    value={addcomment}
-                    onChange={(e) => setComment(e.target.value)}
-                    required
-                  ></input>
-                </div>
-                <button
-                  className="text-white bg-secondaryColor font-demi btn-blue mt-3 mb-5"
-                  type="submit"
-                >
-                  Add Comment
-                </button>
-              </form>
+                  <button
+                    className="text-white bg-secondaryColor font-demi btn-blue mt-3 mb-5"
+                    type="submit"
+                  >
+                    Add Comment
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <Spinner />
-      )}
+        ) : (
+          <Spinner />
+        )}
+      </div>
+
       <Footer />
     </Fragment>
   );

@@ -5,14 +5,14 @@ import "./Navbar.css";
 import { NavLink, Link } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../../images/logo.jpeg";
-import avatar from "../../../images/profile_avatar.png";
+import avatar from "../../../images/profile.svg";
 
 function NavbarComponent() {
   return (
     <React.Fragment>
       <div className="sticky-top nav-background">
         <div className="mb-2">
-          <div className="text-center mb-0">
+          <div className="mb-0">
             <img
               src={logo}
               alt="Residual Wolf"
@@ -158,6 +158,7 @@ function NavbarComponent() {
                     height="30"
                     className="mb-2"
                     alt="Residual Wolf"
+                    style={{borderRadius: '50%'}}
                   />
                 </a>
                 <div
@@ -191,6 +192,7 @@ function NavbarComponent() {
                     height="30"
                     className="mb-2"
                     alt="Residual Wolf"
+                    style={{borderRadius: '50%'}}
                   />
                 </a>
                 <div

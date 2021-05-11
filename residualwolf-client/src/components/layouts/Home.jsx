@@ -3,7 +3,8 @@ import Context from "../../context/ResidualWolf/Context";
 import Blog from "./CardNew";
 import Spinner from "./Spinner";
 import Footer from "../Footer/Footer";
-import NavbarComponent from "../HomeNavbar/Navbar/Navbar";
+import HomeNavbar from "../HomeNavbar/HomeNavbar";
+import MobileSidebar from "../HomeNavbar/MobileSidebar/MobileSidebar";
 
 export default () => {
   const context = useContext(Context);
@@ -14,9 +15,9 @@ export default () => {
   }, []);
 
   return (
-    <Fragment>
-      <NavbarComponent />
-      <div>
+    <Fragment>      
+      <HomeNavbar />
+      <div className="home-page-wrapper">
         <section className="home">
           <div className="container-fluid pb-2 mb-3">
             <div className="row mt-5">
@@ -27,7 +28,7 @@ export default () => {
                 </h3>
                 <hr className="mb-4" />
                 <div className="row d-flex justify-content-center">
-                  <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
+                  {/* <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
                       <img
                         src="https://source.unsplash.com/random/200x285"
@@ -36,27 +37,22 @@ export default () => {
                         style={{ borderRadius: "20px" }}
                       />
                     </div>
+                  </div> */}
+                  <div className="col-lg-7 col-md-12 col-sm-12 col-12">
+                    {posts && posts.length > 0 ? (
+                      posts
+                        .slice(0)
+                        .reverse()
+                        .map((post, i) => {
+                          return (
+                            i < 3 && <Blog post={post} key={i} index={i} />
+                          );
+                        })
+                    ) : (
+                      <Spinner />
+                    )}
                   </div>
-                  <div
-                    className="col-lg-7 col-md-12 col-sm-12 col-12"
-                    style={{ height: "500px", overflowY: "scroll" }}
-                  >
-                    <div className="row">
-                      {posts && posts.length > 0 ? (
-                        posts
-                          .slice(0)
-                          .reverse()
-                          .map((post, i) => {
-                            return (
-                              i < 3 && <Blog post={post} key={i} index={i} />
-                            );
-                          })
-                      ) : (
-                        <Spinner />
-                      )}
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
+                  {/* <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
                       <img
                         src="https://source.unsplash.com/random/200x285"
@@ -65,7 +61,7 @@ export default () => {
                         style={{ borderRadius: "20px" }}
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <h3 className="text-white font-demi text-center mt-5 pt-5">
@@ -73,7 +69,7 @@ export default () => {
                 </h3>
                 <hr className="mb-4" />
                 <div className="row d-flex justify-content-center mb-5">
-                  <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
+                  {/* <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
                       <img
                         src="https://source.unsplash.com/random/200x285"
@@ -82,11 +78,8 @@ export default () => {
                         style={{ borderRadius: "20px" }}
                       />
                     </div>
-                  </div>
-                  <div
-                    className="col-lg-7 col-md-12 col-sm-12 col-12"
-                    style={{ height: "500px", overflowY: "scroll" }}
-                  >
+                  </div> */}
+                  <div className="col-lg-7 col-md-12 col-sm-12 col-12">
                     <div className="row">
                       {posts && posts.length > 0 ? (
                         posts.map((post, i) => {
@@ -99,7 +92,7 @@ export default () => {
                       )}
                     </div>
                   </div>
-                  <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
+                  {/* <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
                     <div className="card h-100">
                       <img
                         src="https://source.unsplash.com/random/200x285"
@@ -108,15 +101,15 @@ export default () => {
                         style={{ borderRadius: "20px" }}
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
-
                 <div className="col-1"></div>
               </div>
             </div>
           </div>
         </section>
       </div>
+      <MobileSidebar />
       <Footer />
     </Fragment>
   );

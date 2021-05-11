@@ -17,21 +17,13 @@ body {
   background: #1e2126;
 }
 
-.home {
-  background-image: url("./images/home.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  min-height: 100vh;
-}
 .hidden {
   display: none !important;
 }
 .card {
   background: #1e2126 !important;
-  box-shadow: 5px 5px 10px rgba(5, 5, 5, 0.7),
-    -5px -5px 10px rgba(60, 66, 71, 0.7) !important;
+  /* box-shadow: 5px 5px 10px rgba(5, 5, 5, 0.7),
+    -5px -5px 10px rgba(60, 66, 71, 0.7) !important; */
   border-radius: 20px;
 }
 
@@ -326,7 +318,7 @@ hr {
 .home-page-wrapper {
   position: relative;
   left: 0;
-  margin-left: 264px;
+  margin-left: 300px;
   min-height: 870px !important;
   transition: all 0.5s ease-in-out;
 }
