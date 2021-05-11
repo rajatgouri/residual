@@ -10,10 +10,10 @@ import avatar from "../../../images/profile.svg";
 function NavbarComponent() {
   return (
     <React.Fragment>
-      <div className="sticky-top nav-background">        
+      <div className="sticky-top nav-background">
         <Navbar
           expand="lg"
-          className="py-0"
+          className="py-2"
           collapseOnSelect={true}
           variant="dark"
         >

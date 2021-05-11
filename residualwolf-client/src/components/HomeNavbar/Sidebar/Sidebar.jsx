@@ -30,7 +30,7 @@ function NavbarComponent(props) {
       {/* <button class="side-toggler mt-4" id="toggler" onClick={sideToggle}>
         <span class="navbar-toggler-icon">&#9776;</span>
       </button> */}
-      <div class="nav-left-sidebar sidebar-dark mt-5" id="navSide">
+      <div class="nav-left-sidebar sidebar-dark mt-5 mb-0 pb-0">
         <div class="menu-list">
           <nav class="navbar navbar-expand-lg navbar-light">
             <button
