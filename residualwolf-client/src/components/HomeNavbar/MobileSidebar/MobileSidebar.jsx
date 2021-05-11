@@ -5,11 +5,10 @@ import "./MobileSidebar.css";
 
 function MobileSidebar(props) {
   const context = useContext(Context);
-  const { getCategories, categories } = context;
-
+  const { getCategories, categories, getPosts, posts } = context;
   useEffect(() => {
     getCategories();
-    console.log(categories);
+    getPosts();
   }, []);
   return (
     <div>
@@ -43,13 +42,48 @@ function MobileSidebar(props) {
                     })
                   : ""}
 
-                <li class="nav-item mt-5">
+                <li class="nav-item mt-5 mb-3">
                   <a class="nav-link " href="#">
                     <span className="font-bold text-white main-heading-hover">
                       TOP 5
                     </span>
                   </a>
                 </li>
+                {posts && posts.length
+                  ? posts.map((post, i) => {
+                      return (
+                        i < 5 && (
+                          <div className="card font-regular text-white mb-4 py-0">
+                            <div className="row">
+                              <div className="col-lg-5 col-md-5 col-sm-5 col-5">
+                                <img
+                                  className="img-fluid blog-image h-100"
+                                  src={post.imageUrl}
+                                  alt="Card image cap"
+                                />
+                              </div>
+                              <div className="col-lg-7 col-md-7 col-sm-7 col-7 pt-2 pb-2">
+                                <div className="blog-paragraph">
+                                  <i className="far fa-clock"></i>&nbsp;&nbsp;
+                                  <span className="font-medium">
+                                    {post.createdAt.slice(
+                                      -post.createdAt.length,
+                                      10
+                                    )}
+                                  </span>
+                                  <h5 className="text-white mt-3 font-demi mb-2">
+                                    {post.title.length > 30
+                                      ? post.title.substring(0, 30) + "..."
+                                      : post.title}
+                                  </h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      );
+                    })
+                  : ""}
                 <li class="text-center my-5">
                   <img
                     src="https://source.unsplash.com/random/200x285"

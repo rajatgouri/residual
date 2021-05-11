@@ -261,7 +261,7 @@ hr {
   object-fit: cover;
 }
 .blog-paragraph{
-  padding: 15px;
+  padding: 10px;
 }
 .user-table{
   height: 800px;
@@ -318,7 +318,7 @@ hr {
 .home-page-wrapper {
   position: relative;
   left: 0;
-  margin-left: 300px;
+  margin-left: 400px;
   min-height: 870px !important;
   transition: all 0.5s ease-in-out;
 }

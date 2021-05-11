@@ -10,23 +10,21 @@ import avatar from "../../../images/profile.svg";
 function NavbarComponent() {
   return (
     <React.Fragment>
-      <div className="sticky-top nav-background">
-        <div className="mb-2">
-          <div className="mb-0">
-            <img
-              src={logo}
-              alt="Residual Wolf"
-              className="img-fluid py-0 my-0"
-              style={{ height: "50px" }}
-            />
-          </div>
-        </div>
+      <div className="sticky-top nav-background">        
         <Navbar
           expand="lg"
           className="py-0"
           collapseOnSelect={true}
           variant="dark"
         >
+          <Navbar.Brand href="/" className="mx-0">
+            <img
+              src={logo}
+              alt="Residual Wolf"
+              className="img-fluid py-0 my-0"
+              style={{ height: "50px" }}
+            />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="links">
@@ -158,7 +156,7 @@ function NavbarComponent() {
                     height="30"
                     className="mb-2"
                     alt="Residual Wolf"
-                    style={{borderRadius: '50%'}}
+                    style={{ borderRadius: "50%" }}
                   />
                 </a>
                 <div
@@ -192,7 +190,7 @@ function NavbarComponent() {
                     height="30"
                     className="mb-2"
                     alt="Residual Wolf"
-                    style={{borderRadius: '50%'}}
+                    style={{ borderRadius: "50%" }}
                   />
                 </a>
                 <div

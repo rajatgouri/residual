@@ -43,8 +43,8 @@ export default () => {
                   <h6 className="sub-title text-white">Blogs Pages</h6>
                   <hr className="mb-5"></hr>
                 </div>
-                <div className="row">
-                  <div className="col-lg-4 col-md-5 col-sm-12 col-12 ml-lg-5 ml-0">
+                <div className="row d-flex justify-content-center">
+                  <div className="col-lg-4 col-md-5 col-sm-12 col-12">
                     <div className="input-group mb-5 w-100">
                       <div className="input-group-prepend">
                         <div className="input-group-text">
@@ -136,6 +136,20 @@ export default () => {
                       </select>
                     </div>
                   </div>
+                  <div className="col-lg-4 col-md-5 col-sm-12 col-12">
+                    <div className="input-group mb-5 w-100">
+                      <div className="input-group-prepend">
+                        <div className="input-group-text">
+                          <i className="fas fa-search text-primaryColor"></i>
+                        </div>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control-filter"
+                        placeholder="Search your blogs"                        
+                      />                        
+                    </div>
+                  </div>
                 </div>
 
                 <div className="row d-flex justify-content-center">
@@ -149,7 +163,7 @@ export default () => {
                       />
                     </div>
                   </div> */}
-                  <div className="col-lg-7 col-md-12 col-sm-12 col-12">
+                  <div className="col-lg-10 col-md-12 col-sm-12 col-12">
                     {items && items.length > 0 ? (
                       items.map((post, i) => {
                         return <Blog post={post} index={i} key={i} />;

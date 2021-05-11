@@ -15,7 +15,7 @@ export default () => {
   }, []);
 
   return (
-    <Fragment>      
+    <Fragment>
       <HomeNavbar />
       <div className="home-page-wrapper">
         <section className="home">
@@ -38,7 +38,7 @@ export default () => {
                       />
                     </div>
                   </div> */}
-                  <div className="col-lg-7 col-md-12 col-sm-12 col-12">
+                  <div className="col-lg-10 col-md-12 col-sm-12 col-12">
                     {posts && posts.length > 0 ? (
                       posts
                         .slice(0)
@@ -51,17 +51,7 @@ export default () => {
                     ) : (
                       <Spinner />
                     )}
-                  </div>
-                  {/* <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
-                    <div className="card h-100">
-                      <img
-                        src="https://source.unsplash.com/random/200x285"
-                        alt=""
-                        className="img-fluid h-100"
-                        style={{ borderRadius: "20px" }}
-                      />
-                    </div>
-                  </div> */}
+                  </div>                  
                 </div>
 
                 <h3 className="text-white font-demi text-center mt-5 pt-5">
@@ -79,7 +69,7 @@ export default () => {
                       />
                     </div>
                   </div> */}
-                  <div className="col-lg-7 col-md-12 col-sm-12 col-12">
+                  <div className="col-lg-10 col-md-12 col-sm-12 col-12">
                     <div className="row">
                       {posts && posts.length > 0 ? (
                         posts.map((post, i) => {
