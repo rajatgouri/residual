@@ -9,7 +9,7 @@ import { TextareaAutosize } from "@material-ui/core";
 
 export default () => {
   const context = useContext(Context);
-  const { getPosts, posts } = context;
+  const { getPosts, posts ,getVideos , videos} = context;
 
   const [items, setItems] = useState(posts);
   const [usePosts, setUsePosts] = useState(true);
@@ -17,7 +17,9 @@ export default () => {
   useEffect(() => {
     getPosts();
   }, []);
-
+  useEffect(() => {
+    getVideos();
+  }, []);
   const handleCategoryClick = (id) => {
     setUsePosts(false);
     if (id=='all') {
@@ -38,8 +40,7 @@ export default () => {
         <section className="home">
           <div className="container-fluid pb-2 mb-3">
             <div className="row mt-5">
-              <div className="col-1"></div>
-              <div className="col-10 mt-4">
+              <div className="col-12 pl-4 pr-4 mt-4 ">
                 <h3 className="text-white font-demi text-center">
                   Our Latest Blogs
                 </h3>
@@ -83,17 +84,8 @@ export default () => {
                   Popular Blogs
                 </h3>
                 <hr className="mb-4 hr" />
-                <div className="row d-flex justify-content-center mb-5">
-                  {/* <div className="col-lg-2 col-md-12 col-sm-12 col-12 advertisement px-0 d-lg-block d-none">
-                    <div className="card h-100">
-                      <img
-                        src="https://source.unsplash.com/random/200x285"
-                        alt=""
-                        className="img-fluid h-100"
-                        style={{ borderRadius: "20px" }}
-                      />
-                    </div>
-                  </div> */}
+                <div className="row d-flex justify-content-center pr-3 mb-5">
+                 
                   <div className="col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="row">
                       {posts && posts.length > 0 && usePosts? (

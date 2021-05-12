@@ -36,7 +36,9 @@ exports.getBlog = async (req, res) => {
 }
 
 exports.createBlog = async (req, res) => {
-  console.log(req.body.blog);
+  if(!req.body.blog.title) {
+    res.status(200).json({  });
+  }
   let fileName,imageBuffer;
   try {
     var matches = req.body.base64image.fileOneValue.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
@@ -53,9 +55,7 @@ exports.createBlog = async (req, res) => {
       imageUrl : fileName? fileName : req.body.blog.imageUrl
     }
     fs.writeFileSync("./uploads/" + fileName, imageBuffer, 'utf8');
-    const blog = await Blog.create(updatedBlog, {
-      new: true,
-    });
+    const blog = await Blog.create(updatedBlog);
     res.status(200).json({ blog, status: true });
   } catch (err) {
     console.log(err);

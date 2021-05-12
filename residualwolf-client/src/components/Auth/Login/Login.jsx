@@ -77,12 +77,12 @@ function Login() {
                 <div className="d-flex justify-content-between">
                   <Link to="/signup">
                     {" "}
-                    <div className="font-demi grey-hover text-secondaryColor mt-4 py-3 px-2">
+                    <div className="font-demi black-hover text-white mt-4 py-3 px-2">
                       Become a member ?{" "}
-                      <span className="ml-2 text-secondaryColor">Signup</span>
+                      <span className="ml-2 text-white">Signup</span>
                     </div>
                   </Link>
-                  <p className="text-secondaryColor font-demi grey-hover mt-4 py-3 px-3">
+                  <p className="text-white font-demi black-hover mt-4 py-3 px-3">
                     Forgot Password
                   </p>
                 </div>

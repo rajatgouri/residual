@@ -4,13 +4,20 @@
     line-height: 2;
     background-color: white;
     border: none !important;
+    position: fixed;
   }
   
 .logo{
     background-color: var(--primaryColor);
 }
 
+.links{
+    margin-left: 45%;
+}
+
 .nav-background{
     background-color: white;
+    width: 100%;
+
 }
   

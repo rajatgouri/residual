@@ -25,9 +25,31 @@ function NavbarComponent() {
               style={{ height: "50px" }}
             />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="ml-auto"/>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="links">
+              {!localStorage.getItem("token") ? (
+                <NavLink to="/login" className="mobile-visible" activeClassName="activeNav">
+                  <Nav.Link
+                    href="/login"
+                    className="font-demi font-17
+                px-3 navbar-item text-white text-center"
+                  >
+                    Login
+              </Nav.Link>
+                </NavLink>
+              ) : ''}
+              {!localStorage.getItem("token") ? (
+                <NavLink to="/signup" className="mobile-visible" activeClassName="activeNav">
+                  <Nav.Link
+                    href="/signup"
+                    className="font-demi font-17
+                          px-3 navbar-item text-white text-center"
+                  >
+                    Signup
+                  </Nav.Link>
+                </NavLink>
+              ) : ''}
               <NavLink exact to="/" activeClassName="activeNav">
                 <Nav.Link
                   href="/"
@@ -137,9 +159,23 @@ function NavbarComponent() {
                   About
                 </Nav.Link>
               </NavLink>
+              {localStorage.getItem("token") ? (
+                <NavLink to="#" className="mobile-visible" activeClassName="activeNav" onClick={(e) => {
+                  localStorage.clear();
+                  window.location.reload();
+                }}>
+                  <Nav.Link
+                    href="#"
+                    className="font-demi font-17
+                    px-3 navbar-item text-white text-center"
+                  >
+                    Logout
+                  </Nav.Link>
+                </NavLink>
+              ) : ''}
             </Nav>
           </Navbar.Collapse>
-          <nav className="ml-auto pr-3 mt-0">
+          <nav className="ml-auto pr-3 mt-0 hidden-small">
             {localStorage.getItem("token") ? (
               <div className="dropdown pt-0 mt-0">
                 <a

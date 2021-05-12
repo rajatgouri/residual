@@ -12,7 +12,9 @@ import {
   _GUEST_INVITE,
   _GET_COMMENT,
   _GET_USER,
-  _GET_CATEGORIES
+  _GET_CATEGORIES,
+  _GET_VIDEOS,
+  _GET_TAGS
 } from "../../ApiUrls";
 
 import {
@@ -25,6 +27,8 @@ import {
   GUEST_BYID,
   GET_UPCOMING_GUEST,
   ERROR,
+  GET_VIDEOS,
+  GET_TAGS
 } from "../Types";
 
 const State = (props) => {
@@ -36,7 +40,9 @@ const State = (props) => {
     error: null,
     comment: [],
     users: [],
-    categories: []
+    categories: [],
+    videos: [],
+    tags: []
   };
 
   const [state, dispatch] = useReducer(Reduser, initialState);
@@ -58,8 +64,27 @@ const State = (props) => {
             imageUrl: _BASE_IMAGE_URL + blog.imageUrl
           }
         }
+      });
+      res.data.blogs = res.data.blogs.filter(blog=>{
+        if(blog.title){
+          return blog
+        } 
       })
       dispatch({ type: GET_ALL_POST, payload: res.data.blogs });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getVideos = async () => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const res = await axios.get(_BASE_URL + _GET_VIDEOS, config);
+      dispatch({ type: GET_VIDEOS, payload: res.data.videos });
     } catch (err) {
       console.log(err);
     }
@@ -95,6 +120,22 @@ const State = (props) => {
       .get(_BASE_URL +_GET_CATEGORIES )
       .then((res) => {
         dispatch({ type: GET_CATEGORIES, payload: res.data.categories });
+      })
+      // .catch((err) => console.log(err));
+      // const res = await axios.get(_BASE_URL + _GET_CATEGORIES, config);
+      // // if (res.data.status === false) alert(res.data.message);
+      // dispatch({ type: GET_CATEGORIES, payload: res.data.categories });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getTags = async () => {
+    try {
+      axios
+      .get(_BASE_URL +_GET_TAGS )
+      .then((res) => {
+        dispatch({ type: GET_TAGS, payload: res.data.tags });
       })
       // .catch((err) => console.log(err));
       // const res = await axios.get(_BASE_URL + _GET_CATEGORIES, config);
@@ -142,12 +183,16 @@ const State = (props) => {
         comment: state.comment,
         users: state.users,
         categories : state.categories,
+        videos: state.videos,
+        tags: state.tags,
         getPosts,
         getPost,
         addPost,
         getComment,
         getUsers,
-        getCategories
+        getCategories,
+        getVideos,
+        getTags
       }}
     >
       {props.children}

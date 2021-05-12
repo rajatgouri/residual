@@ -21,7 +21,14 @@
     transition: all 0.3s ease-in;
 }
 .grey-hover:hover{
-    background-color: rgb(237, 237, 237);
+    background-color: rgb(7, 0, 0);
+}
+.black-hover{
+    font-size: 18px;
+    transition: all 0.3s ease-in;
+}
+.black-hover:hover{
+    background-color: rgb(7, 0, 0);
 }
 .checkbox-label {
     display: block;

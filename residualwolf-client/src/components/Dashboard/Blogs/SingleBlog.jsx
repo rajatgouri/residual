@@ -6,6 +6,7 @@ import { Modal } from "react-bootstrap";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
 import Context from "../../../context/ResidualWolf/Context";
+import { Multiselect } from 'multiselect-react-dropdown';
 
 function SingleBlog({ post }) {
   const initialState = {
@@ -57,15 +58,18 @@ function SingleBlog({ post }) {
     });
   };
   const context = useContext(Context);
-  const { getCategories, categories } = context;
+  const { getCategories, categories , getTags , tags } = context;
   useEffect(() => {
     getCategories();
+  }, []);
+  useEffect(() => {
+    getTags();
   }, []);
   const updateBlog = (e) => {
     e.preventDefault();
     axios
       .patch(
-        _BASE_URL + `/blog/${post._id}`,
+        _BASE_URL + `/update-blog/${post._id}`,
         {
           blog: {
             title: formData.title,
@@ -90,6 +94,7 @@ function SingleBlog({ post }) {
         swal("", err.message, "error");
       });
   };
+  const options = tags.map(t=>t.name)
 
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -187,7 +192,7 @@ function SingleBlog({ post }) {
                   <label className="font-20 font-bold">Category</label>
                   <select
                     name="category"
-                    value={formData.category}
+                    value={formData.category._id}
                     onChange={(e) => {
                       console.log(e.target.name, e.target.value);
                       setFormData({
@@ -230,22 +235,19 @@ function SingleBlog({ post }) {
                 </div>
                 <div className="form-group">
                   <label className="font-20 font-bold">Tags</label>
-                  <input
-                    name="tags"
-                    value={formData.tags?.join()}
-                    onChange={(e) => {
-                      console.log(e);
-                      setFormData({
-                        ...formData,
-                        [e.target.name]: e.target.value.split(","),
-                      });
-                    }}
-                    type="text"
-                    className="form-control mt-3"
-                    id="exampleFormControlInput1"
-                    placeholder="Blog Tags (comma seperated)"
-                    required
-                  />
+                  {options && options.length>0?  (
+                  <Multiselect
+                  displayValue="Tags"
+                  options={options} isObject={false}
+                  selectedValues={formData.tags}
+                  onSelect={(e)=>{
+                    setFormData({
+                      ...formData,
+                      tags: e,
+                    })
+                    console.log(formData);
+                  }} />
+                  ):''}
                 </div>
                 <div className="form-group">
                   <label className="font-20 font-bold">Short Description</label>

@@ -17,7 +17,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ViewListIcon from "@material-ui/icons/ViewList";
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import CategoryIcon from "@material-ui/icons/Category";
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import LogoutIcon from "@material-ui/icons/Category";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import { Link, Router } from "react-router-dom";
@@ -186,6 +188,26 @@ export default function MiniDrawer() {
             </ListItemIcon>
             <Link to="/admin/dashboard/category">
               <ListItemText primary="Categories" />
+            </Link>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <Link to="/admin/dashboard/video">
+                <VideoLibraryIcon />
+              </Link>
+            </ListItemIcon>
+            <Link to="/admin/dashboard/video">
+              <ListItemText primary="Videos" />
+            </Link>
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <Link to="/admin/dashboard/tags">
+                <LocalOfferIcon />
+              </Link>
+            </ListItemIcon>
+            <Link to="/admin/dashboard/tags">
+              <ListItemText primary="Tags" />
             </Link>
           </ListItem>
           <ListItem button>

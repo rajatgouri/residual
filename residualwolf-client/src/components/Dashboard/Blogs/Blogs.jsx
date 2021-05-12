@@ -10,12 +10,12 @@ import Context from "../../../context/ResidualWolf/Context";
 import SingleBlog from "./SingleBlog";
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css";
+import { Multiselect } from 'multiselect-react-dropdown';
 
 
 function Blogs() {
   const initialState = {
     title: "",
-    desc: "",
     url: "",
     category: "",
     tags: [],
@@ -25,12 +25,13 @@ function Blogs() {
   const [formData, setFormData] = useState(initialState);
   const [showModal, setShowModal] = useState(false);
   const [fileOneValue, setFileOneValue] = useState('');
+  const [desc, setDesc] = useState('');
   const [fileOne, setFileOne] = useState("");
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
   const editorRef = useRef();
-  const { getPosts, posts ,getCategories, categories } = context;
+  const { getPosts, posts ,getCategories, categories , getTags , tags} = context;
   useEffect(() => {
     getPosts();
   }, [posts]);
@@ -62,15 +63,20 @@ function Blogs() {
   useEffect(() => {
     getCategories();
   }, []);
+  useEffect(() => {
+    getTags();
+  }, []);
+  const options = tags.map(t=>t.name)
   const updateBlog = (e) => {
     e.preventDefault();
+    console.log(formData);
     axios
       .post(
         _BASE_URL + `/blog`,
         {
           blog: {
               title: formData.title,
-              description: formData.desc,
+              description: desc,
               imageUrl: formData.url,
               category : formData.category,
               tags : formData.tags,
@@ -158,11 +164,13 @@ const setOptions = {
                   <input
                     name="title"
                     value={formData.title}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData({
                         ...formData,
-                        ['title']: e.target.value,
-                      })
+                        title: e.target.value,
+                      });
+                      console.log(formData);
+                    }
                     }
                     type="text"
                     className="form-control mt-3"
@@ -175,13 +183,14 @@ const setOptions = {
                 <label className="font-20 font-bold">Category</label>
                   <select
                     name="category"
-                    value={formData.category}
+                    value={formData.category._id}
                     onChange={(e) => {
                       console.log(e.target.name,e.target.value);
                       setFormData({
                         ...formData,
-                        ['category']: e.target.value,
-                      })}
+                        category: e.target.value,
+                      })
+                    console.log(formData)}
                     }
                     className="form-control mt-3"
                     required
@@ -211,23 +220,51 @@ const setOptions = {
                   />
                 </div>
                 <div className="form-group">
-                  <label className="font-20 font-bold">Tags</label>
-                  <input
+                <label className="font-20 font-bold">Tags</label>
+                {/* <Form.Control as="select" multiple value={formData.tags} 
+                  onChange={(e) => {
+                    console.log(e.target.name,e.target.selectedOptions);
+                    setFormData({
+                      ...formData,
+                      ['tags']: e.target.selectedOptions,
+                    })}
+                  }>
+                   {tags && tags.length>0 ? 
+                    tags.map((c,i)=>{
+                       return <option value={c.name} key={i}>{c.name}</option>
+                    }): ''}
+                </Form.Control> */}
+                  {/* <select
                     name="tags"
-                    value={formData.tags?.join()}
+                    value={formData.tags}
                     onChange={(e) => {
-                      console.log(e);
+                      console.log(e.target.name,[].slice.call(e.target.selectedOptions).map(item => item.value));
                       setFormData({
                         ...formData,
-                        ['tags']: e.target.value.split(','),
+                        tags: [].slice.call(e.target.selectedOptions).map(item => item.value),
                       })}
                     }
-                    type="text"
                     className="form-control mt-3"
-                    id="exampleFormControlInput1"
-                    placeholder="Blog Tags (comma seperated)"
                     required
-                  />
+                    multiple
+                  >
+                    {tags && tags.length>0 ? 
+                    tags.map((c,i)=>{
+                       return <option value={c.name} key={i}>{c.name}</option>
+                    }): ''}
+                  </select> */}
+                  {options && options.length>0?  (
+                  <Multiselect
+                  displayValue="Tags"
+                  options={options} isObject={false}
+                  onSelect={(e)=>{
+                    setFormData({
+                      ...formData,
+                      tags: e,
+                    })
+                    console.log(formData);
+                  }} />
+                  ):''}
                 </div>
                 <div className="form-group">
                 <label className="font-20 font-bold">Short Description</label>
@@ -238,7 +275,7 @@ const setOptions = {
                       console.log(e);
                       setFormData({
                         ...formData,
-                        ['shortDescription']: e.target.value,
+                        shortDescription: e.target.value,
                       })}
                     }
                     className="form-control mt-3"
@@ -253,7 +290,9 @@ const setOptions = {
                   ref={editorRef} 
                   height="100" 
                   placeholder="Please add yor blog here..." 
-                  onChange={handleChange} 
+                  onChange={(content)=>{
+                    setDesc(content);
+                  }} 
                   setContents={formData.desc}
                   setOptions={setOptions}/>
                   {/* <textarea

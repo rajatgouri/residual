@@ -5,7 +5,7 @@ router.get('/blogs', controller.getBlogs);
 
 router.get('/blog/:id', controller.getBlog);
 router.delete("/blog/:id", controller.deleteBlog);
-router.patch("/blog/:id", controller.updateBlog);
+router.patch("/update-blog/:id", controller.updateBlog);
 
 router.post('/blog', controller.createBlog);
 

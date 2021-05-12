@@ -6,7 +6,7 @@
 }
 @media(max-width: 1607px){
   .links {
-    margin-left: 27%;
+    margin-left: 22%;
   }
 }
 @media(max-width: 1500px){
@@ -16,17 +16,22 @@
 }
 @media(max-width: 1450px){
   .links {
-    margin-left: 23%;
+    margin-left: 15%;
   }
 }
 @media(max-width: 1300px){
   .links {
-    margin-left: 20%;
+    margin-left: 10%;
   }
 }
 @media(max-width: 1150px){
   .links {
-    margin-left: 18%;
+    margin-left: 8%;
+  }
+}
+@media(max-width: 1050px){
+  .links {
+    margin-left: 0%;
   }
 }
 .dropdown-menu {
@@ -38,6 +43,9 @@
   display: none;
 }
 @media only screen and (max-width: 992px) {
+  .hidden-small {
+    display: none
+  }
   .mobile-visible {
     display: block;
   }
@@ -52,13 +60,11 @@
 }
 .nav-background {
   background: #1e2126 !important;
-  box-shadow: 5px 5px 10px rgba(5, 5, 5, 0.7),
-    -5px -5px 10px rgba(60, 66, 71, 0.7) !important;
   height: auto !important;  
   color: white !important;
 }
 .activeNav {
-  border-bottom: 3px white solid;
+  /* border-bottom: 3px white solid; */
   font-weight: bold;
   text-decoration: none !important;
 }

@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "multiselect-react-dropdown": "^1.6.11",
+    "react-multi-checkbox-select": "^1.2.0",
+    "react-multiple-select-dropdown-lite": "^2.0.4"
+  }
+}

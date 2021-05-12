@@ -17,6 +17,9 @@ import User from "./components/Dashboard/User/User";
 import About from "./components/layouts/About";
 import Market from "./components/layouts/Market";
 import Default from "./components/Default/Default";
+import Video from "./components/Dashboard/Videos/Video";
+import Tags from "./components/Dashboard/Tags/Tags";
+import BlogVideo from "./components/layouts/Video";
 
 const App = () => {
   return (
@@ -34,6 +37,8 @@ const App = () => {
               <Route exact path="/admin/signup" component={AdminSignup} />
               <Route exact path="/admin/dashboard" component={dashboard} />
               <Route exact path="/admin/dashboard/blogs" component={Blogs} />
+              <Route exact path="/admin/dashboard/video" component={Video} />
+              <Route exact path="/admin/dashboard/tags" component={Tags} />
               <Route
                 exact
                 path="/admin/dashboard/category"
@@ -42,6 +47,7 @@ const App = () => {
               <Route exact path="/admin/dashboard/user" component={User} />
               <Route exact path="/about" component={About} />
               <Route exact path="/market" component={Market} />
+              <Route exact path="/videos" component={BlogVideo} />
               <Route component={Default} />
             </Switch>
           </Fragment>

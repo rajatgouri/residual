@@ -5,6 +5,8 @@ import {
   GET_COMMENT,
   GET_USER,
   GET_CATEGORIES,
+  GET_VIDEOS,
+  GET_TAGS
 } from "../Types";
 
 export default (state, action) => {
@@ -38,6 +40,16 @@ export default (state, action) => {
       return {
         ...state,
         categories: action.payload,
+      };
+    case GET_VIDEOS:
+      return {
+        ...state,
+        videos: action.payload,
+      };
+    case GET_TAGS:
+      return {
+        ...state,
+        tags: action.payload,
       };
     default:
       return state;

@@ -46,7 +46,7 @@ function NavbarComponent(props) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav flex-column">
-                <li class="nav-item mb-4 heading-hover-main">
+                <li class="nav-item heading-hover-main">
                   <a class="nav-link " href="#">
                     <span className="font-bold text-white main-heading-hover">
                       Categories
@@ -114,11 +114,11 @@ function NavbarComponent(props) {
                                         10
                                       )}
                                     </span>
-                                    <h5 className="text-white mt-3 font-demi mb-2">
+                                    <h6 className="text-white mt-3 font-demi mb-2">
                                       {post.title.length > 30
                                         ? post.title.substring(0, 30) + "..."
                                         : post.title}
-                                    </h5>
+                                    </h6>
                                   </div>
                                 </div>
                               </div>

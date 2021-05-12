@@ -1,39 +1,32 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import Context from "../../context/ResidualWolf/Context";
-import Blog from "./Card";
+import ReactPlayer from 'react-player';
 import Footer from "../Footer/Footer";
 import HomeNavbar from "../HomeNavbar/HomeNavbar";
 import MobileSidebar from "../HomeNavbar/MobileSidebar/MobileSidebar";
+import { useHistory } from "react-router-dom";
 
 export default () => {
   const context = useContext(Context);
   const [value, setValue] = useState("04");
 
-  const { getPosts, posts } = context;
+  const { getVideos, videos } = context;
   useEffect(() => {
-    getPosts();
+    getVideos();
   }, []);
 
-  const [items, setItems] = useState(posts);
+  const [items, setItems] = useState(videos);
 
-  let filteredItems = posts.filter((post) => {
+  let filteredItems = videos.filter((post) => {
     return post.createdAt.slice(5, 7).includes(value);
   });
-
+  let history = useHistory();
   const handleCategoryClick = (id) => {
-    if (id=='all') {
-      setItems(posts);
-      return ;
-    }
-    filteredItems = posts.filter((post) => {
-      return post.category.includes(id);
-    });
-    console.log(id);
-    setItems(filteredItems);
+    history.push("/blog-list");
   };
 
   const search = (e) => {
-    filteredItems = posts.filter(p=>{
+    filteredItems = videos.filter(p=>{
       console.log(p);
       for (let i=0;i<p.tags.length;i++) {
         if (p.tags[i].includes(e.target.value)) {
@@ -45,6 +38,8 @@ export default () => {
     console.log(e.target.value)
   }
 
+  const controls = true;
+
   return (
     <Fragment>
       <HomeNavbar handleCategoryClick={handleCategoryClick} />
@@ -54,13 +49,13 @@ export default () => {
             <div className="row mt-3">
               <div className="col-12">
                 <div className="col-md-12 text-center">
-                  <h2 className="title text-white">Blogs</h2>
-                  <h6 className="sub-title text-white">Blogs Pages</h6>
+                  <h2 className="title text-white">Videos</h2>
+                  <h6 className="sub-title text-white">Videos Pages</h6>
                   <hr className="mb-5 hr"></hr>
                 </div>
                 <div className="row d-flex justify-content-center">
                   <div className="col-lg-4 col-md-5 col-sm-12 col-12">
-                    <div className="input-group mb-5 w-100">
+                    <div className="input-group mb-5 w-100 ml-3">
                       <div className="input-group-prepend">
                         <div className="input-group-text">
                           <i className="fas fa-filter text-primaryColor"></i>
@@ -69,7 +64,7 @@ export default () => {
                       <select
                         type="text"
                         className="form-control-filter"
-                        placeholder="Search your blogs"
+                        placeholder="Search your videos"
                         value={value}
                         onChange={(e) => {
                           setValue(e.target.value);
@@ -159,7 +154,7 @@ export default () => {
                     </div>
                   </div>
                   <div className="col-lg-4 col-md-5 col-sm-12 col-12">
-                    <div className="input-group mb-5 w-100">
+                    <div className="input-group mb-5 w-100 ml-3">
                       <div className="input-group-prepend">
                         <div className="input-group-text">
                           <i className="fas fa-search text-primaryColor"></i>
@@ -168,7 +163,7 @@ export default () => {
                       <input
                         type="text"
                         className="form-control-filter"
-                        placeholder="Search your blogs"
+                        placeholder="Search your videos"
                         onChange={(e) => {
                           search(e)
                         }}
@@ -191,12 +186,13 @@ export default () => {
                   <div className="col-lg-12 col-md-12 col-sm-12 col-12">
                     {items && items.length > 0 ? (
                       items.map((post, i) => {
-                        return <Blog post={post} index={i} key={i} />;
+                          console.log(post)
+                        return <ReactPlayer url={post.url} controls={controls} width='90%' height="400px" key={i} className="mt-5 mb-5 react-player-video" />
                       })
                     ) : (
                       <div className="col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="text-center font-demi font-20 text-white">
-                          No Blogs matched your search
+                          No Videos matched your search
                         </div>
                       </div>
                     )}
