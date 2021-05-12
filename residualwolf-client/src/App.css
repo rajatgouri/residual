@@ -251,6 +251,10 @@ a:hover {
   border-radius: 5px;
 }
 
+.badge-container{
+  margin-left: 5%;
+}
+
 @media only screen and (max-height: 590px){
   .modal-card {
     height: 450px;

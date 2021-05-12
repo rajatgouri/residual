@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import HomeNavbar from "../HomeNavbar/HomeNavbar";
 import MobileSidebar from "../HomeNavbar/MobileSidebar/MobileSidebar";
 import { useHistory } from "react-router-dom";
+import Badge from 'react-bootstrap/Badge'
 
 export default () => {
   const context = useContext(Context);
@@ -187,7 +188,18 @@ export default () => {
                     {items && items.length > 0 ? (
                       items.map((post, i) => {
                           console.log(post)
-                        return <ReactPlayer url={post.url} controls={controls} width='90%' height="400px" key={i} className="mt-5 mb-5 react-player-video" />
+                        return (
+                          <>
+                            <ReactPlayer url={post.url} controls={controls} width='90%' height="400px" key={i} className="mt-5 react-player-video" />
+                            {post.tags?.length > 0 ? (
+                              <div class="badge-container">
+                              {post.tags.map(t => {
+                                return <Badge variant="secondary" key="t" className="mr-1 mb-5 mt-1">{t}</Badge>
+                              })}
+                              </div>
+                            ) : ''}
+                          </>
+                        )
                       })
                     ) : (
                       <div className="col-lg-12 col-md-12 col-sm-12 col-12">

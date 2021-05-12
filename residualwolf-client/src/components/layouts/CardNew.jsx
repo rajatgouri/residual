@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Badge from 'react-bootstrap/Badge';
 
 export default (props) => {
   const { index, post } = props;
@@ -27,6 +28,13 @@ export default (props) => {
                   ? post.title.substring(0, 30) + "..."
                   : post.title}
               </h5>
+              <span className="font-medium ">
+                {post.tags?.length>0 ? (
+                  post.tags.map(t=>{
+                    return <Badge variant="secondary" key="t" className="mr-1">{t}</Badge>
+                  })
+                ): ''}
+              </span>
               <p className="mt-2 mb-2 font-medium text-white">
                 {post.shortDescription.substring(0, 150) + "..."}
               </p>
