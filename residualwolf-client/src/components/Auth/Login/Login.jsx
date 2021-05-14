@@ -13,7 +13,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("blablaaaaaa");
     if (password.length < 6) {
       return swal("", "Enter the valid Details", "error");
     }
@@ -27,7 +26,8 @@ function Login() {
         if (res.data.message) {          
           return swal("", res.data.message, "error");
         }        
-        window.localStorage.setItem("token", res.data.token);        
+        window.localStorage.setItem("token", res.data.token);     
+        window.localStorage.setItem("role", res.data.result.role);     
 
         if (res.data.result.role == "user") {
           swal("", "You are Logged in", "success");

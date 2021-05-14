@@ -20,6 +20,7 @@ import Default from "./components/Default/Default";
 import Video from "./components/Dashboard/Videos/Video";
 import Tags from "./components/Dashboard/Tags/Tags";
 import BlogVideo from "./components/layouts/Video";
+import AdminGuard from "./components/Guards/Admin";
 
 const App = () => {
   return (
@@ -35,16 +36,16 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/admin/signup" component={AdminSignup} />
-              <Route exact path="/admin/dashboard" component={dashboard} />
-              <Route exact path="/admin/dashboard/blogs" component={Blogs} />
-              <Route exact path="/admin/dashboard/video" component={Video} />
-              <Route exact path="/admin/dashboard/tags" component={Tags} />
-              <Route
+              <AdminGuard exact path="/admin/dashboard" component={dashboard} />
+              <AdminGuard exact path="/admin/dashboard/blogs" component={Blogs} />
+              <AdminGuard exact path="/admin/dashboard/video" component={Video} />
+              <AdminGuard exact path="/admin/dashboard/tags" component={Tags} />
+              <AdminGuard
                 exact
                 path="/admin/dashboard/category"
                 component={Category}
               />
-              <Route exact path="/admin/dashboard/user" component={User} />
+              <AdminGuard exact path="/admin/dashboard/user" component={User} />
               <Route exact path="/about" component={About} />
               <Route exact path="/market" component={Market} />
               <Route exact path="/videos" component={BlogVideo} />
